@@ -46,7 +46,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Sora:wght@300;400;500;600;700;800&family=Syne:wght@600;800&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -1168,6 +1168,181 @@ button.car-dot{border:none;padding:0;}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 .hero-logo-wrap{margin-bottom:0;}
 @media(max-width:600px){.hero-logo-img{width:86vw;}}
+
+/* =====================================================
+   REDISEÑO — recursos inspirados en MOVA
+   ===================================================== */
+:root{--serif:'Cormorant Garamond',Georgia,serif;--ease-out:cubic-bezier(.2,.75,.2,1);}
+
+/* ---- Texto infinito (marquee) ---- */
+.mq{position:relative;z-index:2;overflow:hidden;padding:1.6rem 0;background:rgba(1,1,10,.72);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);contain:layout paint;}
+.mq-row{display:flex;width:max-content;animation:mqMove var(--mq-speed,42s) linear infinite;will-change:transform;}
+.mq-row.rev{animation-direction:reverse;}
+.mq-row + .mq-row{margin-top:.4rem;}
+.mq.paused .mq-row{animation-play-state:paused;}
+.mq-group{display:flex;align-items:center;flex-shrink:0;}
+.mq-item{font-weight:800;font-size:clamp(2.1rem,6.2vw,5.4rem);letter-spacing:-.045em;line-height:1.08;padding:0 .3em;white-space:nowrap;text-transform:uppercase;color:#fff;}
+.mq-item.o{color:transparent;-webkit-text-stroke:1.2px rgba(255,255,255,.32);}
+.mq-item.s{font-family:var(--serif);font-style:italic;font-weight:600;text-transform:none;letter-spacing:-.01em;color:transparent;background:linear-gradient(120deg,var(--accent2),var(--accent3));-webkit-background-clip:text;background-clip:text;padding:0 .35em .08em;}
+.mq-row.small .mq-item{font-size:clamp(.95rem,1.8vw,1.35rem);font-weight:600;letter-spacing:.32em;color:var(--text2);-webkit-text-stroke:0;}
+.mq-star{display:inline-block;color:var(--accent3);font-size:clamp(1.1rem,2.6vw,2.2rem);padding:0 .35em;line-height:1;}
+.mq-row.small .mq-star{font-size:.8rem;color:var(--accent2);}
+@keyframes mqMove{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+/* cintas cruzadas */
+.ribbons{position:relative;z-index:2;overflow:hidden;padding:4.5rem 0;}
+.ribbon{position:relative;overflow:hidden;padding:1.05rem 0;}
+.ribbon.a{background:linear-gradient(90deg,var(--accent),#4a3bff 45%,var(--accent3));transform:rotate(-2.6deg) scale(1.06);box-shadow:0 20px 60px rgba(43,43,255,.35);z-index:2;}
+.ribbon.b{background:#05051a;border-block:1px solid rgba(255,255,255,.08);transform:rotate(2deg) scale(1.06);margin-top:-.3rem;z-index:1;}
+.ribbon .mq-item{font-size:clamp(1.5rem,3.6vw,2.9rem);}
+.ribbon.a .mq-item,.ribbon.a .mq-star{color:#fff;}
+.ribbon.a .mq-item.s{background:none;-webkit-text-fill-color:#fff;color:#fff;}
+.ribbon.b .mq-item.o{-webkit-text-stroke:1px rgba(255,255,255,.45);}
+
+/* ---- Manifiesto con palabras que rotan ---- */
+.mf{position:relative;z-index:2;padding:8.5rem 4rem 8rem;overflow:hidden;background:radial-gradient(ellipse 60% 70% at 85% 50%,rgba(43,43,255,.16),transparent 70%),radial-gradient(ellipse 40% 50% at 10% 90%,rgba(0,212,255,.08),transparent 70%),rgba(1,1,10,.55);}
+.mf-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.mf-orb{position:absolute;right:6%;top:50%;width:min(34vw,440px);aspect-ratio:1;margin-top:calc(min(34vw,440px) / -2);border-radius:50%;background:radial-gradient(circle at 32% 28%,#9fdcff 0%,#3d7bff 22%,#2B2BFF 48%,#120f6e 78%,#05051a 100%);box-shadow:0 0 120px rgba(43,43,255,.45),inset -30px -40px 80px rgba(0,0,0,.55);animation:mfFloat 9s ease-in-out infinite;pointer-events:none;}
+.mf-orb::after{content:'';position:absolute;inset:-14%;border-radius:50%;border:1px solid rgba(96,96,255,.22);}
+@keyframes mfFloat{0%,100%{transform:translateY(-14px)}50%{transform:translateY(14px)}}
+@media(max-width:900px){.mf-orb{width:62vw;right:-22vw;top:38%;margin-top:-31vw;opacity:.45;}}
+@media(prefers-reduced-motion:reduce){.mf-orb{animation:none;}}
+.mf-h{font-weight:300;line-height:.98;letter-spacing:-.05em;margin:.6rem 0 2.2rem;}
+.mf-lead{display:block;font-size:clamp(2.4rem,6.2vw,5.6rem);color:rgba(255,255,255,.82);}
+.mf-brand{display:block;font-size:clamp(3.4rem,10vw,9.2rem);font-weight:800;color:#fff;}
+.mf-brand em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.02em;color:transparent;background:linear-gradient(120deg,#fff 10%,var(--accent2) 55%,var(--accent3));-webkit-background-clip:text;background-clip:text;padding-right:.08em;}
+.mf-window{display:block;height:1.12em;overflow:hidden;font-size:clamp(3.2rem,9.4vw,8.6rem);font-weight:800;letter-spacing:-.055em;}
+.mf-reel{display:block;animation:mfReel 11s var(--ease-out) infinite;}
+.mf-reel span{display:block;height:1.12em;line-height:1.08;color:transparent;background:linear-gradient(120deg,var(--accent),var(--accent3));-webkit-background-clip:text;background-clip:text;}
+@keyframes mfReel{0%,19%{transform:translateY(0)}25%,44%{transform:translateY(-20%)}50%,69%{transform:translateY(-40%)}75%,94%{transform:translateY(-60%)}100%{transform:translateY(-80%)}}
+.mf-foot{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:2rem;border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;}
+.mf-note{max-width:440px;color:var(--text2);font-size:.95rem;line-height:1.8;}
+.mf-note strong{color:#fff;font-weight:600;}
+.mf-stats{display:flex;gap:2.8rem;}
+.mf-stat b{display:block;font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(2.2rem,4vw,3.2rem);line-height:1;color:#fff;}
+.mf-stat span{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text2);}
+
+/* ---- Metodología ---- */
+.mt-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:4rem;align-items:start;margin-top:1rem;}
+.mt-side{position:sticky;top:calc(var(--nav-h) + 2.5rem);}
+.mt-list{list-style:none;border-top:1px solid rgba(255,255,255,.08);}
+.mt-item{position:relative;display:grid;grid-template-columns:5.2rem 1fr auto;gap:1.4rem;align-items:baseline;padding:1.9rem .4rem;border-bottom:1px solid rgba(255,255,255,.08);transition:padding .45s var(--ease-out),background .45s;}
+.mt-item::after{content:'';position:absolute;left:0;bottom:-1px;height:1px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent3));transition:width .7s var(--ease-out);}
+.mt-item:hover{padding-left:1.2rem;background:linear-gradient(90deg,rgba(43,43,255,.07),transparent 70%);}
+.mt-item:hover::after{width:100%;}
+.mt-n{font-family:var(--serif);font-style:italic;font-weight:600;font-size:2.6rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.35);transition:color .4s,-webkit-text-stroke-color .4s;}
+.mt-item:hover .mt-n{color:var(--accent3);-webkit-text-stroke-color:transparent;}
+.mt-item h3{font-size:clamp(1.25rem,2.2vw,1.7rem);font-weight:700;letter-spacing:-.03em;margin-bottom:.35rem;}
+.mt-item p{font-size:.84rem;color:var(--text2);line-height:1.75;max-width:440px;}
+.mt-time{font-size:.6rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent2);white-space:nowrap;}
+
+/* ---- Portafolio ---- */
+.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.work-card{position:relative;border-radius:24px;overflow:hidden;cursor:pointer;background:var(--glass-bg);border:1px solid var(--glass-border);transition:transform .55s var(--ease-out),border-color .4s,box-shadow .55s;outline:none;}
+.work-card:hover,.work-card:focus-visible{transform:translateY(-6px);border-color:rgba(96,96,255,.45);box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(43,43,255,.12);}
+.work-feature{grid-column:1/-1;display:grid;grid-template-columns:1.45fr 1fr;}
+.work-media{position:relative;overflow:hidden;aspect-ratio:4/3;background:#07071a;}
+.work-media img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 1.1s var(--ease-out);}
+.work-card:hover .work-media img{transform:scale(1.05);}
+.work-info{padding:1.6rem 1.7rem 1.8rem;display:flex;flex-direction:column;gap:.55rem;}
+.work-feature .work-info{justify-content:center;padding:2.6rem 2.6rem;}
+.work-num{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--text2);}
+.work-info h3{font-size:clamp(1.5rem,2.6vw,2.2rem);font-weight:800;letter-spacing:-.04em;line-height:1;}
+.work-feature .work-info h3{font-family:'Syne',sans-serif;font-size:clamp(2.6rem,5vw,4.2rem);letter-spacing:-.03em;}
+.work-info p{font-size:.84rem;color:var(--text2);line-height:1.75;}
+.work-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.3rem 0 .4rem;}
+.work-tags span{font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;padding:.3rem .7rem;border-radius:100px;border:1px solid rgba(255,255,255,.12);color:#cfd0ff;}
+.work-link{align-self:flex-start;margin-top:.5rem;display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:#fff;text-decoration:none;padding:.75rem 1.25rem;border-radius:100px;background:linear-gradient(135deg,var(--accent),#4a3bff);box-shadow:0 10px 30px rgba(43,43,255,.35);transition:transform .3s var(--ease-out),box-shadow .3s;}
+.work-link:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(43,43,255,.55);}
+.work-link.ghost{background:transparent;border:1px solid rgba(255,255,255,.18);box-shadow:none;}
+/* vista previa de MOVA (hecha con CSS) */
+.mova-mock{aspect-ratio:auto;min-height:420px;background:#f6f2ee;color:#111110;display:flex;flex-direction:column;font-family:'Syne',sans-serif;}
+.mm-bar{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.6rem;border-bottom:1px solid #c9c4bf;}
+.mm-logo{font-weight:800;font-size:1.25rem;letter-spacing:.06em;}
+.mm-logo i{font-style:normal;color:#e45831;}
+.mm-nav{display:flex;gap:1.1rem;font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#66625f;}
+.mm-nav b{background:#111110;color:#f6f2ee;padding:.35rem .8rem;border-radius:100px;font-weight:600;}
+.mm-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:1.6rem 1.8rem;position:relative;overflow:hidden;}
+.mm-body::after{content:'';position:absolute;right:-12%;top:12%;width:46%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f39a6f,#e45831 55%,#b8401f);opacity:.92;filter:blur(.3px);}
+.mm-kicker{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:#66625f;margin-bottom:.9rem;position:relative;z-index:1;}
+.mm-h{font-weight:600;font-size:clamp(1.9rem,4vw,3.3rem);line-height:.98;letter-spacing:-.04em;position:relative;z-index:1;}
+.mm-h em{font-family:var(--serif);font-style:italic;font-weight:600;color:#e45831;}
+.mm-window{height:1.1em;overflow:hidden;font-weight:800;font-size:clamp(2rem,4.3vw,3.6rem);letter-spacing:-.05em;position:relative;z-index:1;}
+.mm-reel{display:block;animation:mfReel 9s var(--ease-out) infinite;}
+.mm-reel span{display:block;height:1.1em;line-height:1.05;}
+.mm-strip{background:#111110;color:#f6f2ee;overflow:hidden;padding:.7rem 0;}
+.mm-strip .mq-row{--mq-speed:26s;}
+.mm-strip .mq-item{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.2em;color:#f6f2ee;}
+.mm-strip .mq-star{color:#e45831;font-size:.7rem;}
+.work-badge{position:absolute;top:1rem;left:1rem;z-index:3;font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#111110;background:#fff;padding:.4rem .75rem;border-radius:100px;display:flex;align-items:center;gap:.4rem;}
+.work-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:#18c964;box-shadow:0 0 0 3px rgba(24,201,100,.25);}
+
+/* ---- Brief de contacto por pasos ---- */
+.brief{padding:2rem !important;}
+.bf-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;margin-bottom:1.8rem;}
+.bf-tab{background:none;border:none;border-top:2px solid rgba(255,255,255,.1);padding:.8rem 0 0;text-align:left;font-family:'Sora',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#5a5a7e;cursor:pointer;transition:color .3s,border-color .3s;}
+.bf-tab.active{color:#fff;border-top-color:var(--accent3);}
+.bf-tab.done{color:var(--accent2);border-top-color:var(--accent);}
+.bf-step{display:none;animation:bfIn .5s var(--ease-out);}
+.bf-step.active{display:block;}
+@keyframes bfIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.bf-q{font-size:clamp(1.35rem,2.4vw,1.75rem);font-weight:700;letter-spacing:-.03em;margin-bottom:.3rem;}
+.bf-q em{font-family:var(--serif);font-style:italic;font-weight:600;color:var(--accent3);}
+.bf-hint{font-size:.78rem;color:var(--text2);margin-bottom:1.3rem;}
+.bf-chips{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
+.bf-chips.inline{display:flex;flex-wrap:wrap;}
+.bf-chip{position:relative;cursor:pointer;display:block;}
+.bf-chip input{position:absolute;opacity:0;pointer-events:none;}
+.bf-chip > span{display:flex;flex-direction:column;gap:.15rem;height:100%;padding:.85rem 1rem .85rem 2.6rem;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);transition:border-color .25s,background .25s,transform .25s;position:relative;}
+.bf-chips.inline .bf-chip > span{padding:.6rem 1rem .6rem 2.3rem;border-radius:100px;}
+.bf-chip > span::before{content:'';position:absolute;left:1rem;top:1rem;width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);transition:all .25s;}
+.bf-chips.inline .bf-chip > span::before{top:50%;transform:translateY(-50%);left:.85rem;}
+.bf-chip b{font-size:.82rem;font-weight:600;color:#fff;}
+.bf-chip small{font-size:.66rem;color:var(--text2);}
+.bf-chip:hover > span{border-color:rgba(96,96,255,.4);}
+.bf-chip input:checked + span{border-color:var(--accent2);background:rgba(43,43,255,.12);}
+.bf-chip input:checked + span::before{border-color:var(--accent3);background:var(--accent3);box-shadow:inset 0 0 0 3px #0a0a24;}
+.bf-chip input:focus-visible + span{outline:2px solid var(--accent3);outline-offset:2px;}
+.bf-sub{font-size:.62rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent2);margin:1.2rem 0 .7rem;}
+.bf-nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:1.6rem;}
+.bf-back{background:none;border:none;color:var(--text2);font-family:'Sora',sans-serif;font-size:.78rem;cursor:pointer;}
+.bf-back:hover{color:#fff;}
+.bf-next{border:none;cursor:pointer;font-family:'Sora',sans-serif;font-weight:600;font-size:.82rem;color:#fff;padding:.9rem 1.6rem;border-radius:100px;background:linear-gradient(135deg,var(--accent),#4a3bff);box-shadow:0 10px 30px rgba(43,43,255,.35);transition:transform .25s,box-shadow .25s,opacity .25s;}
+.bf-next:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(43,43,255,.55);}
+.bf-count{font-size:.7rem;color:var(--text2);}
+.bf-summary{margin-top:1.2rem;padding:1rem 1.1rem;border-radius:14px;background:rgba(43,43,255,.06);border:1px dashed rgba(96,96,255,.35);font-size:.76rem;color:#cfd0ff;line-height:1.7;}
+.bf-summary b{color:#fff;}
+.brief{display:block;background:var(--glass-bg2);border:1px solid rgba(255,255,255,.08);border-radius:26px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 30px 80px rgba(0,0,0,.4);margin-top:0;}
+.bf-step .fg{margin-bottom:1rem;}
+.brief input,.brief textarea{font-family:'Sora',sans-serif;}
+.brief .c-submit{width:auto;margin-top:0;padding:.95rem 1.6rem;border-radius:100px;font-size:.78rem;}
+.brief .c-hint{margin-top:1rem;}
+
+/* ---- Responsive ---- */
+@media(max-width:900px){
+  .mf{padding:6rem 1.5rem 5.5rem;}
+  .mt-wrap{grid-template-columns:1fr;gap:1.5rem;}
+  .mt-side{position:static;}
+  .work-grid{grid-template-columns:1fr;}
+  .work-feature{grid-template-columns:1fr;}
+  .work-feature .work-info{padding:1.8rem 1.6rem 2rem;}
+  .mova-mock{min-height:340px;}
+}
+@media(max-width:600px){
+  .mq{padding:1.1rem 0;}
+  .ribbons{padding:3rem 0;}
+  .mt-item{grid-template-columns:3.4rem 1fr;gap:.9rem;padding:1.5rem .2rem;}
+  .mt-time{grid-column:2;}
+  .mt-n{font-size:2rem;}
+  .mf-stats{gap:1.6rem;}
+  .bf-chips{grid-template-columns:1fr;}
+  .brief{padding:1.4rem !important;}
+  .bf-tab{font-size:.52rem;letter-spacing:1.2px;}
+  .mm-nav span{display:none;}
+  .mova-mock{min-height:300px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .mq-row,.mf-reel,.mm-reel{animation:none!important;transform:none!important;}
+}
 </style>
 </head>
 <body>
@@ -1184,9 +1359,9 @@ button.car-dot{border:none;padding:0;}
   <ul class="nav-links" id="navLinks">
     <li><a href="#nosotros" onclick="navGo(event,'nosotros')">Nosotros</a></li>
     <li><a href="#servicios" onclick="navGo(event,'servicios')">Servicios</a></li>
+    <li><a href="#metodo" onclick="navGo(event,'metodo')">Método</a></li>
     <li><a href="#recomendador" onclick="navGo(event,'recomendador')">¿Qué necesito?</a></li>
     <li><a href="#planes" onclick="navGo(event,'planes')">Precios</a></li>
-    <li><a href="#comparativa" onclick="navGo(event,'comparativa')">Qué incluye</a></li>
     <li><a href="#portafolio" onclick="navGo(event,'portafolio')">Portafolio</a></li>
     <li><a href="#contacto" onclick="navGo(event,'contacto')">Contacto</a></li>
   </ul>
@@ -1211,6 +1386,9 @@ button.car-dot{border:none;padding:0;}
   <div class="scroll-hint"><span>Descubrir</span><div class="scroll-arrow"></div></div>
 </section>
 
+<!-- TEXTO INFINITO -->
+<div class="mq" aria-label="Páginas web, chatbots de WhatsApp, reservas automáticas e inteligencia artificial 24/7"><div class="mq-row " style="--mq-speed:46s"><div class="mq-group"><span class="mq-item ">Páginas web</span><span class="mq-star">✦</span><span class="mq-item s">que venden</span><span class="mq-star">✦</span><span class="mq-item o">Chatbots WhatsApp</span><span class="mq-star">✦</span><span class="mq-item s">24/7</span><span class="mq-star">✦</span><span class="mq-item ">Reservas automáticas</span><span class="mq-star">✦</span><span class="mq-item s">con IA</span><span class="mq-star">✦</span><span class="mq-item o">Cancún · México</span><span class="mq-star">✦</span></div><div class="mq-group" aria-hidden="true"><span class="mq-item ">Páginas web</span><span class="mq-star">✦</span><span class="mq-item s">que venden</span><span class="mq-star">✦</span><span class="mq-item o">Chatbots WhatsApp</span><span class="mq-star">✦</span><span class="mq-item s">24/7</span><span class="mq-star">✦</span><span class="mq-item ">Reservas automáticas</span><span class="mq-star">✦</span><span class="mq-item s">con IA</span><span class="mq-star">✦</span><span class="mq-item o">Cancún · México</span><span class="mq-star">✦</span></div></div><div class="mq-row rev small" style="--mq-speed:38s"><div class="mq-group"><span class="mq-item small">Diseño a la medida</span><span class="mq-star">✦</span><span class="mq-item small">SEO para Google</span><span class="mq-star">✦</span><span class="mq-item small">Instagram y Messenger</span><span class="mq-star">✦</span><span class="mq-item small">Google Calendar</span><span class="mq-star">✦</span><span class="mq-item small">Hosting y SSL</span><span class="mq-star">✦</span><span class="mq-item small">IVA incluido</span><span class="mq-star">✦</span></div><div class="mq-group" aria-hidden="true"><span class="mq-item small">Diseño a la medida</span><span class="mq-star">✦</span><span class="mq-item small">SEO para Google</span><span class="mq-star">✦</span><span class="mq-item small">Instagram y Messenger</span><span class="mq-star">✦</span><span class="mq-item small">Google Calendar</span><span class="mq-star">✦</span><span class="mq-item small">Hosting y SSL</span><span class="mq-star">✦</span><span class="mq-item small">IVA incluido</span><span class="mq-star">✦</span></div></div></div>
+
 <!-- NOSOTROS -->
 <div class="sec" id="nosotros">
   <div class="reveal"><div class="label">Sobre nosotros</div></div>
@@ -1222,10 +1400,33 @@ button.car-dot{border:none;padding:0;}
       <div class="highlight">"Tu cliente pregunta a las 11 de la noche. Tu chatbot le contesta en segundos. Tu página le da confianza para comprar."</div>
     </div>
     <div class="reveal delay-3" style="display:flex;align-items:center;justify-content:center;">
-      <img src="robot-nosotros.png" alt="Asistente inteligente de NEXUZ" width="520" height="520" loading="lazy" style="width:100%;max-width:520px;height:auto;display:block;">
+      <img src="robot-nosotros.webp" alt="Asistente inteligente de NEXUZ" width="1040" height="1231" loading="lazy" decoding="async" style="width:100%;max-width:520px;height:auto;display:block;">
     </div>
   </div>
 </div>
+
+
+<!-- MANIFIESTO -->
+<section class="mf" id="manifiesto">
+  <div class="mf-orb" aria-hidden="true"></div>
+  <div class="mf-inner">
+    <div class="reveal"><div class="label">Lo que hacemos por ti</div></div>
+    <h2 class="mf-h reveal delay-1">
+      <span class="mf-lead">Hacemos que</span>
+      <span class="mf-brand">tu <em>negocio</em></span>
+      <span class="sr-only">se vea, responda, venda y crezca.</span>
+      <span class="mf-window" aria-hidden="true"><span class="mf-reel"><span>se vea.</span><span>responda.</span><span>venda.</span><span>crezca.</span><span>se vea.</span></span></span>
+    </h2>
+    <div class="mf-foot reveal delay-2">
+      <p class="mf-note">Una <strong>página web</strong> que da confianza y un <strong>chatbot de WhatsApp</strong> que contesta por ti. Las dos trabajando juntas, aunque tú estés dormido.</p>
+      <div class="mf-stats">
+        <div class="mf-stat"><b>24/7</b><span>Atención</span></div>
+        <div class="mf-stat"><b>3 sem.</b><span>Tu página lista</span></div>
+        <div class="mf-stat"><b>IVA</b><span>Siempre incluido</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- SERVICIOS -->
 <div class="sec-full" id="servicios">
@@ -1254,6 +1455,25 @@ button.car-dot{border:none;padding:0;}
         <p>Conecta el mismo chatbot a tus mensajes de Instagram o Facebook para atender todo desde un solo lugar.</p>
       </div>
     </div>
+  </div>
+</div>
+
+
+<!-- METODOLOGÍA -->
+<div class="sec" id="metodo">
+  <div class="mt-wrap">
+    <div class="mt-side">
+      <div class="reveal"><div class="label">Cómo trabajamos</div></div>
+      <div class="reveal delay-1"><h2 class="title">Nuestra<br><em>metodología.</em></h2></div>
+      <div class="reveal delay-2"><p class="sub">Cinco pasos claros, sin tecnicismos. Siempre sabes en qué va tu proyecto y qué sigue.</p></div>
+    </div>
+    <ol class="mt-list">
+      <li class="mt-item reveal"><span class="mt-n">01</span><div><h3>Platicamos</h3><p>Conocemos tu negocio, a tus clientes y lo que más te urge resolver.</p></div><span class="mt-time">Día 1</span></li>
+      <li class="mt-item reveal delay-1"><span class="mt-n">02</span><div><h3>Diseñamos</h3><p>Definimos la estructura de tu página y las respuestas que dará tu chatbot.</p></div><span class="mt-time">Semana 1</span></li>
+      <li class="mt-item reveal delay-2"><span class="mt-n">03</span><div><h3>Construimos</h3><p>Desarrollamos tu sitio y entrenamos al chatbot con la información de tu negocio.</p></div><span class="mt-time">Semana 2</span></li>
+      <li class="mt-item reveal delay-3"><span class="mt-n">04</span><div><h3>Revisamos</h3><p>Lo pruebas con nosotros y ajustamos lo que haga falta en tus rondas de cambios.</p></div><span class="mt-time">Semana 3</span></li>
+      <li class="mt-item reveal delay-4"><span class="mt-n">05</span><div><h3>Lanzamos</h3><p>Publicamos, conectamos tu WhatsApp y te acompañamos después de la entrega.</p></div><span class="mt-time">Entrega</span></li>
+    </ol>
   </div>
 </div>
 
@@ -1304,6 +1524,7 @@ button.car-dot{border:none;padding:0;}
           <div class="rec-opt" onclick="recSelect(this,'necesidad','responder')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div class="rec-opt-label">Contestar mensajes 24/7</div><div class="rec-opt-sub">No perder clientes por tardar</div></div>
           <div class="rec-opt" onclick="recSelect(this,'necesidad','reservas')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 15 11 17 15 13"/></svg></span><div class="rec-opt-label">Agendar citas solo</div><div class="rec-opt-sub">Reservas y recordatorios automáticos</div></div>
           <div class="rec-opt" onclick="recSelect(this,'necesidad','ambas')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><div class="rec-opt-label">Página y chatbot</div><div class="rec-opt-sub">Quiero las dos cosas</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'necesidad','medida')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><div class="rec-opt-label">Algo más completo</div><div class="rec-opt-sub">Tienda en línea, login o base de datos</div></div>
         </div>
         <div class="rec-nav"><button class="rec-back" onclick="recGoTo(2)">← Atrás</button><button class="rec-next" id="recNext3" onclick="recGoTo(4)" disabled>Siguiente →</button></div>
       </div>
@@ -1477,37 +1698,47 @@ button.car-dot{border:none;padding:0;}
   <div class="car-inner">
     <div class="car-header reveal">
       <div class="label" style="justify-content:center">Portafolio</div>
-      <h2 class="title" style="text-align:center">Proyectos y soluciones<br><em>reales.</em></h2>
-      <p class="sub" style="margin:0 auto;text-align:center;max-width:580px;">Algunas páginas que hemos construido y lo que tu chatbot puede hacer por ti.</p>
+      <h2 class="title" style="text-align:center">Proyectos reales,<br><em>en línea.</em></h2>
+      <p class="sub" style="margin:0 auto;text-align:center;max-width:580px;">Sitios que diseñamos y construimos para marcas reales. Da clic en cada uno para ver los detalles.</p>
     </div>
-    <div class="car-viewport reveal delay-2">
-      <div class="car-track" id="carTrack">
-        <div class="car-slide"><div class="car-card glass" onclick="openPortfolioItem(0)">
-          <div class="car-media"><img src="portafolio-uniformes-pre.jpg" alt="Página web de Uniformes PRE" loading="lazy"><div class="car-overlay-grad"></div></div>
-          <div class="car-info"><span class="car-tag">Página web</span><h4>Uniformes PRE</h4><p>Sitio con catálogo, cotizador y contacto directo por WhatsApp.</p></div>
-        </div></div>
-        <div class="car-slide"><div class="car-card glass" onclick="openPortfolioItem(1)">
-          <div class="car-media"><img src="portafolio-blu-solutions.jpg" alt="Página web de BLU Solutions" loading="lazy"><div class="car-overlay-grad"></div></div>
-          <div class="car-info"><span class="car-tag">Página web</span><h4>BLU Solutions</h4><p>Catálogo comercial para hoteles con cientos de productos.</p></div>
-        </div></div>
-        <div class="car-slide"><div class="car-card glass" onclick="openPortfolioItem(2)">
-          <div class="car-media car-media-light"><img src="atencion-247.png" alt="Chatbot de atención 24/7" loading="lazy"><div class="car-overlay-grad"></div></div>
-          <div class="car-info"><span class="car-tag">Chatbot</span><h4>Atención 24/7</h4><p>Tu negocio responde siempre, aunque no estés disponible.</p></div>
-        </div></div>
-        <div class="car-slide"><div class="car-card glass" onclick="openPortfolioItem(3)">
-          <div class="car-media car-media-light"><img src="procesos-sin-friccion.png" alt="Reservas automáticas" loading="lazy"><div class="car-overlay-grad"></div></div>
-          <div class="car-info"><span class="car-tag">Reservas</span><h4>Citas sin llamadas</h4><p>El chatbot agenda, confirma y recuerda la cita por ti.</p></div>
-        </div></div>
-        <div class="car-slide"><div class="car-card glass" onclick="openPortfolioItem(4)">
-          <div class="car-media car-media-light"><img src="identidad-visual.png" alt="Diseño web con identidad visual" loading="lazy"><div class="car-overlay-grad"></div></div>
-          <div class="car-info"><span class="car-tag">Diseño</span><h4>Identidad visual</h4><p>Tu página con los colores, logo y estilo de tu marca.</p></div>
-        </div></div>
-      </div>
-    </div>
-    <div class="car-nav reveal delay-3">
-      <button class="car-arrow" onclick="carMove(-1)" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
-      <div class="car-dots" id="carDots"></div>
-      <button class="car-arrow" onclick="carMove(1)" aria-label="Siguiente"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+    <div class="work-grid">
+      <article class="work-card work-feature reveal delay-1" onclick="openPortfolioItem(0)" onkeydown="if(event.key==='Enter')openPortfolioItem(0)" tabindex="0" role="button" aria-label="Ver proyecto MOVA">
+        <div class="work-media mova-mock" aria-hidden="true">
+          <span class="work-badge">En vivo</span>
+          <div class="mm-bar"><span class="mm-logo">MOV<i>A</i></span><span class="mm-nav"><span>Trabajos</span><span>Servicios</span><b>Cotizar</b></span></div>
+          <div class="mm-body">
+            <div class="mm-kicker">Estrategias que mueven marcas</div>
+            <div class="mm-h">Hacemos que<br>tu <em>marca</em></div>
+            <div class="mm-window"><span class="mm-reel"><span>se mueva.</span><span>conecte.</span><span>se sienta.</span><span>se recuerde.</span><span>se mueva.</span></span></div>
+          </div>
+          <div class="mm-strip"><div class="mq-row "><div class="mq-group"><span class="mq-item ">Restaurantes</span><span class="mq-star">✦</span><span class="mq-item ">Espacios</span><span class="mq-star">✦</span><span class="mq-item ">Moda y joyería</span><span class="mq-star">✦</span><span class="mq-item ">Belleza</span><span class="mq-star">✦</span><span class="mq-item ">Textil</span><span class="mq-star">✦</span><span class="mq-item ">Identidad de marca</span><span class="mq-star">✦</span></div><div class="mq-group" aria-hidden="true"><span class="mq-item ">Restaurantes</span><span class="mq-star">✦</span><span class="mq-item ">Espacios</span><span class="mq-star">✦</span><span class="mq-item ">Moda y joyería</span><span class="mq-star">✦</span><span class="mq-item ">Belleza</span><span class="mq-star">✦</span><span class="mq-item ">Textil</span><span class="mq-star">✦</span><span class="mq-item ">Identidad de marca</span><span class="mq-star">✦</span></div></div></div>
+        </div>
+        <div class="work-info">
+          <span class="work-num">01 — Página web</span>
+          <h3>MOVA</h3>
+          <p>Sitio cinematográfico para un estudio de producción audiovisual y marketing: video a pantalla completa, textos animados, trabajos por industria y un cotizador por pasos que llega directo a WhatsApp.</p>
+          <div class="work-tags"><span>Video</span><span>Animaciones</span><span>Cotizador</span><span>Responsive</span></div>
+          <a class="work-link" href="https://mova-creative.emiliorp-srch-uni.chatgpt.site/" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver sitio en vivo ↗</a>
+        </div>
+      </article>
+      <article class="work-card reveal delay-2" onclick="openPortfolioItem(1)" onkeydown="if(event.key==='Enter')openPortfolioItem(1)" tabindex="0" role="button" aria-label="Ver proyecto Uniformes PRE">
+        <div class="work-media"><img src="portafolio-uniformes-pre.webp" alt="Página web de Uniformes PRE" width="900" height="1125" loading="lazy" decoding="async"></div>
+        <div class="work-info">
+          <span class="work-num">02 — Página web</span>
+          <h3>Uniformes PRE</h3>
+          <p>Tienda de uniformes en Cancún: catálogo con filtros, cotizador por talla y color, y pedido directo por WhatsApp.</p>
+          <div class="work-tags"><span>Catálogo</span><span>Cotizador</span><span>WhatsApp</span></div>
+        </div>
+      </article>
+      <article class="work-card reveal delay-3" onclick="openPortfolioItem(2)" onkeydown="if(event.key==='Enter')openPortfolioItem(2)" tabindex="0" role="button" aria-label="Ver proyecto BLU Solutions">
+        <div class="work-media"><img src="portafolio-blu-solutions.webp" alt="Página web de BLU Solutions" width="900" height="1125" loading="lazy" decoding="async"></div>
+        <div class="work-info">
+          <span class="work-num">03 — Página web</span>
+          <h3>BLU Solutions</h3>
+          <p>Catálogo comercial para equipamiento hotelero con cientos de productos y solicitudes de cotización.</p>
+          <div class="work-tags"><span>Catálogo</span><span>Portada animada</span><span>PDF</span></div>
+        </div>
+      </article>
     </div>
   </div>
 </div>
@@ -1528,13 +1759,16 @@ button.car-dot{border:none;padding:0;}
 </div>
 
 <!-- CONTACTO -->
+<!-- CINTAS -->
+<div class="ribbons" aria-hidden="true"><div class="ribbon a mq"><div class="mq-row " style="--mq-speed:34s"><div class="mq-group"><span class="mq-item ">Hagamos que pase</span><span class="mq-star">✦</span><span class="mq-item s">tu página</span><span class="mq-star">✦</span><span class="mq-item ">Tu chatbot</span><span class="mq-star">✦</span><span class="mq-item s">tu negocio</span><span class="mq-star">✦</span></div><div class="mq-group" aria-hidden="true"><span class="mq-item ">Hagamos que pase</span><span class="mq-star">✦</span><span class="mq-item s">tu página</span><span class="mq-star">✦</span><span class="mq-item ">Tu chatbot</span><span class="mq-star">✦</span><span class="mq-item s">tu negocio</span><span class="mq-star">✦</span></div></div></div><div class="ribbon b mq"><div class="mq-row rev" style="--mq-speed:40s"><div class="mq-group"><span class="mq-item o">Move smarter</span><span class="mq-star">✦</span><span class="mq-item s">grow faster</span><span class="mq-star">✦</span><span class="mq-item o">NEXUZ</span><span class="mq-star">✦</span><span class="mq-item s">Cancún</span><span class="mq-star">✦</span></div><div class="mq-group" aria-hidden="true"><span class="mq-item o">Move smarter</span><span class="mq-star">✦</span><span class="mq-item s">grow faster</span><span class="mq-star">✦</span><span class="mq-item o">NEXUZ</span><span class="mq-star">✦</span><span class="mq-item s">Cancún</span><span class="mq-star">✦</span></div></div></div></div>
+
 <div class="sec-full" id="contacto">
   <div class="sec-inner">
     <div class="contact-grid">
       <div>
         <div class="reveal"><div class="label">Contacto</div></div>
-        <div class="reveal delay-1"><h2 class="title">¿Listo para<br><em>dar el salto?</em></h2></div>
-        <div class="reveal delay-2"><p class="sub">Cuéntanos de tu negocio. Tu mensaje se abre en WhatsApp para que lo envíes y te respondemos en menos de 24 horas.</p></div>
+        <div class="reveal delay-1"><h2 class="title">Hagamos<br><em>que pase.</em></h2></div>
+        <div class="reveal delay-2"><p class="sub">Elige lo que necesitas y cuéntanos de tu negocio. Nosotros damos forma a la propuesta. Tu solicitud se abre en WhatsApp y te respondemos en menos de 24 horas.</p></div>
         <div class="c-info reveal delay-3">
           <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="c-text"><h4>WhatsApp</h4><a href="https://wa.me/529983114978" target="_blank" rel="noopener">998 311 4978</a></div></div>
           <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="c-text"><h4>Email</h4><a href="mailto:Nexuz@nexuzmexico.com">Nexuz@nexuzmexico.com</a></div></div>
@@ -1542,13 +1776,39 @@ button.car-dot{border:none;padding:0;}
           <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div><div class="c-text"><h4>Facebook</h4><a href="https://www.facebook.com/profile.php?id=61590419578405" target="_blank" rel="noopener">NEXUZ México</a></div></div>
         </div>
       </div>
-      <form class="c-form reveal delay-2" id="contactForm" novalidate>
-        <div class="fg"><label for="cfNombre">Nombre completo</label><input id="cfNombre" type="text" name="nombre" placeholder="Tu nombre" required maxlength="80" autocomplete="name"></div>
-        <div class="fg"><label for="cfNegocio">Empresa / Negocio</label><input id="cfNegocio" type="text" name="negocio" placeholder="¿Cómo se llama tu negocio?" maxlength="100"></div>
-        <div class="fg"><label for="cfInteres">¿Qué te interesa?</label><select id="cfInteres" name="interes"><option>Paquete Página + Chatbot WhatsApp</option><option>Página web</option><option>Chatbot WhatsApp</option><option>Chatbot con reservas automáticas</option><option>Página a la medida (login, base de datos o tienda)</option><option>Solo quiero información</option></select></div>
-        <div class="fg"><label for="cfMensaje">Mensaje</label><textarea id="cfMensaje" name="mensaje" placeholder="Cuéntanos sobre tu negocio y lo que buscas lograr..." maxlength="1000"></textarea></div>
-        <button type="submit" class="c-submit">Enviar por WhatsApp →</button>
-        <p class="c-hint">Se abre WhatsApp con tu mensaje listo. No guardamos tus datos en esta página.</p>
+      <form class="c-form brief reveal delay-2" id="contactForm" novalidate>
+        <div class="bf-tabs">
+          <button type="button" class="bf-tab active" data-tab="1">01 / Servicios</button>
+          <button type="button" class="bf-tab" data-tab="2">02 / Tu negocio</button>
+          <button type="button" class="bf-tab" data-tab="3">03 / Tu idea</button>
+        </div>
+        <div class="bf-step active" data-step="1">
+          <h3 class="bf-q">¿Qué vamos a <em>crear?</em></h3>
+          <p class="bf-hint">Combina lo que tu negocio necesita. Puedes elegir varios.</p>
+          <div class="bf-chips"><label class="bf-chip"><input type="checkbox" name="svc" value="Paquete Página + Chatbot WhatsApp"><span><b>Página + Chatbot</b><small>$12,500 · el más pedido</small></span></label><label class="bf-chip"><input type="checkbox" name="svc" value="Página web"><span><b>Página web</b><small>Hasta 3 páginas · $9,500</small></span></label><label class="bf-chip"><input type="checkbox" name="svc" value="Chatbot WhatsApp"><span><b>Chatbot WhatsApp</b><small>$3,500 + $2,500/mes</small></span></label><label class="bf-chip"><input type="checkbox" name="svc" value="Chatbot con reservas automáticas"><span><b>Reservas automáticas</b><small>Agenda en Google Calendar</small></span></label><label class="bf-chip"><input type="checkbox" name="svc" value="Chatbot en Instagram o Messenger"><span><b>Instagram o Messenger</b><small>Mismo chatbot, otro canal</small></span></label><label class="bf-chip"><input type="checkbox" name="svc" value="Mantenimiento web"><span><b>Mantenimiento web</b><small>Hosting, SSL y cambios · $500/mes</small></span></label><label class="bf-chip"><input type="checkbox" name="svc" value="Página a la medida (login, base de datos o tienda)"><span><b>Página a la medida</b><small>Tienda, login o base de datos</small></span></label><label class="bf-chip"><input type="checkbox" name="svc" value="Asesoría (aún no sé qué necesito)"><span><b>Aún no sé</b><small>Quiero que me asesoren</small></span></label></div>
+          <div class="bf-nav"><span class="bf-count" id="bfCount">Nada seleccionado</span><button type="button" class="bf-next" data-go="2">Continuar →</button></div>
+        </div>
+        <div class="bf-step" data-step="2">
+          <h3 class="bf-q">Cuéntanos de <em>tu negocio.</em></h3>
+          <p class="bf-hint">Solo lo necesario para preparar tu propuesta.</p>
+          <div class="fg"><label for="cfNombre">Nombre completo</label><input id="cfNombre" type="text" name="nombre" placeholder="Tu nombre" required maxlength="80" autocomplete="name"></div>
+          <div class="fg"><label for="cfNegocio">Empresa / Negocio</label><input id="cfNegocio" type="text" name="negocio" placeholder="¿Cómo se llama tu negocio?" maxlength="100" autocomplete="organization"></div>
+          <div class="bf-sub">Giro</div>
+          <div class="bf-chips inline"><label class="bf-chip"><input type="radio" name="giro" value="Restaurante / Comida"><span><b>Restaurante / Comida</b></span></label><label class="bf-chip"><input type="radio" name="giro" value="Salud / Consultorio"><span><b>Salud / Consultorio</b></span></label><label class="bf-chip"><input type="radio" name="giro" value="Belleza / Spa"><span><b>Belleza / Spa</b></span></label><label class="bf-chip"><input type="radio" name="giro" value="Tienda / Productos"><span><b>Tienda / Productos</b></span></label><label class="bf-chip"><input type="radio" name="giro" value="Turismo / Hotel"><span><b>Turismo / Hotel</b></span></label><label class="bf-chip"><input type="radio" name="giro" value="Servicios profesionales"><span><b>Servicios profesionales</b></span></label><label class="bf-chip"><input type="radio" name="giro" value="Otro"><span><b>Otro</b></span></label></div>
+          <div class="bf-sub">¿Ya tienes página web?</div>
+          <div class="bf-chips inline"><label class="bf-chip"><input type="radio" name="web" value="No tengo página"><span><b>No tengo</b></span></label><label class="bf-chip"><input type="radio" name="web" value="Tengo página pero quiero renovarla"><span><b>Sí, pero quiero renovarla</b></span></label><label class="bf-chip"><input type="radio" name="web" value="Ya tengo página y me gusta"><span><b>Sí, y me gusta</b></span></label></div>
+          <div class="bf-nav"><button type="button" class="bf-back" data-go="1">← Atrás</button><button type="button" class="bf-next" data-go="3">Continuar →</button></div>
+        </div>
+        <div class="bf-step" data-step="3">
+          <h3 class="bf-q">¿Cuál es <em>tu idea?</em></h3>
+          <p class="bf-hint">Escríbelo como se lo contarías a un amigo.</p>
+          <div class="fg"><label for="cfMensaje">Tu idea (opcional)</label><textarea id="cfMensaje" name="mensaje" placeholder="Ej. Quiero que mis clientes vean el menú y reserven mesa por WhatsApp..." maxlength="1000"></textarea></div>
+          <div class="bf-sub">¿Cuándo quieres empezar?</div>
+          <div class="bf-chips inline"><label class="bf-chip"><input type="radio" name="cuando" value="Lo antes posible"><span><b>Lo antes posible</b></span></label><label class="bf-chip"><input type="radio" name="cuando" value="Este mes"><span><b>Este mes</b></span></label><label class="bf-chip"><input type="radio" name="cuando" value="Solo estoy cotizando"><span><b>Solo estoy cotizando</b></span></label></div>
+          <div class="bf-summary" id="bfSummary"></div>
+          <div class="bf-nav"><button type="button" class="bf-back" data-go="2">← Atrás</button><button type="submit" class="c-submit">Enviar por WhatsApp →</button></div>
+          <p class="c-hint">Se abre WhatsApp con tu solicitud lista. El precio final depende del alcance. No guardamos tus datos en esta página.</p>
+        </div>
       </form>
     </div>
   </div>
@@ -1724,7 +1984,14 @@ function recCalcular(){
   const needsWeb = r.web !== 'si';
   let plan, precio, precioNota, why, items, extras=[], cartIds=[];
 
-  if(r.necesidad==='reservas' || (r.tipo==='citas' && r.necesidad!=='encontrar')){
+  if(r.necesidad==='medida'){
+    plan='PÁGINA A LA MEDIDA'; precio='Se cotiza';
+    precioNota='Depende de lo que necesites (tienda, login, base de datos) · Te mandamos propuesta sin compromiso · IVA incluido';
+    items=['Diseño a la medida con tu marca','Tienda en línea, cuentas de usuario o base de datos','Adaptada a celular','Puede conectarse con tu chatbot de WhatsApp'];
+    why='Lo que buscas va más allá de una página informativa. Platicamos contigo, definimos el alcance y te damos un precio cerrado antes de empezar.';
+    extras.push('Si además quieres atender por WhatsApp, podemos sumar el chatbot desde $3,500');
+    cartIds=['medida'];
+  } else if(r.necesidad==='reservas' || (r.tipo==='citas' && r.necesidad!=='encontrar' && r.necesidad!=='medida')){
     if(needsWeb){
       plan='PÁGINA WEB + CHATBOT CON RESERVAS'; precio='$17,000 MXN';
       precioNota='$9,500 página + $7,500 chatbot con reservas · Después $3,000/mes del chatbot · Mantenimiento web opcional $500/mes · IVA incluido';
@@ -1761,12 +2028,12 @@ function recCalcular(){
   const ch=(r.canales||[]).filter(c=>c==='instagram'||c==='messenger');
   if(ch.length && plan.indexOf('CHATBOT')>-1){ extras.unshift('Como también te escriben por '+ch.map(c=>c==='instagram'?'Instagram':'Messenger').join(' y ')+', puedes conectar el mismo chatbot: $2,000 + $500/mes por canal'); }
   if(plan.indexOf('CHATBOT')>-1) extras.push('Respuestas ilimitadas cuando el cliente escribe primero; las promos que tú envíes cuestan $3.00 c/u');
-  extras.push('Si necesitas login, base de datos o tienda en línea, te lo cotizamos aparte');
+  if(r.necesidad!=='medida') extras.push('Si necesitas login, base de datos o tienda en línea, te lo cotizamos aparte');
 
   const perfilMap = {
     tipo:{local:'Negocio local',citas:'Negocio con citas',emprendedor:'Emprendedor',servicios:'Servicios profesionales',productos:'Venta de productos',otro:'Tu negocio'},
     web:{no:'Sin página web',renovar:'Página por renovar',si:'Ya tiene página'},
-    necesidad:{encontrar:'que te encuentren',responder:'contestar 24/7',reservas:'agendar citas',ambas:'página y chatbot'}
+    necesidad:{encontrar:'que te encuentren',responder:'contestar 24/7',reservas:'agendar citas',ambas:'página y chatbot',medida:'algo a la medida'}
   };
   const canalesTxt=(r.canales||[]).map(c=>({whatsapp:'WhatsApp',instagram:'Instagram',messenger:'Messenger',ninguna:'Pocos mensajes'})[c]).join(', ');
   document.getElementById('recResultado').innerHTML = `
@@ -1798,7 +2065,8 @@ function recCalcular(){
 }
 const CART_ITEMS = {
   web:D.web.cart, paquete:D.paquete.cart, chatbot:D.chatbot.cart,
-  reservas:['reservas','Chatbot con reservas automáticas','$7,500 MXN','unico','+ $3,000/mes']
+  reservas:['reservas','Chatbot con reservas automáticas','$7,500 MXN','unico','+ $3,000/mes'],
+  medida:['medida','Página a la medida (login / base de datos / tienda)','Cotizar','cotizar']
 };
 function recAgregar(ids){ ids.forEach(id=>{ if(CART_ITEMS[id]) addToCart(...CART_ITEMS[id]); }); openCart(); }
 function recReiniciar(){
@@ -1809,39 +2077,22 @@ function recReiniciar(){
   recGoTo(1);
 }
 
-/* ============ PORTFOLIO CAROUSEL ============ */
-let carIndex = 0;
-let carPerView = 3;
-const carTotalSlides = document.querySelectorAll('#carTrack .car-slide').length;
+/* ============ PORTAFOLIO ============ */
 const PORTFOLIO = [
+  {tag:'Página web',nm:'MOVA',url:'https://mova-creative.emiliorp-srch-uni.chatgpt.site/',desc:'Sitio para un estudio creativo de producción audiovisual y marketing. Abre con video a pantalla completa, muestra trabajos por industria (restaurantes, espacios, moda, belleza, textil), explica servicios y metodología, y cierra con un cotizador por pasos que envía la solicitud a WhatsApp.',inc:['Video a pantalla completa','Textos animados y carruseles','Cotizador por pasos a WhatsApp','Adaptado a celular']},
   {tag:'Página web',nm:'Uniformes PRE',desc:'Sitio de 4 páginas para una tienda de uniformes en Cancún: catálogo con más de 30 productos, buscador y filtros, cotizador por cantidad, talla y color, y contacto que abre WhatsApp con el pedido listo.',inc:['Catálogo con filtros','Cotizador de pedidos','Contacto directo por WhatsApp','Adaptado a celular']},
-  {tag:'Página web',nm:'BLU Solutions',desc:'Sitio y catálogo comercial para una comercializadora de equipamiento hotelero, con cientos de referencias organizadas por familia y solicitudes a la medida.',inc:['Portada animada','Catálogo de cientos de productos','Solicitud de cotización','Catálogos PDF descargables']},
-  {tag:'Chatbot',nm:'Atención 24/7',desc:'Tu chatbot de WhatsApp contesta preguntas frecuentes, envía tu catálogo y te pasa solo a los clientes que necesitan atención personal.',inc:CHATBOT_INC.slice(0,4)},
-  {tag:'Reservas',nm:'Citas sin llamadas',desc:'El chatbot revisa tu disponibilidad, agenda en tu Google Calendar, confirma al cliente y le manda un recordatorio un día antes.',inc:S.reservas.inc},
-  {tag:'Diseño',nm:'Identidad visual',desc:'Cada página se diseña con el logo, colores y estilo de tu marca para que se vea profesional en celular y computadora.',inc:['Diseño a la medida','Adaptado a celular','Tus colores y tipografía']}
+  {tag:'Página web',nm:'BLU Solutions',desc:'Sitio y catálogo comercial para una comercializadora de equipamiento hotelero, con cientos de referencias organizadas por familia y solicitudes a la medida.',inc:['Portada animada','Catálogo de cientos de productos','Solicitud de cotización','Catálogos PDF descargables']}
 ];
-function getCarPerView(){ if(window.innerWidth <= 560) return 1; if(window.innerWidth <= 900) return 2; return 3; }
-function carMaxIndex(){ return Math.max(0, carTotalSlides - carPerView); }
-function renderCarDots(){
-  const dotsWrap = document.getElementById('carDots'); if(!dotsWrap) return;
-  const pages = carMaxIndex() + 1; dotsWrap.innerHTML = '';
-  for(let i=0;i<pages;i++){ const d = document.createElement('button'); d.className = 'car-dot' + (i===carIndex?' active':''); d.setAttribute('aria-label','Ir a la diapositiva '+(i+1)); d.onclick = () => { carIndex = i; updateCarousel(); }; dotsWrap.appendChild(d); }
-}
-function updateCarousel(){
-  carPerView = getCarPerView(); carIndex = Math.min(carIndex, carMaxIndex());
-  const track = document.getElementById('carTrack'); if(!track) return;
-  const slideEl = track.querySelector('.car-slide'); if(!slideEl) return;
-  const slideWidth = slideEl.getBoundingClientRect().width; const gap = 24;
-  track.style.transform = `translateX(-${carIndex * (slideWidth + gap)}px)`;
-  renderCarDots();
-}
-function carMove(dir){ carIndex = Math.max(0, Math.min(carMaxIndex(), carIndex + dir)); updateCarousel(); }
-function openPortfolioItem(i){ const p=PORTFOLIO[i]; if(!p) return; const lf=p.inc.map(f=>'<li><span class="ck">✓</span>'+f+'</li>').join(''); document.getElementById('mc').innerHTML='<button class="m-close" onclick="closeOv(event)" aria-label="Cerrar">×</button><div class="m-label">'+p.tag+'</div><h3 class="m-title">'+p.nm+'</h3><p class="m-desc" style="margin-top:1rem">'+p.desc+'</p><div class="m-ftitle" style="margin-top:1.5rem">Lo que incluye</div><ul class="m-flist">'+lf+'</ul><div class="m-actions"><button class="m-cta" onclick="closeOv(event);scroll2(\'contacto\')">Quiero algo así →</button></div>'; openOv(); }
-window.addEventListener('resize', () => { clearTimeout(window._carRto); window._carRto = setTimeout(updateCarousel, 150); });
-setTimeout(updateCarousel, 100);
-let carAutoplay = setInterval(() => { if(carIndex >= carMaxIndex()){ carIndex = 0; } else { carIndex++; } updateCarousel(); }, 5000);
-document.getElementById('portafolio').addEventListener('mouseenter', () => clearInterval(carAutoplay));
-document.getElementById('portafolio').addEventListener('touchstart', () => clearInterval(carAutoplay), {passive:true});
+function openPortfolioItem(i){ const p=PORTFOLIO[i]; if(!p) return; const lf=p.inc.map(f=>'<li><span class="ck">✓</span>'+f+'</li>').join(''); const live=p.url?'<a class="work-link ghost" href="'+p.url+'" target="_blank" rel="noopener">Ver sitio en vivo ↗</a>':''; document.getElementById('mc').innerHTML='<button class="m-close" onclick="closeOv(event)" aria-label="Cerrar">×</button><div class="m-label">'+p.tag+'</div><h3 class="m-title">'+p.nm+'</h3><p class="m-desc" style="margin-top:1rem">'+p.desc+'</p><div class="m-ftitle" style="margin-top:1.5rem">Lo que incluye</div><ul class="m-flist">'+lf+'</ul><div class="m-actions" style="align-items:center;flex-wrap:wrap">'+live+'<button class="m-cta" onclick="closeOv(event);scroll2(\'contacto\')">Quiero algo así →</button></div>'; openOv(); }
+
+/* ============ TEXTO INFINITO: pausa fuera de pantalla ============ */
+(function(){
+  const els=document.querySelectorAll('.mq');
+  if(!('IntersectionObserver' in window)) return;
+  const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('paused',!e.isIntersecting)),{rootMargin:'100px 0px'});
+  els.forEach(el=>{el.classList.add('paused');io.observe(el);});
+  document.addEventListener('visibilitychange',()=>els.forEach(el=>el.classList.toggle('paused',document.hidden)));
+})();
 
 /* ============ MODAL ============ */
 function openOv(){ document.getElementById('ov').classList.add('on'); document.body.style.overflow='hidden'; }
@@ -1855,15 +2106,43 @@ let toastT;
 function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('on'),3800); }
 
 /* ============ FORMULARIOS (sin servidor) ============ */
-document.getElementById('contactForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const nombre=this.nombre.value.trim();
-  if(!nombre){ showToast('Escribe tu nombre para continuar.'); this.nombre.focus(); return; }
-  const negocio=this.negocio.value.trim(), interes=this.interes.value, mensaje=this.mensaje.value.trim();
-  let text='Hola NEXUZ, soy '+nombre+(negocio?' de '+negocio:'')+'.\nMe interesa: '+interes+'.';
-  if(mensaje) text+='\n\n'+mensaje;
-  openWhatsApp(text); this.reset();
-});
+/* ============ BRIEF DE CONTACTO (sin servidor) ============ */
+(function(){
+  const f=document.getElementById('contactForm');
+  const steps=f.querySelectorAll('.bf-step'), tabs=f.querySelectorAll('.bf-tab');
+  const val=n=>{const el=f.querySelector('input[name="'+n+'"]:checked');return el?el.value:'';};
+  const svcs=()=>[...f.querySelectorAll('input[name="svc"]:checked')].map(i=>i.value);
+  let cur=1;
+  function summary(){
+    const s=svcs(), n=f.nombre.value.trim(), g=val('giro');
+    document.getElementById('bfSummary').innerHTML='<b>Tu solicitud:</b> '+(s.length?s.join(', '):'sin servicios elegidos')+(n?'<br><b>Nombre:</b> '+n.replace(/[<>&]/g,''):'')+(g?' · '+g:'');
+  }
+  function go(n){
+    if(n>1&&cur===1&&!svcs().length){showToast('Elige al menos un servicio para continuar.');return;}
+    if(n>2&&cur<=2&&!f.nombre.value.trim()){go(2);showToast('Escribe tu nombre para continuar.');f.nombre.focus();return;}
+    cur=n;
+    steps.forEach(s=>s.classList.toggle('active',+s.dataset.step===n));
+    tabs.forEach(t=>{const k=+t.dataset.tab;t.classList.toggle('active',k===n);t.classList.toggle('done',k<n);});
+    if(n===3) summary();
+  }
+  f.addEventListener('click',e=>{const b=e.target.closest('[data-go],[data-tab]');if(!b)return;e.preventDefault();go(+(b.dataset.go||b.dataset.tab));});
+  f.addEventListener('change',e=>{if(e.target.name==='svc'){const c=svcs().length;document.getElementById('bfCount').textContent=c?(c+(c===1?' servicio elegido':' servicios elegidos')):'Nada seleccionado';}});
+  f.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'){e.preventDefault();if(cur<3)go(cur+1);}});
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    const nombre=f.nombre.value.trim();
+    if(!svcs().length){go(1);showToast('Elige al menos un servicio.');return;}
+    if(!nombre){go(2);showToast('Escribe tu nombre para continuar.');f.nombre.focus();return;}
+    const negocio=f.negocio.value.trim(), mensaje=f.mensaje.value.trim();
+    let text='Hola NEXUZ, soy '+nombre+(negocio?' de '+negocio:'')+'.';
+    if(val('giro')) text+='\nGiro: '+val('giro');
+    text+='\n\nMe interesa:\n'+svcs().map(s=>'• '+s).join('\n');
+    if(val('web')) text+='\n\nPágina actual: '+val('web');
+    if(val('cuando')) text+='\nCuándo empezar: '+val('cuando');
+    if(mensaje) text+='\n\nMi idea: '+mensaje;
+    openWhatsApp(text); f.reset(); document.getElementById('bfCount').textContent='Nada seleccionado'; go(1);
+  });
+})();
 document.getElementById('workForm').addEventListener('submit', function(e){
   e.preventDefault();
   const nombre=this.nombre.value.trim(), email=this.email.value.trim();
