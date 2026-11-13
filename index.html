@@ -1320,6 +1320,9 @@ button.car-dot{border:none;padding:0;}
 /* ---- clips en loop (Higgsfield) ---- */
 .loop-vid{display:block;width:100%;height:auto;background:transparent;mix-blend-mode:screen;-webkit-mask-image:radial-gradient(ellipse 72% 78% at 50% 50%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 72% 78% at 50% 50%,#000 62%,transparent 100%);}
 .robot-vid{max-width:480px;}
+.mf-orb.has-vid{background:none;box-shadow:none;overflow:visible}
+.mf-orb.has-vid::after{display:none}
+.orb-vid{position:absolute;left:50%;top:50%;width:150%;max-width:none;transform:translate(-50%,-50%);-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 48%,transparent 70%);mask-image:radial-gradient(circle at 50% 50%,#000 48%,transparent 70%);}
 
 /* ---- Responsive ---- */
 @media(max-width:900px){
@@ -1412,7 +1415,7 @@ button.car-dot{border:none;padding:0;}
 
 <!-- MANIFIESTO -->
 <section class="mf" id="manifiesto">
-  <div class="mf-orb" aria-hidden="true"></div>
+  <div class="mf-orb has-vid" aria-hidden="true"><video class="loop-vid orb-vid" src="https://d8j0ntlcm91z4.cloudfront.net/user_3LvkRXNTZbI0xUpXUAo3hJLoKCN/hf_20261112_231739_aec608e0-8d1f-4bb4-8b62-0fa441439d9a.mp4" width="720" height="720" muted loop playsinline preload="none"></video></div>
   <div class="mf-inner">
     <div class="reveal"><div class="label">Lo que hacemos por ti</div></div>
     <h2 class="mf-h reveal delay-1">
@@ -2116,7 +2119,7 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
   const vids=document.querySelectorAll('.loop-vid');
   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   vids.forEach(v=>{
-    v.addEventListener('error',()=>{ if(v.poster){ const img=new Image(); img.src=v.poster; img.alt=v.getAttribute('aria-label')||''; img.className=v.className.replace('loop-vid',''); img.style.cssText='width:100%;max-width:480px;height:auto;display:block'; v.replaceWith(img);} },{once:true});
+    v.addEventListener('error',()=>{ const orb=v.closest('.mf-orb'); if(orb){ orb.classList.remove('has-vid'); v.remove(); return; } if(v.poster){ const img=new Image(); img.src=v.poster; img.alt=v.getAttribute('aria-label')||''; img.className=v.className.replace('loop-vid',''); img.style.cssText='width:100%;max-width:480px;height:auto;display:block'; v.replaceWith(img);} },{once:true});
   });
   if(reduce||!('IntersectionObserver' in window)) return;
   const io=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target; if(e.isIntersecting){ if(v.preload==='none'){v.preload='auto';} const p=v.play(); if(p&&p.catch)p.catch(()=>{}); } else v.pause();}),{rootMargin:'150px 0px'});
