@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paquetes de chatbot y página web | NEXUZ</title>
+<meta name="description" content="Paquetes de chatbot de WhatsApp con IA para negocios que reciben muchos mensajes: Básico, Pro y Premium. Entre más grande el plan, más barata tu página web.">
+<meta name="theme-color" content="#01010a">
+<link rel="icon" href="logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#01010a;--text:#fff;--text2:#a3a3c4;--accent:#2B2BFF;--accent2:#6060ff;--accent3:#00d4ff;--wa:#25d366;--serif:'Cormorant Garamond',Georgia,serif;--ease:cubic-bezier(.2,.75,.2,1);}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.bgfx{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(60% 50% at 80% 0%,rgba(43,43,255,.28),transparent 70%),radial-gradient(50% 40% at 0% 100%,rgba(0,212,255,.12),transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 1.5rem}
+em{font-family:var(--serif);font-style:italic;font-weight:600;color:transparent;background:linear-gradient(120deg,#fff 5%,var(--accent2) 50%,var(--accent3));-webkit-background-clip:text;background-clip:text;padding:0 .06em .05em}
+.glass{background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(1,1,10,.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+nav img{height:26px;display:block}
+.nav-r{display:flex;gap:.7rem;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.3rem;border-radius:100px;font-weight:700;font-size:.82rem;text-decoration:none;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-ghost{color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn-main{background:var(--accent);color:#fff;box-shadow:0 8px 28px rgba(43,43,255,.45)}
+.btn-wa{background:var(--wa);color:#04210f;box-shadow:0 8px 24px rgba(37,211,102,.35)}
+.btn svg{width:16px;height:16px}
+/* hero */
+.hero{padding:5.5rem 0 3rem;display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center}
+.kick{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--accent3);margin-bottom:1.2rem}
+h1{font-size:clamp(2.4rem,5.4vw,4.4rem);font-weight:800;letter-spacing:-.045em;line-height:1.02}
+h1 em{display:inline}
+.lead{margin-top:1.4rem;font-size:1.05rem;line-height:1.7;color:var(--text2);max-width:520px}
+.hero .btn{margin-top:2rem}
+/* phone counter */
+.phone{position:relative;width:280px;height:500px;margin:0 auto;border-radius:38px;padding:14px;background:linear-gradient(160deg,#16163a,#07071a);border:1px solid rgba(130,140,255,.35);box-shadow:0 30px 80px rgba(43,43,255,.35),inset 0 0 0 6px #050512}
+.scr{position:relative;height:100%;border-radius:28px;overflow:hidden;background:#0b0b22;display:flex;flex-direction:column}
+.scr-top{display:flex;align-items:center;gap:8px;padding:12px 14px;background:rgba(255,255,255,.05);font-size:.75rem;font-weight:700}
+.scr-top i{width:24px;height:24px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.scr-top small{display:block;font-weight:500;color:#7ff0b0;font-size:.6rem}
+.feed{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:10px 12px;overflow:hidden}
+.b{max-width:80%;font-size:.7rem;line-height:1.35;padding:7px 10px;border-radius:12px;animation:bIn .35s var(--ease) both}
+.b.in{align-self:flex-start;background:rgba(255,255,255,.12);border-bottom-left-radius:3px}
+.b.out{align-self:flex-end;background:var(--wa);color:#04210f;font-weight:600;border-bottom-right-radius:3px}
+@keyframes bIn{from{opacity:0;transform:translateY(10px) scale(.92)}to{opacity:1;transform:none}}
+.counter{position:absolute;right:-40px;top:250px;padding:14px 18px;border-radius:18px;min-width:190px}
+.counter b{display:block;font-size:2rem;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.counter span{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text2)}
+/* section titles */
+section{padding:5rem 0}
+.st{text-align:center;max-width:760px;margin:0 auto 3rem}
+.st h2{font-size:clamp(2rem,4.2vw,3.2rem);font-weight:800;letter-spacing:-.04em;line-height:1.08}
+.st p{margin-top:1rem;color:var(--text2);line-height:1.7}
+/* slider */
+.calc{max-width:880px;margin:0 auto;border-radius:28px;padding:2.4rem}
+.calc-q{font-weight:700;font-size:1.1rem;text-align:center}
+.calc-val{text-align:center;margin:1.2rem 0 .4rem;font-size:clamp(2.6rem,6vw,4rem);font-weight:800;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.calc-val small{font-size:1rem;color:var(--text2);font-weight:500;letter-spacing:0}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:10px;border-radius:10px;background:linear-gradient(90deg,var(--accent3) 0,var(--accent) var(--p,20%),rgba(255,255,255,.1) var(--p,20%));outline:none;margin:1rem 0 .6rem}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:#fff;border:6px solid var(--accent);box-shadow:0 0 0 6px rgba(43,43,255,.25),0 0 24px rgba(43,43,255,.8);cursor:grab}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#fff;border:6px solid var(--accent);cursor:grab}
+.ticks{display:flex;justify-content:space-between;font-size:.68rem;color:var(--text2)}
+.calc-res{margin-top:1.6rem;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;text-align:center}
+.calc-res .pill{padding:.6rem 1.2rem;border-radius:100px;background:rgba(43,43,255,.18);border:1px solid rgba(120,130,255,.5);font-weight:700}
+.calc-res .pill b{color:var(--accent3)}
+.calc-note{text-align:center;margin-top:.8rem;font-size:.8rem;color:var(--text2)}
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;align-items:stretch}
+.plan{position:relative;border-radius:26px;padding:2rem 1.7rem;display:flex;flex-direction:column;transition:transform .45s var(--ease),box-shadow .45s,border-color .45s}
+.plan.on{transform:translateY(-10px);border-color:rgba(120,140,255,.75);box-shadow:0 0 0 1px rgba(120,140,255,.4),0 24px 70px rgba(43,43,255,.45)}
+.plan .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-size:.62rem;font-weight:800;letter-spacing:.2em;padding:.35rem .9rem;border-radius:100px;background:var(--accent);box-shadow:0 0 18px var(--accent);white-space:nowrap;opacity:0;transition:opacity .3s}
+.plan.on .tag{opacity:1}
+.pn{font-size:.75rem;font-weight:800;letter-spacing:.28em;color:var(--accent3)}
+.pr{margin-top:.9rem;font-size:2.6rem;font-weight:800;letter-spacing:-.05em}
+.pr small{font-size:.85rem;font-weight:500;color:var(--text2);letter-spacing:0}
+.impl{margin-top:.3rem;font-size:.82rem;color:var(--text2)}
+.impl b{color:#fff}
+.impl .free{color:#7ff0b0;font-weight:700}
+.meter{margin:1.4rem 0 .5rem;height:12px;border-radius:12px;background:rgba(255,255,255,.08);overflow:hidden}
+.meter i{display:block;height:100%;width:0;border-radius:12px;background:linear-gradient(90deg,var(--accent3),var(--accent));box-shadow:0 0 14px rgba(0,212,255,.6);transition:width 1.6s var(--ease)}
+.mlabel{display:flex;justify-content:space-between;font-size:.78rem}
+.mlabel b{font-size:1.05rem;font-variant-numeric:tabular-nums}
+.mlabel span{color:var(--text2)}
+.plan ul{list-style:none;margin:1.3rem 0 1.6rem;display:flex;flex-direction:column;gap:.55rem;font-size:.85rem;color:#d6d6ee;line-height:1.45}
+.plan li{display:flex;gap:.55rem}
+.plan li::before{content:'';flex:none;width:7px;height:7px;margin-top:.45rem;border-radius:50%;background:var(--accent3);box-shadow:0 0 8px var(--accent3)}
+.plan .btn{margin-top:auto;justify-content:center}
+.kw{font-family:'Sora';letter-spacing:.08em;background:rgba(4,33,15,.18);padding:.1rem .45rem;border-radius:6px}
+/* page staircase */
+.stair{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;align-items:end;max-width:1000px;margin:0 auto}
+.step{position:relative;border-radius:22px;padding:1.4rem 1.2rem;text-align:center}
+.step .bar{height:var(--h);margin:0 auto 1rem;width:58%;border-radius:14px 14px 6px 6px;background:linear-gradient(180deg,rgba(96,96,255,.9),rgba(43,43,255,.35));box-shadow:0 0 30px rgba(43,43,255,.4);transform-origin:bottom;transform:scaleY(0);transition:transform 1.2s var(--ease)}
+.stair.vis .step .bar{transform:scaleY(1)}
+.step:nth-child(2) .bar{transition-delay:.15s}.step:nth-child(3) .bar{transition-delay:.3s}.step:nth-child(4) .bar{transition-delay:.45s}
+.step .sp{font-size:1.7rem;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.step .sl{font-size:.75rem;color:var(--text2);margin-top:.3rem;line-height:1.4}
+.step.best{border-color:rgba(127,240,176,.5)}
+.step.best .bar{background:linear-gradient(180deg,#7ff0b0,rgba(37,211,102,.35));box-shadow:0 0 30px rgba(37,211,102,.45)}
+.step.best .sp{color:#7ff0b0}
+.step s{display:block;font-size:.75rem;color:var(--text2)}
+.stair-note{text-align:center;margin-top:1.6rem;color:var(--text2);font-size:.85rem}
+/* how counted */
+.count{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;align-items:center;max-width:960px;margin:0 auto}
+.chat{border-radius:24px;padding:1.4rem;display:flex;flex-direction:column;gap:.7rem}
+.row{display:flex;align-items:center;gap:.7rem}
+.row.r{justify-content:flex-end}
+.chip{font-size:.62rem;font-weight:800;letter-spacing:.1em;padding:.3rem .6rem;border-radius:100px;white-space:nowrap}
+.chip.g{background:rgba(255,255,255,.08);color:var(--text2)}
+.chip.c{background:rgba(43,43,255,.25);color:#cfd6ff;border:1px solid rgba(120,130,255,.5)}
+.chat .b{animation:none;max-width:70%;font-size:.8rem;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s var(--ease)}
+.count.vis .chat .b{opacity:1;transform:none}
+.count.vis .chat .row:nth-child(2) .b{transition-delay:.4s}.count.vis .chat .row:nth-child(3) .b{transition-delay:.8s}.count.vis .chat .row:nth-child(4) .b{transition-delay:1.2s}
+.facts{display:flex;flex-direction:column;gap:1.1rem}
+.fact b{display:block;font-size:1.15rem;margin-bottom:.25rem}
+.fact span{color:var(--text2);font-size:.9rem;line-height:1.6}
+/* extras */
+.extras{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.ex{border-radius:20px;padding:1.5rem}
+.ex b{display:block;font-size:1.5rem;letter-spacing:-.03em}
+.ex span{display:block;margin-top:.4rem;color:var(--text2);font-size:.85rem;line-height:1.5}
+/* cta */
+.cta{text-align:center;border-radius:32px;padding:3.5rem 2rem;background:radial-gradient(80% 120% at 50% 0%,rgba(43,43,255,.35),rgba(255,255,255,.02))}
+.cta h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;letter-spacing:-.04em}
+.cta p{color:var(--text2);margin:1rem auto 1.8rem;max-width:520px;line-height:1.7}
+.cta .btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+footer{padding:3rem 0;text-align:center;color:var(--text2);font-size:.78rem}
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.vis{opacity:1;transform:none}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding-top:3rem;text-align:center}.lead{margin:1.2rem auto 0}
+  .counter{right:auto;left:50%;top:auto;transform:translateX(-50%);bottom:-24px}
+  .plans{grid-template-columns:1fr}.plan.on{transform:none}
+  .stair{grid-template-columns:repeat(2,1fr)}
+  .count{grid-template-columns:1fr}
+  .extras{grid-template-columns:1fr}
+  .calc{padding:1.6rem 1.2rem}
+  .nav-r .btn-ghost{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.stair .step .bar{transform:none}}
+</style>
+</head>
+<body>
+<div class="bgfx"></div>
+<nav><div class="wrap">
+  <a href="index.html" aria-label="Volver al inicio de NEXUZ"><img src="logo.svg" alt="NEXUZ" width="92" height="26"></a>
+  <div class="nav-r">
+    <a class="btn btn-ghost" href="index.html#planes">Planes básicos</a>
+    <a class="btn btn-wa" href="https://wa.me/525652804823?text=Hola%20NEXUZ%2C%20quiero%20informaci%C3%B3n%20de%20los%20paquetes." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.4z"/></svg>WhatsApp</a>
+  </div>
+</div></nav>
+
+<main class="wrap">
+  <!-- HERO -->
+  <header class="hero">
+    <div class="rv">
+      <div class="kick">PAQUETES NEXUZ</div>
+      <h1>Para negocios que <em>no paran</em> de recibir mensajes.</h1>
+      <p class="lead">Elige cuántas respuestas necesita tu chatbot al mes. Entre más grande tu plan, más barata te sale tu página web.</p>
+      <a class="btn btn-main" href="#calcula">Calcula tu plan</a>
+    </div>
+    <div class="rv" style="position:relative">
+      <div class="phone"><div class="scr">
+        <div class="scr-top"><i></i><div>Tu negocio<small>en línea · responde al instante</small></div></div>
+        <div class="feed" id="feed"></div>
+      </div></div>
+      <div class="counter glass" style="border-radius:18px"><b id="cnt">0</b><span>respuestas este mes</span></div>
+    </div>
+  </header>
+
+  <!-- CALCULADORA -->
+  <section id="calcula">
+    <div class="st rv"><h2>¿Cuántas respuestas <em>necesitas?</em></h2><p>Mueve la barra. Un cliente promedio necesita unas 10 respuestas del bot por conversación.</p></div>
+    <div class="calc glass rv">
+      <div class="calc-q">Clientes que te escriben al mes</div>
+      <div class="calc-val"><span id="cv">300</span> <small>clientes</small></div>
+      <input type="range" id="rg" min="50" max="1200" step="10" value="300" aria-label="Clientes que te escriben al mes">
+      <div class="ticks"><span>50</span><span>300</span><span>600</span><span>1,200+</span></div>
+      <div class="calc-res"><div class="pill">≈ <b id="cr">3,000</b> respuestas al mes</div><div class="pill">Tu plan: <b id="cp">Básico</b></div></div>
+      <div class="calc-note" id="cn">Ideal para empezar.</div>
+    </div>
+  </section>
+
+  <!-- PLANES -->
+  <section id="planes">
+    <div class="st rv"><h2>Tres planes, <em>un mismo Nexo.</em></h2><p>Todos contestan 24/7 con IA entrenada con tu negocio. Cambia solo cuántas respuestas incluye cada mes.</p></div>
+    <div class="plans">
+      <article class="plan glass rv" data-k="b">
+        <div class="tag">TU PLAN</div>
+        <div class="pn">BÁSICO</div>
+        <div class="pr">$2,500<small> /mes</small></div>
+        <div class="impl">Implementación: <b>$2,000</b> (una sola vez)</div>
+        <div class="meter"><i data-w="25"></i></div>
+        <div class="mlabel"><b data-n="3000">0</b><span>respuestas al mes</span></div>
+        <ul><li>Para unos 300 clientes al mes</li><li>Hasta 30 productos o servicios</li><li>Envía fotos, PDF y catálogo</li><li>Te pasa al cliente cuando quiere cerrar</li></ul>
+        <a class="btn btn-wa" target="_blank" rel="noopener" href="https://wa.me/525652804823?text=CHATBOT%0A%0AHola%20NEXUZ%2C%20me%20interesa%20el%20plan%20B%C3%A1sico.">Escribe <span class="kw">CHATBOT</span></a>
+      </article>
+      <article class="plan glass rv" data-k="p">
+        <div class="tag">TU PLAN</div>
+        <div class="pn">PRO</div>
+        <div class="pr">$5,500<small> /mes</small></div>
+        <div class="impl">Implementación: <span class="free">sin costo</span></div>
+        <div class="meter"><i data-w="50"></i></div>
+        <div class="mlabel"><b data-n="6000">0</b><span>respuestas al mes</span></div>
+        <ul><li>Para unos 600 clientes al mes</li><li>Todo lo del Básico</li><li>Tu página web por solo $7,000</li><li>Ideal para restaurantes, clínicas y tiendas con movimiento</li></ul>
+        <a class="btn btn-wa" target="_blank" rel="noopener" href="https://wa.me/525652804823?text=PRO%0A%0AHola%20NEXUZ%2C%20me%20interesa%20el%20plan%20Pro.">Escribe <span class="kw">PRO</span></a>
+      </article>
+      <article class="plan glass rv" data-k="x">
+        <div class="tag">TU PLAN</div>
+        <div class="pn">PREMIUM</div>
+        <div class="pr">$12,000<small> /mes</small></div>
+        <div class="impl">Implementación: <span class="free">sin costo</span></div>
+        <div class="meter"><i data-w="100"></i></div>
+        <div class="mlabel"><b data-n="12000">0</b><span>respuestas al mes</span></div>
+        <ul><li>Para unos 1,200 clientes al mes</li><li>Todo lo del Pro</li><li>Tu página web por solo $6,000, el mejor precio</li><li>Para negocios de alto volumen o con varias sucursales</li></ul>
+        <a class="btn btn-wa" target="_blank" rel="noopener" href="https://wa.me/525652804823?text=PREMIUM%0A%0AHola%20NEXUZ%2C%20me%20interesa%20el%20plan%20Premium.">Escribe <span class="kw">PREMIUM</span></a>
+      </article>
+    </div>
+  </section>
+
+  <!-- PÁGINA MÁS BARATA -->
+  <section>
+    <div class="st rv"><h2>Tu página web <em>baja de precio</em> conforme subes de plan.</h2><p>Hasta 3 páginas, adaptada a celular, con botón directo a tu chatbot y lista para Google.</p></div>
+    <div class="stair" id="stair">
+      <div class="step glass rv" style="--h:190px"><div class="bar"></div><div class="sp">$9,500</div><div class="sl">Página sola</div></div>
+      <div class="step glass rv" style="--h:160px"><div class="bar"></div><s>$9,500</s><div class="sp">$8,000</div><div class="sl">Con plan Básico, en el Paquete de $12,500 con implementación y primer mes</div></div>
+      <div class="step glass rv" style="--h:140px"><div class="bar"></div><s>$9,500</s><div class="sp">$7,000</div><div class="sl">Página con plan Pro</div></div>
+      <div class="step glass rv best" style="--h:120px"><div class="bar"></div><s>$9,500</s><div class="sp">$6,000</div><div class="sl">Página con plan Premium</div></div>
+    </div>
+    <p class="stair-note rv">Pago único por la página. La mensualidad es la de tu plan de chatbot.</p>
+  </section>
+
+  <!-- CÓMO SE CUENTAN -->
+  <section>
+    <div class="st rv"><h2>¿Qué cuenta como <em>respuesta?</em></h2></div>
+    <div class="count" id="count">
+      <div class="chat glass rv">
+        <div class="row"><div class="b in">Hola, ¿tienen mesa para 4 hoy?</div><span class="chip g">GRATIS</span></div>
+        <div class="row r"><span class="chip c">1 RESPUESTA</span><div class="b out">¡Sí! ¿A qué hora te esperamos?</div></div>
+        <div class="row"><div class="b in">A las 8, por favor</div><span class="chip g">GRATIS</span></div>
+        <div class="row r"><span class="chip c">1 RESPUESTA</span><div class="b out">Listo, mesa para 4 a las 8 pm.</div></div>
+      </div>
+      <div class="facts rv">
+        <div class="fact"><b>Lo que escriben tus clientes no cuenta.</b><span>Solo cuentan los mensajes que manda el bot.</span></div>
+        <div class="fact"><b>Te avisamos al 80%.</b><span>Así sabes cuándo vas a llegar al límite del mes.</span></div>
+        <div class="fact"><b>Nunca cobramos sin tu autorización.</b><span>Si necesitas más, tú decides si agregas respuestas o subes de plan.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXTRAS -->
+  <section>
+    <div class="st rv"><h2>Extras <em>cuando los necesites.</em></h2></div>
+    <div class="extras">
+      <div class="ex glass rv"><b>$700</b><span>1,000 respuestas extra en cualquier plan, solo el mes que las necesites.</span></div>
+      <div class="ex glass rv"><b>$2,000 <small style="font-size:.8rem;color:var(--text2)">+ $500/mes</small></b><span>El mismo chatbot en Instagram o Messenger, por canal.</span></div>
+      <div class="ex glass rv"><b>$3</b><span>Por cada promoción o aviso que tú mandas primero a tus clientes.</span></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="cta glass rv">
+      <h2>¿No sabes cuál te <em>conviene?</em></h2>
+      <p>Escríbenos y te decimos qué plan va con tu negocio, cuántas respuestas vas a usar y cuánto te sale con tu página.</p>
+      <div class="btns">
+        <a class="btn btn-wa" target="_blank" rel="noopener" href="https://wa.me/525652804823?text=Hola%20NEXUZ%2C%20%C2%BFqu%C3%A9%20paquete%20me%20conviene%3F">Hablar por WhatsApp</a>
+        <a class="btn btn-ghost" href="index.html#recomendador">Hacer el recomendador</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>© 2026 NEXUZ · Move smarter, grow faster · Precios finales en MXN</footer>
+
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // reveal
+  const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); } }),{threshold:.15});
+  document.querySelectorAll('.rv,#stair,#count').forEach(el=>io.observe(el));
+  // medidores de planes
+  const fmt = n => n.toLocaleString('es-MX');
+  const pio = new IntersectionObserver(es=>es.forEach(e=>{ if(!e.isIntersecting) return; pio.unobserve(e.target);
+    const bar=e.target.querySelector('.meter i'), num=e.target.querySelector('[data-n]'), N=+num.dataset.n;
+    bar.style.width=bar.dataset.w+'%';
+    if(reduce){ num.textContent=fmt(N); return; }
+    const t0=performance.now(); const tick=t=>{ const u=Math.min(1,(t-t0)/1600), v=1-Math.pow(1-u,3); num.textContent=fmt(Math.round(N*v)); if(u<1) requestAnimationFrame(tick); }; requestAnimationFrame(tick);
+  }),{threshold:.35});
+  document.querySelectorAll('.plan').forEach(p=>pio.observe(p));
+  // calculadora
+  const rg=document.getElementById('rg'), cv=document.getElementById('cv'), cr=document.getElementById('cr'), cp=document.getElementById('cp'), cn=document.getElementById('cn');
+  const plans={b:document.querySelector('[data-k="b"]'),p:document.querySelector('[data-k="p"]'),x:document.querySelector('[data-k="x"]')};
+  function upd(){
+    const c=+rg.value, r=c*10; rg.style.setProperty('--p',((c-rg.min)/(rg.max-rg.min)*100)+'%');
+    cv.textContent=fmt(c)+(c>=1200?'+':''); cr.textContent=fmt(r);
+    let k='b', note='Ideal para empezar.';
+    if(r>3000 && r<=6000){ k='p'; note='Con el Pro te sale tu página en $7,000 y no pagas implementación.'; }
+    else if(r>6000){ k='x'; note=r>12000?'Volumen alto: el Premium más respuestas extra, o lo platicamos a tu medida.':'Con el Premium tu página baja a $6,000.'; }
+    else if(r>2600){ note='Estás cerca del límite: si creces, el Pro te conviene.'; }
+    cp.textContent={b:'Básico',p:'Pro',x:'Premium'}[k]; cn.textContent=note;
+    Object.entries(plans).forEach(([kk,el])=>el.classList.toggle('on',kk===k));
+  }
+  rg.addEventListener('input',upd); upd();
+  // teléfono: conversación en bucle + contador
+  const feed=document.getElementById('feed'), cnt=document.getElementById('cnt');
+  const MSG=[['in','¿Tienen servicio hoy?'],['out','¡Sí! Abrimos hasta las 10 pm.'],['in','¿Cuánto cuesta el corte?'],['out','$250. ¿Te agendo una cita?'],['in','Sí, mañana a las 5'],['out','Listo, te espero mañana a las 5:00 pm.'],['in','¿Hacen envíos?'],['out','Sí, a toda la ciudad. Te paso el catálogo.'],['in','¿Aceptan transferencia?'],['out','Claro, te mando los datos.']];
+  let i=0, n=2847;
+  cnt.textContent=fmt(n);
+  function next(){
+    const [k,t]=MSG[i%MSG.length]; i++;
+    const d=document.createElement('div'); d.className='b '+k; d.textContent=t; feed.appendChild(d);
+    while(feed.children.length>7) feed.removeChild(feed.firstChild);
+    if(k==='out'){ n++; cnt.textContent=fmt(n); }
+    setTimeout(next, k==='in'?900:1500);
+  }
+  if(!reduce) next(); else MSG.slice(0,6).forEach(([k,t])=>{const d=document.createElement('div');d.className='b '+k;d.textContent=t;feed.appendChild(d);});
+})();
+</script>
+</body>
+</html>
