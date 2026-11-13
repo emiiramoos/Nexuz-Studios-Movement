@@ -66,7 +66,9 @@ section{padding:5rem 0}
 input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:10px;border-radius:10px;background:linear-gradient(90deg,var(--accent3) 0,var(--accent) var(--p,20%),rgba(255,255,255,.1) var(--p,20%));outline:none;margin:1rem 0 .6rem}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:#fff;border:6px solid var(--accent);box-shadow:0 0 0 6px rgba(43,43,255,.25),0 0 24px rgba(43,43,255,.8);cursor:grab}
 input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#fff;border:6px solid var(--accent);cursor:grab}
-.ticks{display:flex;justify-content:space-between;font-size:.68rem;color:var(--text2)}
+.ticks{position:relative;height:1rem;margin:0 15px;font-size:.68rem;color:var(--text2)}
+.ticks span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.ticks span:first-child{transform:none}.ticks span:last-child{transform:translateX(-100%)}
 .calc-res{margin-top:1.6rem;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;text-align:center}
 .calc-res .pill{padding:.6rem 1.2rem;border-radius:100px;background:rgba(43,43,255,.18);border:1px solid rgba(120,130,255,.5);font-weight:700}
 .calc-res .pill b{color:var(--accent3)}
@@ -182,7 +184,7 @@ footer{padding:3rem 0;text-align:center;color:var(--text2);font-size:.78rem}
       <div class="calc-q">Clientes que te escriben al mes</div>
       <div class="calc-val"><span id="cv">300</span> <small>clientes</small></div>
       <input type="range" id="rg" min="50" max="1200" step="10" value="300" aria-label="Clientes que te escriben al mes">
-      <div class="ticks"><span>50</span><span>300</span><span>600</span><span>1,200+</span></div>
+      <div class="ticks"><span style="left:0">50</span><span style="left:21.74%">300</span><span style="left:47.83%">600</span><span style="left:100%">1,200+</span></div>
       <div class="calc-res"><div class="pill">≈ <b id="cr">3,000</b> respuestas al mes</div><div class="pill">Tu plan: <b id="cp">Básico</b></div></div>
       <div class="calc-note" id="cn">Ideal para empezar.</div>
     </div>
@@ -209,7 +211,7 @@ footer{padding:3rem 0;text-align:center;color:var(--text2);font-size:.78rem}
         <div class="impl">Implementación: <span class="free">sin costo</span></div>
         <div class="meter"><i data-w="50"></i></div>
         <div class="mlabel"><b data-n="6000">0</b><span>respuestas al mes</span></div>
-        <ul><li>Para unos 600 clientes al mes</li><li>Todo lo del Básico</li><li>Tu página web por solo $7,000</li><li>Ideal para restaurantes, clínicas y tiendas con movimiento</li></ul>
+        <ul><li>Para unos 600 clientes al mes</li><li>Todo lo del Básico</li><li>Tu página web por solo $5,000</li><li>Ideal para restaurantes, clínicas y tiendas con movimiento</li></ul>
         <a class="btn btn-wa" target="_blank" rel="noopener" href="https://wa.me/525652804823?text=PRO%0A%0AHola%20NEXUZ%2C%20me%20interesa%20el%20plan%20Pro.">Escribe <span class="kw">PRO</span></a>
       </article>
       <article class="plan glass rv" data-k="x">
@@ -219,7 +221,7 @@ footer{padding:3rem 0;text-align:center;color:var(--text2);font-size:.78rem}
         <div class="impl">Implementación: <span class="free">sin costo</span></div>
         <div class="meter"><i data-w="100"></i></div>
         <div class="mlabel"><b data-n="12000">0</b><span>respuestas al mes</span></div>
-        <ul><li>Para unos 1,200 clientes al mes</li><li>Todo lo del Pro</li><li>Tu página web por solo $4,000, el mejor precio</li><li>Para negocios de alto volumen o con varias sucursales</li></ul>
+        <ul><li>Para unos 1,200 clientes al mes</li><li>Todo lo del Pro</li><li>Tu página web por solo $3,500, el mejor precio</li><li>Para negocios de alto volumen o con varias sucursales</li></ul>
         <a class="btn btn-wa" target="_blank" rel="noopener" href="https://wa.me/525652804823?text=PREMIUM%0A%0AHola%20NEXUZ%2C%20me%20interesa%20el%20plan%20Premium.">Escribe <span class="kw">PREMIUM</span></a>
       </article>
     </div>
@@ -229,10 +231,10 @@ footer{padding:3rem 0;text-align:center;color:var(--text2);font-size:.78rem}
   <section>
     <div class="st rv"><h2>Tu página web <em>baja de precio</em> conforme subes de plan.</h2><p>Hasta 3 páginas, adaptada a celular, con botón directo a tu chatbot y lista para Google.</p></div>
     <div class="stair" id="stair">
-      <div class="step glass rv" style="--h:190px"><div class="bar"></div><div class="sp">$9,500</div><div class="sl">Página sola</div></div>
-      <div class="step glass rv" style="--h:160px"><div class="bar"></div><s>$9,500</s><div class="sp">$8,000</div><div class="sl">Con plan Básico, en el Paquete de $12,500 con implementación y primer mes</div></div>
-      <div class="step glass rv" style="--h:140px"><div class="bar"></div><s>$9,500</s><div class="sp">$7,000</div><div class="sl">Página con plan Pro</div></div>
-      <div class="step glass rv best" style="--h:80px"><div class="bar"></div><s>$9,500</s><div class="sp">$4,000</div><div class="sl">Página con plan Premium</div></div>
+      <div class="step glass rv" style="--h:190px"><div class="bar"></div><div class="sp">$7,000</div><div class="sl">Página sola</div></div>
+      <div class="step glass rv" style="--h:176px"><div class="bar"></div><s>$7,000</s><div class="sp">$6,500</div><div class="sl">Con plan Básico, en el Paquete de $8,500 con implementación incluida</div></div>
+      <div class="step glass rv" style="--h:136px"><div class="bar"></div><s>$7,000</s><div class="sp">$5,000</div><div class="sl">Página con plan Pro</div></div>
+      <div class="step glass rv best" style="--h:95px"><div class="bar"></div><s>$7,000</s><div class="sp">$3,500</div><div class="sl">Página con plan Premium</div></div>
     </div>
     <p class="stair-note rv">Pago único por la página. La mensualidad es la de tu plan de chatbot.</p>
   </section>
@@ -301,8 +303,8 @@ footer{padding:3rem 0;text-align:center;color:var(--text2);font-size:.78rem}
     const c=+rg.value, r=c*10; rg.style.setProperty('--p',((c-rg.min)/(rg.max-rg.min)*100)+'%');
     cv.textContent=fmt(c)+(c>=1200?'+':''); cr.textContent=fmt(r);
     let k='b', note='Ideal para empezar.';
-    if(r>3000 && r<=6000){ k='p'; note='Con el Pro te sale tu página en $7,000 y no pagas implementación.'; }
-    else if(r>6000){ k='x'; note=r>12000?'Volumen alto: el Premium más respuestas extra, o lo platicamos a tu medida.':'Con el Premium tu página baja a $4,000.'; }
+    if(r>3000 && r<=6000){ k='p'; note='Con el Pro te sale tu página en $5,000 y no pagas implementación.'; }
+    else if(r>6000){ k='x'; note=r>12000?'Volumen alto: el Premium más respuestas extra, o lo platicamos a tu medida.':'Con el Premium tu página baja a $3,500.'; }
     else if(r>2600){ note='Estás cerca del límite: si creces, el Pro te conviene.'; }
     cp.textContent={b:'Básico',p:'Pro',x:'Premium'}[k]; cn.textContent=note;
     Object.entries(plans).forEach(([kk,el])=>el.classList.toggle('on',kk===k));
