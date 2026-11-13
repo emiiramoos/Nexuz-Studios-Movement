@@ -1276,6 +1276,8 @@ button.car-dot{border:none;padding:0;}
 .work-media img.blu-shot{object-position:50% 54%;transform:scale(1.18);}
 .work-card:hover .work-media img.blu-shot{transform:scale(1.24);}
 @media(max-width:900px){.work-feature.work-rev{grid-template-columns:1fr;}.work-rev .work-media{order:0;}}
+.work-media.mova-shot{aspect-ratio:2/1;align-self:center;}
+.work-media.mova-shot img{object-position:left center;}
 .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
 .work-card{position:relative;border-radius:24px;overflow:hidden;cursor:pointer;background:var(--glass-bg);border:1px solid var(--glass-border);transition:transform .55s var(--ease-out),border-color .4s,box-shadow .55s;outline:none;}
 .work-card:hover,.work-card:focus-visible{transform:translateY(-6px);border-color:rgba(96,96,255,.45);box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(43,43,255,.12);}
@@ -1761,19 +1763,11 @@ button.car-dot{border:none;padding:0;}
     </div>
     <div class="work-grid">
       <article class="work-card work-feature reveal delay-1" onclick="openPortfolioItem(0)" onkeydown="if(event.key==='Enter')openPortfolioItem(0)" tabindex="0" role="button" aria-label="Ver proyecto MOVA">
-        <div class="work-media mova-mock" aria-hidden="true">
-                    <div class="mm-bar"><span class="mm-logo">MOV<i>A</i></span><span class="mm-nav"><span>Trabajos</span><span>Servicios</span><b>Cotizar</b></span></div>
-          <div class="mm-body">
-            <div class="mm-kicker">Estrategias que mueven marcas</div>
-            <div class="mm-h">Hacemos que<br>tu <em>marca</em></div>
-            <div class="mm-window"><span class="mm-reel"><span>se mueva.</span><span>conecte.</span><span>se sienta.</span><span>se recuerde.</span><span>se mueva.</span></span></div>
-          </div>
-          <div class="mm-strip"><div class="mq-row "><div class="mq-group"><span class="mq-item ">Restaurantes</span><span class="mq-star">✦</span><span class="mq-item ">Espacios</span><span class="mq-star">✦</span><span class="mq-item ">Moda y joyería</span><span class="mq-star">✦</span><span class="mq-item ">Belleza</span><span class="mq-star">✦</span><span class="mq-item ">Textil</span><span class="mq-star">✦</span><span class="mq-item ">Identidad de marca</span><span class="mq-star">✦</span></div><div class="mq-group" aria-hidden="true"><span class="mq-item ">Restaurantes</span><span class="mq-star">✦</span><span class="mq-item ">Espacios</span><span class="mq-star">✦</span><span class="mq-item ">Moda y joyería</span><span class="mq-star">✦</span><span class="mq-item ">Belleza</span><span class="mq-star">✦</span><span class="mq-item ">Textil</span><span class="mq-star">✦</span><span class="mq-item ">Identidad de marca</span><span class="mq-star">✦</span></div></div></div>
-        </div>
+        <div class="work-media mova-shot"><img src="portafolio-mova.webp" alt="Página web de MOVA: mapa animado de sus ciudades en México" width="1466" height="728" loading="lazy" decoding="async"></div>
         <div class="work-info">
           <h3 class="work-name-serif">MOVA</h3>
-          <p>Estudio creativo de video y marketing. Video a pantalla completa, carruseles por industria y cotizador a WhatsApp.</p>
-          <div class="work-tags"><span>Video</span><span>Carruseles</span><span>Cotizador</span></div>
+          <p>Estudio creativo de video y marketing. Video a pantalla completa, mapa animado de sus ciudades y cotizador a WhatsApp.</p>
+          <div class="work-tags"><span>Video</span><span>Mapa animado</span><span>Cotizador</span></div>
         </div>
       </article>
       <article class="work-card reveal delay-2" onclick="openPortfolioItem(1)" onkeydown="if(event.key==='Enter')openPortfolioItem(1)" tabindex="0" role="button" aria-label="Ver proyecto Uniformes PRE">
@@ -2211,7 +2205,7 @@ function recReiniciar(){
 
 /* ============ PORTAFOLIO ============ */
 const PORTFOLIO = [
-  {tag:'Estudio creativo',nm:'MOVA',desc:'Sitio para un estudio de video y marketing: abre con video a pantalla completa, muestra trabajos por industria en carruseles y cierra con un cotizador por pasos que llega a WhatsApp.',inc:['Video a pantalla completa','Textos animados y carruseles','Cotizador por pasos a WhatsApp','Adaptado a celular']},
+  {tag:'Estudio creativo',nm:'MOVA',desc:'Sitio para un estudio de video y marketing: abre con video a pantalla completa, muestra sus ciudades en un mapa animado, trabajos por industria en carruseles, y cierra con un cotizador por pasos que llega a WhatsApp.',inc:['Video a pantalla completa','Mapa animado y carruseles','Cotizador por pasos a WhatsApp','Adaptado a celular']},
   {tag:'Tienda de uniformes',nm:'Uniformes PRE',desc:'Catálogo de más de 30 productos con buscador y filtros, cotizador por talla y color, y pedido directo por WhatsApp.',inc:['Catálogo con filtros','Cotizador de pedidos','Pedido por WhatsApp','Adaptado a celular']},
   {tag:'Equipamiento hotelero',nm:'BLU Solutions',desc:'Catálogo comercial con cientos de productos organizados por familia y solicitudes de cotización a la medida.',inc:['Portada animada','Catálogo de cientos de productos','Solicitud de cotización','Catálogos PDF descargables']},
   {tag:'Nuestro sitio',nm:'NEXUZ',desc:'La página que estás viendo: entrada animada, recomendador por preguntas, carrito de cotización y Nexo, nuestro asistente.',inc:['Animaciones a la medida','Recomendador de soluciones','Carrito que arma tu cotización','Asistente Nexo']}
