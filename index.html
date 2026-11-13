@@ -459,6 +459,56 @@ nav.scrolled{
 .pk-bars i:nth-child(2){animation-delay:.3s}.pk-bars i:nth-child(3){animation-delay:.6s}
 @keyframes pkB{from{transform:scaleY(.55)}to{transform:scaleY(1)}}
 @media(max-width:760px){.pk-banner{flex-direction:column;align-items:flex-start;gap:1.2rem;padding:1.6rem}.pk-bars{display:none}}
+/* ===== precios estilo paquetes ===== */
+.pz-head{text-align:center;max-width:760px;margin:0 auto 3rem}
+.pz-head2{margin:5rem auto 2.4rem}
+.pz-kick{font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--accent3);margin-bottom:1rem}
+.pz-title{font-size:clamp(2.1rem,4.6vw,3.6rem);font-weight:800;letter-spacing:-.045em;line-height:1.05}
+.pz-title2{font-size:clamp(1.7rem,3.4vw,2.6rem);font-weight:800;letter-spacing:-.04em;line-height:1.1}
+.pz-title em,.pz-title2 em{font-family:var(--serif);font-style:italic;font-weight:600;color:transparent;background:linear-gradient(120deg,#fff 5%,var(--accent2) 50%,var(--accent3));-webkit-background-clip:text;background-clip:text;padding:0 .06em .05em}
+.pz-sub{margin-top:1rem;color:var(--text2);line-height:1.7}
+.pz-grid{display:grid;grid-template-columns:1fr 1.08fr 1fr;gap:1.4rem;align-items:stretch}
+.pz-grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;max-width:920px;margin:0 auto}
+.pz-card{position:relative;border-radius:26px;padding:2rem 1.7rem;display:flex;flex-direction:column;cursor:pointer;transition:transform .4s cubic-bezier(.2,.75,.2,1),box-shadow .4s,border-color .4s}
+.pz-card:hover{transform:translateY(-6px);border-color:rgba(120,140,255,.5);box-shadow:0 24px 60px rgba(43,43,255,.3)}
+.pz-vol{cursor:default}
+.pz-n{font-size:.75rem;font-weight:800;letter-spacing:.28em;color:var(--accent3)}
+.pz-p{margin-top:.8rem;font-size:2.6rem;font-weight:800;letter-spacing:-.05em;line-height:1.1}
+.pz-p small{font-size:.85rem;font-weight:500;color:var(--text2);letter-spacing:0}
+.pz-s{margin-top:.35rem;font-size:.82rem;color:var(--text2)}
+.pz-s b{color:#fff}
+.pz-free{color:#7ff0b0!important}
+.pz-vis{flex:none;width:100%;height:96px;margin:1.3rem 0 .2rem}
+.pz-duo{display:flex;align-items:center;gap:.5rem;margin:1.3rem 0 .2rem}
+.pz-duo .pz-vis{margin:0;flex:1;height:90px}
+.pz-plus{font-size:1.4rem;font-weight:800;color:var(--accent3)}
+.pz-card ul{list-style:none;margin:1.2rem 0 1.5rem;display:flex;flex-direction:column;gap:.5rem;font-size:.85rem;color:#d6d6ee;line-height:1.45}
+.pz-card li{display:flex;gap:.55rem}
+.pz-card li::before{content:'';flex:none;width:7px;height:7px;margin-top:.45rem;border-radius:50%;background:var(--accent3);box-shadow:0 0 8px var(--accent3)}
+.pz-acts{margin-top:auto;display:flex;gap:.5rem;flex-wrap:wrap}
+.pz-wa{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.8rem 1rem;border-radius:100px;background:#25d366;color:#04210f;font-weight:700;font-size:.8rem;text-decoration:none;box-shadow:0 8px 22px rgba(37,211,102,.3);white-space:nowrap}
+.pz-wa span{letter-spacing:.06em;background:rgba(4,33,15,.16);padding:.05rem .4rem;border-radius:6px}
+.pz-cart{padding:.8rem 1rem;border-radius:100px;background:transparent;border:1px solid rgba(255,255,255,.2);color:#fff;font-weight:600;font-size:.76rem;cursor:pointer;font-family:inherit}
+.pz-cart:hover{border-color:rgba(120,140,255,.7)}
+/* destacado que late */
+.pz-hot{border-color:rgba(120,140,255,.8);background:linear-gradient(160deg,rgba(43,43,255,.22),rgba(255,255,255,.03));animation:pzGlow 2.2s ease-in-out infinite}
+@keyframes pzGlow{0%,100%{box-shadow:0 0 0 1px rgba(120,140,255,.5),0 18px 50px rgba(43,43,255,.35)}50%{box-shadow:0 0 0 2px rgba(140,170,255,.95),0 22px 80px rgba(43,43,255,.75),0 0 40px rgba(0,212,255,.35)}}
+.pz-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:.64rem;font-weight:800;letter-spacing:.16em;padding:.42rem 1rem;border-radius:100px;background:linear-gradient(90deg,var(--accent),#00a6ff);box-shadow:0 0 20px rgba(43,43,255,.9);animation:pzBlink 1.6s ease-in-out infinite}
+@keyframes pzBlink{0%,100%{filter:brightness(1)}50%{filter:brightness(1.45)}}
+.pz-meter{margin:1.3rem 0 .5rem;height:12px;border-radius:12px;background:rgba(255,255,255,.08);overflow:hidden}
+.pz-meter i{display:block;height:100%;width:0;border-radius:12px;background:linear-gradient(90deg,var(--accent3),var(--accent));box-shadow:0 0 14px rgba(0,212,255,.6);transition:width 1.6s cubic-bezier(.2,.75,.2,1)}
+.pz-vol.active .pz-meter i,.reveal.active .pz-meter i{width:var(--w)}
+.pz-ml{font-size:.8rem;color:var(--text2)}.pz-ml b{color:#fff;font-size:1rem}
+.pz-opts{display:flex;flex-direction:column;gap:.5rem;margin:1.2rem 0 1.4rem}
+.pz-opt{display:flex;justify-content:space-between;align-items:center;padding:.75rem .95rem;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:.82rem}
+.pz-opt b{font-size:.95rem}
+.pz-opt s{font-size:.72rem;color:var(--text2);font-weight:500;margin-left:.3rem}
+.pz-opt-web{border-color:rgba(127,240,176,.4);background:rgba(37,211,102,.07)}
+.pz-opt-web b{color:#7ff0b0}
+.pz-more{text-align:center;margin-top:2.4rem;font-size:.85rem;color:var(--text2)}
+.pz-more a{color:#cfd6ff}
+@media(max-width:980px){.pz-grid{grid-template-columns:1fr}.pz-grid2{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.pz-hot,.pz-badge{animation:none}}
 /* ============ SERVICES ============ */
 .srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3.5rem;}
 .srv-card{padding:2rem 1.6rem;border-radius:22px;}
@@ -1480,7 +1530,7 @@ button.car-dot{border:none;padding:0;}
     <li><a href="#nosotros" onclick="navGo(event,'nosotros')">Nosotros</a></li>
     <li><a href="#servicios" onclick="navGo(event,'servicios')">Servicios</a></li>
     <li><a href="#metodo" onclick="navGo(event,'metodo')">Método</a></li>
-    <li><a href="#recomendador" onclick="navGo(event,'recomendador')">¿Qué necesito?</a></li>
+    <li><a href="recomendador.html">¿Qué necesito?</a></li>
     <li><a href="#planes" onclick="navGo(event,'planes')">Precios</a></li>
     <li><a href="paquetes.html">Paquetes</a></li>
     <li><a href="#portafolio" onclick="navGo(event,'portafolio')">Portafolio</a></li>
@@ -1611,184 +1661,57 @@ button.car-dot{border:none;padding:0;}
   </div>
 </section>
 
-<!-- RECOMENDADOR -->
-<div id="recomendador">
-  <div class="rec-inner">
-    <div class="rec-header reveal">
-      <div class="label" style="justify-content:center">Encuentra tu solución</div>
-      <h2 class="title" style="text-align:center">¿No sabes qué<br><em>necesitas?</em></h2>
-      <p class="sub" style="margin:0 auto;text-align:center;">Cinco preguntas y te decimos qué te conviene, qué incluye y cuánto cuesta.</p>
-    </div>
-    <div class="rec-wizard reveal delay-2">
-      <div class="rec-progress"><div class="rec-progress-fill" id="recBar" style="width:0%"></div></div>
-
-      <div class="rec-step active" id="recStep1">
-        <div class="rec-step-label">Pregunta 1 de 5</div>
-        <div class="rec-question">¿Qué tipo de negocio tienes?</div>
-        <div class="rec-hint">Así sabemos cómo te buscan tus clientes.</div>
-        <div class="rec-options">
-          <div class="rec-opt" onclick="recSelect(this,'tipo','comida')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span><div class="rec-opt-label">Restaurante o cafetería</div><div class="rec-opt-sub">Comida, bebidas, pedidos</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'tipo','citas')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><div class="rec-opt-label">Trabajo con citas</div><div class="rec-opt-sub">Clínica, salón, consultorio, spa</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'tipo','productos')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span><div class="rec-opt-label">Vendo productos</div><div class="rec-opt-sub">Tienda, catálogo, mayoreo</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'tipo','servicios')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span><div class="rec-opt-label">Servicios profesionales</div><div class="rec-opt-sub">Consultoría, despacho, oficios</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'tipo','emprendedor')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div class="rec-opt-label">Estoy empezando</div><div class="rec-opt-sub">Un proyecto o marca nueva</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'tipo','otro')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span><div class="rec-opt-label">Otro</div><div class="rec-opt-sub">Cuéntanos al final</div></div>
-        </div>
-        <div class="rec-nav"><div></div><button class="rec-next" id="recNext1" onclick="recGoTo(2)" disabled>Siguiente</button></div>
-      </div>
-
-      <div class="rec-step" id="recStep2">
-        <div class="rec-step-label">Pregunta 2 de 5</div>
-        <div class="rec-question">¿Ya tienes página web?</div>
-        <div class="rec-hint">No hay respuesta mala.</div>
-        <div class="rec-options">
-          <div class="rec-opt" onclick="recSelect(this,'web','no')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span><div class="rec-opt-label">No tengo</div><div class="rec-opt-sub">Sería mi primera página</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'web','renovar')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></span><div class="rec-opt-label">Tengo, pero no me sirve</div><div class="rec-opt-sub">Se ve vieja o nadie la encuentra</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'web','si')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg></span><div class="rec-opt-label">Sí, y me funciona</div><div class="rec-opt-sub">No necesito otra</div></div>
-        </div>
-        <div class="rec-nav"><button class="rec-back" onclick="recGoTo(1)">Atrás</button><button class="rec-next" id="recNext2" onclick="recGoTo(3)" disabled>Siguiente</button></div>
-      </div>
-
-      <div class="rec-step" id="recStep3">
-        <div class="rec-step-label">Pregunta 3 de 5</div>
-        <div class="rec-question">¿Cuántos mensajes te llegan al día?</div>
-        <div class="rec-hint">Sumando WhatsApp, Instagram y Facebook.</div>
-        <div class="rec-options">
-          <div class="rec-opt" onclick="recSelect(this,'mensajes','bajo')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div class="rec-opt-label">Casi ninguno</div><div class="rec-opt-sub">Quiero que me empiecen a escribir</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'mensajes','medio')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="8" y1="10" x2="12" y2="10"/></svg></span><div class="rec-opt-label">Entre 1 y 10</div><div class="rec-opt-sub">Los contesto como puedo</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'mensajes','alto')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="14" y2="12"/></svg></span><div class="rec-opt-label">Entre 10 y 50</div><div class="rec-opt-sub">Se me juntan y tardo en contestar</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'mensajes','muy')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="7" y1="7" x2="17" y2="7"/><line x1="7" y1="10" x2="17" y2="10"/><line x1="7" y1="13" x2="13" y2="13"/></svg></span><div class="rec-opt-label">Más de 50</div><div class="rec-opt-sub">No me doy abasto</div></div>
-        </div>
-        <div class="rec-nav"><button class="rec-back" onclick="recGoTo(2)">Atrás</button><button class="rec-next" id="recNext3" onclick="recGoTo(4)" disabled>Siguiente</button></div>
-      </div>
-
-      <div class="rec-step" id="recStep4">
-        <div class="rec-step-label">Pregunta 4 de 5</div>
-        <div class="rec-question">¿Qué te está costando más clientes hoy?</div>
-        <div class="rec-hint">Elige lo que más te urge resolver.</div>
-        <div class="rec-options">
-          <div class="rec-opt" onclick="recSelect(this,'dolor','encontrar')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><div class="rec-opt-label">No me encuentran</div><div class="rec-opt-sub">No aparezco en Google o no doy confianza</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'dolor','contestar')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div class="rec-opt-label">Tardo en contestar</div><div class="rec-opt-sub">Se van con otro mientras respondo</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'dolor','repetir')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span><div class="rec-opt-label">Repito lo mismo todo el día</div><div class="rec-opt-sub">Precios, horarios, catálogo, ubicación</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'dolor','citas')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 15 11 17 15 13"/></svg></span><div class="rec-opt-label">Agendar citas me quita tiempo</div><div class="rec-opt-sub">Confirmar, mover y recordar</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'dolor','medida')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><div class="rec-opt-label">Necesito algo más completo</div><div class="rec-opt-sub">Tienda en línea, login o base de datos</div></div>
-        </div>
-        <div class="rec-nav"><button class="rec-back" onclick="recGoTo(3)">Atrás</button><button class="rec-next" id="recNext4" onclick="recGoTo(5)" disabled>Siguiente</button></div>
-      </div>
-
-      <div class="rec-step" id="recStep5">
-        <div class="rec-step-label">Pregunta 5 de 5</div>
-        <div class="rec-question">¿Por dónde te escriben tus clientes?</div>
-        <div class="rec-hint">Puedes elegir más de una.</div>
-        <div class="rec-options">
-          <div class="rec-opt rec-multi" onclick="recToggle(this,'canales','whatsapp')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><div class="rec-opt-label">WhatsApp</div></div>
-          <div class="rec-opt rec-multi" onclick="recToggle(this,'canales','instagram')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span><div class="rec-opt-label">Instagram</div></div>
-          <div class="rec-opt rec-multi" onclick="recToggle(this,'canales','messenger')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span><div class="rec-opt-label">Facebook / Messenger</div></div>
-          <div class="rec-opt rec-multi" onclick="recToggle(this,'canales','ninguna')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span><div class="rec-opt-label">Casi no me escriben</div><div class="rec-opt-sub">Por eso quiero estar en internet</div></div>
-        </div>
-        <div class="rec-nav"><button class="rec-back" onclick="recGoTo(4)">Atrás</button><button class="rec-next" id="recNext5" onclick="recCalcular()" disabled>Ver mi recomendación</button></div>
-      </div>
-
-      <div class="rec-result" id="recResultado"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ANUNCIO -->
-<a class="announce mq" href="#planes" onclick="event.preventDefault();scroll2('planes')" aria-label="Promoción: Paquete Página más Chatbot por 12,500 pesos, ahorras 1,500. Escribe PAQUETE."><div class="mq-row" style="--mq-speed:30s"><div class="mq-group"><span class="mq-item">Promo</span><span class="mq-star">✦</span><span class="mq-item s">Página + Chatbot</span><span class="mq-star">✦</span><span class="mq-item">$12,500</span><span class="mq-star">✦</span><span class="mq-item s">ahorras $1,500</span><span class="mq-star">✦</span><span class="mq-item">Escribe PAQUETE</span><span class="mq-star">✦</span></div><div class="mq-group" aria-hidden="true"><span class="mq-item">Promo</span><span class="mq-star">✦</span><span class="mq-item s">Página + Chatbot</span><span class="mq-star">✦</span><span class="mq-item">$12,500</span><span class="mq-star">✦</span><span class="mq-item s">ahorras $1,500</span><span class="mq-star">✦</span><span class="mq-item">Escribe PAQUETE</span><span class="mq-star">✦</span></div></div></a>
-
 <!-- PRECIOS -->
 <div class="sec" id="planes">
-  <div class="reveal"><div class="label">Precios claros</div></div>
-  <div class="reveal delay-1"><h2 class="title">Elige lo que tu negocio<br><em>necesita hoy.</em></h2></div>
-  <div class="reveal delay-2"><p class="sub">Todos los precios son finales, sin cargos escondidos. Aquí ves exactamente qué incluye cada opción y qué no, para que no haya sorpresas.</p></div>
-  <div class="plans-grid">
-    <div class="plan glass reveal delay-2" onclick="openPlan('web')">
-      <div class="plan-nm">PÁGINA WEB</div>
-      <div class="plan-tg">"Tu negocio presentado con claridad y listo para aparecer en Google."</div>
-      <div class="plan-act">Entrega en <strong>3 semanas</strong></div>
-      <div class="plan-price">$9,500 <span>MXN · pago único</span></div>
-      <div class="plan-act">Mantenimiento opcional: <strong>$500/mes</strong></div>
-      <div class="divider"></div>
-      <div class="plan-sub-title">Incluye</div>
-      <ul class="plan-list">
-        <li><span class="ck">✓</span>Hasta 3 páginas (ej. Inicio, Servicios y Contacto)</li>
-        <li><span class="ck">✓</span>Diseño a la medida, adaptado a celular</li>
-        <li><span class="ck">✓</span>Botón de WhatsApp, redes sociales y mapa</li>
-        <li><span class="ck">✓</span>SEO básico para Google</li>
-        <li><span class="ck">✓</span>Hosting gratis y certificado de seguridad (SSL)</li>
-        <li><span class="ck">✓</span>2 rondas de cambios</li>
-      </ul>
-      <div class="plan-sub-title">No incluye</div>
-      <ul class="plan-list plan-list-no">
-        <li><span class="ck x">✕</span>Inicio de sesión, cuentas o base de datos</li>
-        <li><span class="ck x">✕</span>Formularios que guarden información</li>
-        <li><span class="ck x">✕</span>Tienda en línea o cobros</li>
-        <li><span class="ck x">✕</span>Dominio (.com / .mx), lo pagas tú directo</li>
-      </ul>
-      <div class="plan-actions" onclick="event.stopPropagation()">
-        <button class="plan-btn" onclick="scroll2('contacto')">Comenzar ahora</button>
-        <button class="plan-cart-btn" onclick="addToCart('web','Página web (hasta 3 páginas)','$9,500 MXN','unico')">Agregar al carrito</button>
-        <button class="plan-btn2" onclick="openPlan('web')">Ver detalles →</button>
-      </div>
-    </div>
-    <div class="plan glass hot reveal delay-3" onclick="openPlan('paquete')">
-      <div class="plan-nm">PÁGINA + CHATBOT</div>
-      <div class="plan-tg">"Te encuentran en internet y les contestas al instante, aunque estés dormido."</div>
-      <div class="plan-act">Entrega en <strong>3 semanas</strong> · Ahorras $1,500</div>
-      <div class="plan-price">$12,500 <span>MXN · pago único</span></div>
-      <div class="plan-act">Después: <strong>$2,500/mes</strong> desde el mes 2</div>
-      <div class="divider"></div>
-      <div class="plan-sub-title">Incluye</div>
-      <ul class="plan-list">
-        <li><span class="ck">✓</span>Todo lo de la Página web</li>
-        <li><span class="ck">✓</span>Chatbot de WhatsApp con IA (todo lo del plan Chatbot)</li>
-        <li><span class="ck">✓</span>El botón de tu página abre tu chatbot</li>
-        <li><span class="ck">✓</span>Primer mes de mensualidad incluido</li>
-        <li><span class="ck">✓</span>Mantenimiento de la página incluido en la mensualidad</li>
-      </ul>
-      <div class="plan-sub-title">No incluye</div>
-      <ul class="plan-list plan-list-no">
-        <li><span class="ck x">✕</span>Instagram o Messenger (se agregan aparte)</li>
-        <li><span class="ck x">✕</span>Reservas automáticas (plan aparte)</li>
-        <li><span class="ck x">✕</span>Lo que no incluyen la Página y el Chatbot</li>
-      </ul>
-      <div class="plan-actions" onclick="event.stopPropagation()">
-        <button class="plan-btn" onclick="scroll2('contacto')">Comenzar ahora</button>
-        <button class="plan-cart-btn" onclick="addToCart('paquete','Paquete Página + Chatbot WhatsApp','$12,500 MXN','unico','+ $2,500/mes desde el mes 2')">Agregar al carrito</button>
-        <button class="plan-btn2" onclick="openPlan('paquete')">Ver detalles →</button>
-      </div>
-    </div>
-    <div class="plan glass reveal delay-4" onclick="openPlan('chatbot')">
-      <div class="plan-nm">CHATBOT WHATSAPP</div>
-      <div class="plan-tg">"Contesta, informa y te pasa clientes listos para comprar, 24/7."</div>
-      <div class="plan-act">Entrega en <strong>1 semana</strong></div>
-      <div class="plan-price">$2,000 <span>MXN · instalación</span></div>
-      <div class="plan-act">Mensualidad: <strong>$2,500/mes</strong></div>
-      <div class="divider"></div>
-      <div class="plan-sub-title">Incluye</div>
-      <ul class="plan-list">
-        <li><span class="ck">✓</span>Respuestas 24/7 con IA entrenada con tu negocio</li>
-        <li><span class="ck">✓</span>Horarios, ubicación, precios y hasta 30 productos o servicios</li>
-        <li><span class="ck">✓</span>Envía fotos, PDF y tu catálogo</li>
-        <li><span class="ck">✓</span>Recibe fotos y audios y te los reenvía</li>
-        <li><span class="ck">✓</span>Te pasa la conversación cuando hace falta</li>
-        <li><span class="ck">✓</span>3,000 respuestas del bot al mes incluidas</li>
-      </ul>
-      <div class="plan-sub-title">No incluye</div>
-      <ul class="plan-list plan-list-no">
-        <li><span class="ck x">✕</span>Agendar citas (plan Reservas)</li>
-        <li><span class="ck x">✕</span>Mensajes promocionales que tú envíes primero ($3.00 c/u)</li>
-        <li><span class="ck x">✕</span>Instagram o Messenger (se agregan aparte)</li>
-        <li><span class="ck x">✕</span>Respuestas extra: $700 por cada 1,000</li>
-      </ul>
-      <div class="plan-actions" onclick="event.stopPropagation()">
-        <button class="plan-btn" onclick="scroll2('contacto')">Comenzar ahora</button>
-        <button class="plan-cart-btn" onclick="addToCart('chatbot','Chatbot WhatsApp','$2,000 MXN','unico','+ $2,500/mes')">Agregar al carrito</button>
-        <button class="plan-btn2" onclick="openPlan('chatbot')">Ver detalles →</button>
-      </div>
-    </div>
+  <div class="pz-head reveal"><div class="pz-kick">PRECIOS CLAROS Y FINALES</div><h2 class="pz-title">Elige lo que tu negocio <em>necesita hoy.</em></h2><p class="pz-sub">Sin cargos escondidos. Toca cualquier plan para ver qué incluye y qué no.</p></div>
+  <div class="pz-grid">
+    <article class="pz-card glass reveal delay-1" onclick="openPlan('web')">
+      <div class="pz-n">PÁGINA WEB</div>
+      <div class="pz-p">$9,500<small> pago único</small></div>
+      <div class="pz-s">Mantenimiento opcional <b>$500/mes</b></div>
+      <div class="pz-vis ab-vis ab-web" aria-hidden="true"><div class="abw-bar"><i></i><i></i><i></i></div><div class="abw-hero"></div><div class="abw-row"><span></span><span></span><span></span></div></div>
+      <ul><li>Hasta 3 páginas, adaptada a celular</li><li>Botón de WhatsApp, redes y mapa</li><li>SEO básico, hosting y SSL</li><li>Lista en 3 semanas</li></ul>
+      <div class="pz-acts" onclick="event.stopPropagation()"><a class="pz-wa" target="_blank" rel="noopener" href="https://wa.me/525652804823?text=WEB%0A%0AHola%20NEXUZ%2C%20me%20interesa%20la%20p%C3%A1gina%20web.">Escribe <span>WEB</span></a><button class="pz-cart" onclick="addToCart('web','Página web (hasta 3 páginas)','$9,500 MXN','unico')">Al carrito</button></div>
+    </article>
+    <article class="pz-card pz-hot glass reveal delay-2" onclick="openPlan('paquete')">
+      <div class="pz-badge">EL MÁS PEDIDO · AHORRAS $1,500</div>
+      <div class="pz-n">PÁGINA + CHATBOT</div>
+      <div class="pz-p">$12,500<small> pago inicial</small></div>
+      <div class="pz-s">Después <b>$2,500/mes</b> desde el mes 2</div>
+      <div class="pz-duo" aria-hidden="true"><div class="pz-vis ab-vis ab-web"><div class="abw-bar"><i></i><i></i><i></i></div><div class="abw-hero"></div><div class="abw-row"><span></span><span></span><span></span></div></div><span class="pz-plus">+</span><div class="pz-vis ab-vis ab-chat"><div class="abc-b in">¿Tienen hoy?</div><div class="abc-b out">¡Sí! Hasta las 10.</div></div></div>
+      <ul><li>Página web completa</li><li>Chatbot con IA, 3,000 respuestas al mes</li><li>Implementación y primer mes incluidos</li><li>Mantenimiento de la página incluido</li></ul>
+      <div class="pz-acts" onclick="event.stopPropagation()"><a class="pz-wa" target="_blank" rel="noopener" href="https://wa.me/525652804823?text=PAQUETE%0A%0AHola%20NEXUZ%2C%20me%20interesa%20el%20paquete%20P%C3%A1gina%20%2B%20Chatbot.">Escribe <span>PAQUETE</span></a><button class="pz-cart" onclick="addToCart('paquete','Paquete Página + Chatbot WhatsApp','$12,500 MXN','unico','+ $2,500/mes desde el mes 2')">Al carrito</button></div>
+    </article>
+    <article class="pz-card glass reveal delay-3" onclick="openPlan('chatbot')">
+      <div class="pz-n">CHATBOT BÁSICO</div>
+      <div class="pz-p">$2,500<small> /mes</small></div>
+      <div class="pz-s">Implementación <b>$2,000</b> (una sola vez)</div>
+      <div class="pz-vis ab-vis ab-chat" aria-hidden="true"><div class="abc-b in">¿Me pasas el menú?</div><div class="abc-b out">Claro, aquí va.</div><div class="abc-b in typing"><i></i><i></i><i></i></div></div>
+      <ul><li>IA entrenada con tu negocio, 24/7</li><li>3,000 respuestas al mes</li><li>Envía fotos, PDF y catálogo</li><li>Listo en 1 semana</li></ul>
+      <div class="pz-acts" onclick="event.stopPropagation()"><a class="pz-wa" target="_blank" rel="noopener" href="https://wa.me/525652804823?text=CHATBOT%0A%0AHola%20NEXUZ%2C%20me%20interesa%20el%20chatbot%20B%C3%A1sico.">Escribe <span>CHATBOT</span></a><button class="pz-cart" onclick="addToCart('chatbot','Chatbot WhatsApp Básico','$2,000 MXN','unico','+ $2,500/mes')">Al carrito</button></div>
+    </article>
   </div>
+
+  <div class="pz-head pz-head2 reveal"><div class="pz-kick">¿RECIBES MUCHOS MENSAJES?</div><h3 class="pz-title2">Planes por volumen, <em>sin implementación.</em></h3></div>
+  <div class="pz-grid2">
+    <article class="pz-card pz-vol glass reveal delay-1">
+      <div class="pz-n">PRO</div>
+      <div class="pz-p">$5,500<small> /mes</small></div>
+      <div class="pz-s"><b class="pz-free">Sin costo</b> de implementación</div>
+      <div class="pz-meter"><i style="--w:50%"></i></div><div class="pz-ml"><b>6,000</b> respuestas al mes · unos 600 clientes</div>
+      <div class="pz-opts"><div class="pz-opt"><span>Solo chatbot</span><b>$5,500/mes</b></div><div class="pz-opt pz-opt-web"><span>Con página web</span><b>+ $7,000 <s>$9,500</s></b></div></div>
+      <div class="pz-acts"><a class="pz-wa" target="_blank" rel="noopener" href="https://wa.me/525652804823?text=PRO%0A%0AHola%20NEXUZ%2C%20me%20interesa%20el%20plan%20Pro.">Escribe <span>PRO</span></a><button class="pz-cart" onclick="addToCart('pro','Plan Pro (6,000 respuestas)','$0 implementación','unico','+ $5,500/mes')">Al carrito</button><button class="pz-cart" onclick="addToCart('pro-web','Página web con plan Pro','$7,000 MXN','unico')">+ Página</button></div>
+    </article>
+    <article class="pz-card pz-vol glass reveal delay-2">
+      <div class="pz-n">PREMIUM</div>
+      <div class="pz-p">$12,000<small> /mes</small></div>
+      <div class="pz-s"><b class="pz-free">Sin costo</b> de implementación</div>
+      <div class="pz-meter"><i style="--w:100%"></i></div><div class="pz-ml"><b>12,000</b> respuestas al mes · unos 1,200 clientes</div>
+      <div class="pz-opts"><div class="pz-opt"><span>Solo chatbot</span><b>$12,000/mes</b></div><div class="pz-opt pz-opt-web"><span>Con página web</span><b>+ $4,000 <s>$9,500</s></b></div></div>
+      <div class="pz-acts"><a class="pz-wa" target="_blank" rel="noopener" href="https://wa.me/525652804823?text=PREMIUM%0A%0AHola%20NEXUZ%2C%20me%20interesa%20el%20plan%20Premium.">Escribe <span>PREMIUM</span></a><button class="pz-cart" onclick="addToCart('premium','Plan Premium (12,000 respuestas)','$0 implementación','unico','+ $12,000/mes')">Al carrito</button><button class="pz-cart" onclick="addToCart('premium-web','Página web con plan Premium','$4,000 MXN','unico')">+ Página</button></div>
+    </article>
+  </div>
+  <p class="pz-more reveal"><a href="paquetes.html">Calcula tu plan y mira cómo baja tu página</a> · <a href="recomendador.html">¿No sabes cuál? Haz el recomendador</a></p>
 </div>
 
 <!-- ADICIONALES -->
@@ -1806,15 +1729,6 @@ button.car-dot{border:none;padding:0;}
       <div class="ind-card glass reveal delay-3" onclick="openSvc('medida')"><div class="ind-info"><h4>Páginas con login, base de datos o tienda</h4><p>Proyectos a la medida · Se cotizan aparte</p></div><div class="ind-right"><div class="ind-price ind-price-sm">Cotizar</div><button class="ind-add-btn" id="btn-medida" onclick="event.stopPropagation();addToCart('medida','Página a la medida (login / base de datos / tienda)','Cotizar','cotizar')">+ Carrito</button></div></div>
     </div>
   </div>
-</div>
-
-<!-- QUÉ INCLUYE -->
-<div class="sec" style="padding-top:0">
-  <a class="pk-banner reveal" href="paquetes.html">
-    <div class="pk-l"><span class="pk-k">PAQUETES PRO Y PREMIUM</span><span class="pk-h">¿Recibes muchos mensajes? <em>Hasta 12,000 respuestas al mes</em> y tu página desde $6,000.</span></div>
-    <span class="pk-btn">Ver paquetes</span>
-    <span class="pk-bars" aria-hidden="true"><i style="--h:30%"></i><i style="--h:55%"></i><i style="--h:100%"></i></span>
-  </a>
 </div>
 
 <div class="sec-full" id="comparativa">
@@ -2245,7 +2159,7 @@ function recCalcular(){
   }
   if(tieneBot){
     extras.push('Incluye 3,000 respuestas del bot al mes. Las promociones que tú envíes cuestan $3 c/u');
-    if(r.mensajes==='muy') extras.push('Con más de 50 mensajes al día te conviene un paquete Pro (6,000 respuestas, $5,500/mes) o Premium (12,000, $12,000/mes): sin costo de implementación y tu página desde $6,000. Míralos en la sección Paquetes');
+    if(r.mensajes==='muy') extras.push('Con más de 50 mensajes al día te conviene un paquete Pro (6,000 respuestas, $5,500/mes) o Premium (12,000, $12,000/mes): sin costo de implementación y tu página desde $4,000. Míralos en la sección Paquetes');
   }
   if(r.dolor!=='medida' && plan.indexOf('PÁGINA')>-1) extras.push('¿Más de 3 secciones? Cada página extra cuesta $2,500');
   if(inicial){ precio = recMXN(inicial)+' MXN'; precioNota = 'Implementación' + (mensual ? ' · Después '+recMXN(mensual)+'/mes' : ''); }
@@ -2400,15 +2314,15 @@ const NEXO_KB = [
   { kws:['hola','buenas','buenos dias','buenas tardes','buenas noches','hey','que tal','hi','hello','saludos','que onda'],
     a:'Hola, soy <strong>Nexo</strong>, el asistente de NEXUZ. Hacemos <strong>páginas web</strong> y <strong>chatbots de WhatsApp con IA</strong>. Pregúntame por precios, qué incluye cada opción, tiempos de entrega o cuál te conviene.' },
   { kws:['quienes son','que es nexuz','nexuz','a que se dedican','que hacen','que venden','servicios','que ofrecen'],
-    a:'NEXUZ hace dos cosas: <strong>páginas web</strong> que presentan tu negocio con claridad y <strong>chatbots de WhatsApp con IA</strong> que contestan por ti a cualquier hora.<br><br>Opciones:<br>• Página web — $9,500<br>• Chatbot de WhatsApp — $2,000 + $2,500/mes<br>• Paquete Página + Chatbot — $12,500 + $2,500/mes desde el mes 2<br>• Chatbot con reservas — $7,500 + $3,000/mes' },
+    a:'NEXUZ hace dos cosas: <strong>páginas web</strong> que presentan tu negocio con claridad y <strong>chatbots de WhatsApp con IA</strong> que contestan por ti a cualquier hora.<br><br>Opciones:<br>• Página web — $9,500<br>• Chatbot de WhatsApp — $2,500/mes + $2,000 de implementación<br>• Paquete Página + Chatbot — $12,500 + $2,500/mes desde el mes 2<br>• Chatbot con reservas — $7,500 + $3,000/mes' },
   { kws:['precio','precios','costo','costos','cuanto cuesta','cuanto vale','cuanto cobran','tarifa','tarifas','inversion','cuanto es','cuanto me saldria','planes','cotizacion','cotizar','presupuesto'],
-    a:'Nuestros precios:<br><br>• <strong>Página web</strong> (hasta 3 páginas) — $9,500 de implementación. Mantenimiento opcional $500/mes<br>• <strong>Chatbot de WhatsApp</strong> — $2,000 de implementación + $2,500/mes<br>• <strong>Paquete Página + Chatbot</strong> — $12,500 (incluye el primer mes) + $2,500/mes desde el mes 2. Ahorras $1,500<br>• <strong>Chatbot con reservas</strong> — $7,500 + $3,000/mes<br>• Instagram o Messenger — $2,000 + $500/mes por canal<br>• <strong>Paquetes Pro y Premium</strong> — 6,000 o 12,000 respuestas al mes, sin implementación y página desde $6,000<br><br>¿Quieres saber qué incluye alguno?' },
+    a:'Nuestros precios:<br><br>• <strong>Página web</strong> (hasta 3 páginas) — $9,500 de implementación. Mantenimiento opcional $500/mes<br>• <strong>Chatbot de WhatsApp Básico</strong> — $2,500/mes + $2,000 de implementación<br>• <strong>Paquete Página + Chatbot</strong> — $12,500 (incluye el primer mes) + $2,500/mes desde el mes 2. Ahorras $1,500<br>• <strong>Chatbot con reservas</strong> — $7,500 + $3,000/mes<br>• Instagram o Messenger — $2,000 + $500/mes por canal<br>• <strong>Paquetes Pro y Premium</strong> — 6,000 o 12,000 respuestas al mes, sin implementación y página desde $4,000<br><br>¿Quieres saber qué incluye alguno?' },
   { kws:['pagina web','sitio','sitio web','landing','pagina','una web','web'],
     a:'La <strong>Página web</strong> cuesta <strong>$9,500</strong> y se entrega en <strong>3 semanas</strong>.<br><br>Incluye:<br>• Hasta 3 páginas (ej. Inicio, Servicios y Contacto)<br>• Diseño con tu logo y colores<br>• Adaptada a celular<br>• Botón de WhatsApp, redes y mapa<br>• SEO básico y alta en Google<br>• Hosting y certificado SSL<br>• 2 rondas de cambios<br><br>No incluye login, base de datos, tienda en línea ni el dominio. Página extra: $2,500 c/u.' },
   { kws:['paquete','pagina y chatbot','pagina + chatbot','pagina con chatbot','las dos','ambos','combo','todo junto'],
     a:'El <strong>Paquete Página + Chatbot</strong> cuesta <strong>$12,500</strong> e incluye el primer mes. Desde el mes 2 son <strong>$2,500/mes</strong>.<br><br>• Todo lo de la Página web<br>• Todo lo del Chatbot de WhatsApp<br>• El botón de tu página abre tu chatbot<br>• Mantenimiento web incluido en la mensualidad<br>• Ahorras $1,500<br><br>Entrega en 3 semanas. El chatbot del paquete es para WhatsApp; Instagram o Messenger se agregan aparte.' },
   { kws:['chatbot','chat bot','bot','bot de whatsapp','respuesta automatica','respuestas automaticas','atencion automatica','atencion al cliente','asistente virtual'],
-    a:'El <strong>Chatbot de WhatsApp</strong> cuesta <strong>$2,000</strong> de implementación + <strong>$2,500/mes</strong>. Entrega en 1 semana.<br><br>• Responde 24/7 con IA entrenada con tu negocio<br>• Horarios, ubicación, precios, preguntas frecuentes y hasta 30 productos o servicios<br>• Envía fotos, PDF y catálogo<br>• Recibe fotos y audios y te los reenvía<br>• Te pasa la conversación cuando hace falta una persona<br>• 3,000 respuestas del bot al mes incluidas<br><br>Para agendar citas existe el plan con reservas.' },
+    a:'El <strong>Chatbot de WhatsApp</strong> cuesta <strong>$2,500/mes</strong> + <strong>$2,000</strong> de implementación (una sola vez). Entrega en 1 semana.<br><br>• Responde 24/7 con IA entrenada con tu negocio<br>• Horarios, ubicación, precios, preguntas frecuentes y hasta 30 productos o servicios<br>• Envía fotos, PDF y catálogo<br>• Recibe fotos y audios y te los reenvía<br>• Te pasa la conversación cuando hace falta una persona<br>• 3,000 respuestas del bot al mes incluidas<br><br>Para agendar citas existe el plan con reservas.' },
   { kws:['como funciona','inteligencia artificial','ia','entrenado','entrenan','que contesta','que responde','que sabe','aprende'],
     a:'Entrenamos al chatbot con la información de tu negocio: horarios, ubicación, precios, productos, políticas y preguntas frecuentes. Con eso contesta como lo harías tú, en segundos y a cualquier hora. Si una pregunta sale de lo que sabe, o el cliente quiere hablar con alguien, te pasa la conversación.' },
   { kws:['hablar con una persona','persona real','humano','atiendo yo','contestar yo','tomar el control','pasa la conversacion'],
@@ -2418,7 +2332,7 @@ const NEXO_KB = [
   { kws:['instagram','messenger','facebook','dm','mensajes directos','redes sociales'],
     a:'Conectamos el mismo chatbot a <strong>Instagram</strong> o <strong>Messenger</strong>: <strong>$2,000</strong> + <strong>$500/mes</strong> por canal. Entrega en 3 días. El canal principal siempre es WhatsApp.' },
   { kws:['pro','premium','paquetes','paquete pro','paquete premium','muchos mensajes','mas respuestas','mas mensajes','alto volumen','planes grandes'],
-    a:'Para negocios que reciben muchos mensajes tenemos <strong>paquetes</strong>:<br><br>• <strong>Básico</strong>: 3,000 respuestas al mes — $2,500/mes + $2,000 de implementación<br>• <strong>Pro</strong>: 6,000 respuestas — $5,500/mes, <strong>sin costo de implementación</strong>, y tu página web por $7,000<br>• <strong>Premium</strong>: 12,000 respuestas — $12,000/mes, <strong>sin costo de implementación</strong>, y tu página web por $6,000<br><br>Escribe <strong>PRO</strong> o <strong>PREMIUM</strong> al <strong>56 5280 4823</strong> y te mandamos toda la información.' },
+    a:'Para negocios que reciben muchos mensajes tenemos <strong>paquetes</strong>:<br><br>• <strong>Básico</strong>: 3,000 respuestas al mes — $2,500/mes + $2,000 de implementación<br>• <strong>Pro</strong>: 6,000 respuestas — $5,500/mes, <strong>sin costo de implementación</strong>, y tu página web por $7,000<br>• <strong>Premium</strong>: 12,000 respuestas — $12,000/mes, <strong>sin costo de implementación</strong>, y tu página web por $4,000<br><br>Escribe <strong>PRO</strong> o <strong>PREMIUM</strong> al <strong>56 5280 4823</strong> y te mandamos toda la información.' },
   { kws:['mensajes','cuantos mensajes','limite','contactos','promociones','masivo','masivos','difusion','enviar promociones','mandar promociones','clientes al mes'],
     a:'Así funcionan los mensajes:<br><br>• Cada plan incluye <strong>3,000 respuestas del bot al mes</strong> (unas 300 conversaciones)<br>• Respuestas extra: <strong>$700 por cada 1,000</strong>, solo si tú lo autorizas<br>• Los mensajes que te escriben tus clientes no cuentan<br>• Mensajes que <strong>tú</strong> mandas primero (promos, avisos): <strong>$3 c/u</strong><br><br>Te avisamos cuando vayas en el 80%. Nunca cobramos extra sin tu autorización.' },
   { kws:['imagen','imagenes','foto','fotos','audio','audios','pdf','catalogo','documentos','video'],
@@ -2440,7 +2354,7 @@ const NEXO_KB = [
   { kws:['metodologia','proceso','como trabajan','pasos','como es el proceso','que sigue'],
     a:'Trabajamos en 5 pasos:<br><br>1. <strong>Platicamos</strong> — conocemos tu negocio y lo que te urge<br>2. <strong>Diseñamos</strong> — estructura de tu página y respuestas del chatbot<br>3. <strong>Construimos</strong> — desarrollamos y entrenamos al chatbot<br>4. <strong>Revisamos</strong> — lo pruebas y ajustamos<br>5. <strong>Lanzamos</strong> — publicamos, conectamos tu WhatsApp y te acompañamos' },
   { kws:['cual me conviene','que me recomiendas','cual plan','que plan','no se que','ayudame a elegir','recomendador','que necesito para mi negocio'],
-    a:'Usa el <strong>recomendador</strong> de esta página: 5 preguntas y te dice qué te conviene y cuánto cuesta.<br><br>En corto:<br>• Quieres que te encuentren → <strong>Página web</strong><br>• Ya tienes página y te escriben mucho → <strong>Chatbot</strong><br>• Te falta página y te escriben → <strong>Paquete Página + Chatbot</strong><br>• Trabajas con citas → <strong>Chatbot con reservas</strong>' },
+    a:'Usa el <strong>recomendador</strong> (en el menú, "¿Qué necesito?"): 5 preguntas y te dice qué te conviene y cuánto cuesta.<br><br>En corto:<br>• Quieres que te encuentren → <strong>Página web</strong><br>• Ya tienes página y te escriben mucho → <strong>Chatbot</strong><br>• Te falta página y te escriben → <strong>Paquete Página + Chatbot</strong><br>• Trabajas con citas → <strong>Chatbot con reservas</strong>' },
   { kws:['restaurante','cafeteria','consultorio','dentista','doctor','clinica','salon','barberia','spa','hotel','inmobiliaria','tienda de ropa','gimnasio','escuela','despacho','mi negocio','mi giro'],
     a:'Sí trabajamos con negocios como el tuyo. Normalmente:<br><br>• Si recibes pedidos o preguntas repetidas → <strong>Chatbot de WhatsApp</strong> o el <strong>Paquete</strong><br>• Si trabajas con citas → <strong>Chatbot con reservas</strong><br>• Si aún no tienes presencia en internet → <strong>Página web</strong><br><br>Escríbenos al <strong>56 5280 4823</strong> con el giro de tu negocio y te mandamos toda la información.' },
   { kws:['promo','promocion vigente','descuento','oferta','rebaja','ahorro'],

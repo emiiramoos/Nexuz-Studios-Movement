@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Qué necesita tu negocio? Recomendador | NEXUZ</title>
+<meta name="description" content="Responde 5 preguntas y te decimos qué te conviene: página web, chatbot de WhatsApp con IA o un paquete, con precio y tiempo de entrega.">
+<meta name="theme-color" content="#01010a">
+<link rel="icon" href="logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#01010a;--text:#fff;--text2:#a3a3c4;--accent:#2B2BFF;--accent2:#6060ff;--accent3:#00d4ff;--wa:#25d366;--serif:'Cormorant Garamond',Georgia,serif;--ease:cubic-bezier(.2,.75,.2,1);}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.bgfx{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(60% 50% at 80% 0%,rgba(43,43,255,.28),transparent 70%),radial-gradient(50% 40% at 0% 100%,rgba(0,212,255,.12),transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 1.5rem}
+em{font-family:var(--serif);font-style:italic;font-weight:600;color:transparent;background:linear-gradient(120deg,#fff 5%,var(--accent2) 50%,var(--accent3));-webkit-background-clip:text;background-clip:text;padding:0 .06em .05em}
+.glass{background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(1,1,10,.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+nav img{height:26px;display:block}
+.nav-r{display:flex;gap:.7rem;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.3rem;border-radius:100px;font-weight:700;font-size:.82rem;text-decoration:none;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-ghost{color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn-main{background:var(--accent);color:#fff;box-shadow:0 8px 28px rgba(43,43,255,.45)}
+.btn-wa{background:var(--wa);color:#04210f;box-shadow:0 8px 24px rgba(37,211,102,.35)}
+.btn svg{width:16px;height:16px}
+
+:root{--glass-bg:rgba(255,255,255,.04);--glass-border:rgba(255,255,255,.1);--text2:#a3a3c4}
+.rhero{text-align:center;padding:4.5rem 0 2.5rem}
+.rhero h1{font-size:clamp(2.3rem,5vw,4rem);font-weight:800;letter-spacing:-.045em;line-height:1.05}
+.rhero p{margin:1.2rem auto 0;max-width:560px;color:var(--text2);line-height:1.7}
+.kick{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--accent3);margin-bottom:1.1rem}
+.orbit{position:relative;width:120px;height:120px;margin:0 auto 1.8rem}
+.orbit i{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(120,130,255,.35);animation:spin 9s linear infinite}
+.orbit i:nth-child(2){inset:18px;animation-duration:6s;animation-direction:reverse;border-color:rgba(0,212,255,.35)}
+.orbit i::after{content:'';position:absolute;top:-5px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--accent3);box-shadow:0 0 12px var(--accent3)}
+.orbit b{position:absolute;inset:38px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#7f8bff,var(--accent) 60%,#10106a);box-shadow:0 0 30px rgba(43,43,255,.8);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800}
+@keyframes spin{to{transform:rotate(360deg)}}
+#recomendador{padding:0 0 6rem}
+.rec-header{display:none}
+
+#recomendador .x-unused{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(43,43,255,.08) 0%,transparent 70%);}
+.rec-inner{max-width:860px;margin:0 auto;position:relative;}
+.rec-header{text-align:center;margin-bottom:3.5rem;}
+.rec-wizard{background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:24px;padding:2.8rem;backdrop-filter:blur(20px);}
+.rec-step{display:none;}
+.rec-step.active{display:block;animation:recFadeIn .45s cubic-bezier(0.16,1,0.3,1);}
+@keyframes recFadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.rec-step-label{font-size:.65rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent2);margin-bottom:.6rem;}
+.rec-question{font-size:1.15rem;font-weight:700;margin-bottom:.5rem;line-height:1.35;}
+.rec-hint{font-size:.8rem;color:var(--text2);margin-bottom:1.8rem;line-height:1.6;}
+.rec-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.9rem;}
+.rec-opt{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.1rem 1rem;cursor:pointer;transition:all .25s;text-align:center;position:relative;}
+.rec-opt:hover{border-color:rgba(43,43,255,.45);background:rgba(43,43,255,.07);transform:translateY(-3px);}
+.rec-opt.selected{border-color:var(--accent);background:rgba(43,43,255,.14);box-shadow:0 0 20px rgba(43,43,255,.2);}
+.rec-opt .rec-opt-icon{display:flex;align-items:center;justify-content:center;width:52px;height:52px;background:rgba(43,43,255,0.08);border:1px solid rgba(43,43,255,0.18);border-radius:14px;margin:0 auto 0.8rem;color:var(--accent3);transition:all .3s;}
+.rec-opt:hover .rec-opt-icon{background:rgba(43,43,255,0.18);color:#fff;border-color:rgba(43,43,255,0.4);}
+.rec-opt.selected .rec-opt-icon{background:rgba(43,43,255,0.22);color:#fff;border-color:var(--accent);box-shadow:0 0 16px rgba(43,43,255,0.3);}
+.rec-opt .rec-opt-label{font-size:.82rem;font-weight:600;color:var(--text);}
+.rec-opt .rec-opt-sub{font-size:.7rem;color:var(--text2);margin-top:.2rem;}
+.rec-opt.selected::after{content:'';position:absolute;top:8px;right:10px;font-size:.7rem;color:var(--accent3);font-weight:700;}
+.rec-budget-row{display:flex;gap:.8rem;flex-wrap:wrap;}
+.rec-budget-btn{flex:1;min-width:140px;padding:.9rem 1rem;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);color:var(--text);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .25s;font-family:'Sora',sans-serif;text-align:center;}
+.rec-budget-btn:hover{border-color:rgba(43,43,255,.45);background:rgba(43,43,255,.07);}
+.rec-budget-btn.selected{border-color:var(--accent);background:rgba(43,43,255,.14);color:var(--accent3);}
+.rec-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;gap:1rem;}
+.rec-back{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--text2);padding:.7rem 1.6rem;border-radius:10px;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s;font-family:'Sora',sans-serif;}
+.rec-back:hover{color:#fff;border-color:rgba(255,255,255,.2);}
+.rec-next{background:linear-gradient(135deg,var(--accent),#1a1af0);color:#fff;border:none;padding:.8rem 2rem;border-radius:10px;cursor:pointer;font-size:.85rem;font-weight:700;transition:all .25s;font-family:'Sora',sans-serif;letter-spacing:.5px;}
+.rec-next:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(43,43,255,.45);}
+.rec-next:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.rec-progress{height:3px;background:rgba(255,255,255,.06);border-radius:10px;margin-bottom:2.2rem;overflow:hidden;}
+.rec-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent3));border-radius:10px;transition:width .5s cubic-bezier(0.16,1,0.3,1);box-shadow:0 0 8px rgba(43,43,255,.5);}
+/* resultado */
+.rec-result{display:none;}
+.rec-result.active{display:block;animation:recFadeIn .5s ease;}
+.rec-result-header{text-align:center;margin-bottom:2rem;}
+.rec-result-badge{display:inline-block;font-family:'Orbitron',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:3px;padding:.4rem 1.2rem;border-radius:100px;background:linear-gradient(135deg,rgba(43,43,255,.3),rgba(0,212,255,.15));border:1px solid rgba(43,43,255,.5);color:var(--accent3);margin-bottom:1rem;}
+.rec-result-title{font-size:1.6rem;font-weight:700;margin-bottom:.5rem;}
+.rec-result-why{font-size:.85rem;color:var(--text2);line-height:1.8;margin-bottom:2rem;background:rgba(43,43,255,.05);border-left:2px solid var(--accent);padding:.9rem 1.2rem;border-radius:0 10px 10px 0;}
+.rec-result-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+.rec-result-card{background:rgba(43,43,255,.07);border:1px solid rgba(43,43,255,.18);border-radius:14px;padding:1.2rem 1.4rem;}
+.rec-result-card h4{font-size:.82rem;font-weight:700;margin-bottom:.5rem;color:var(--accent3);}
+.rec-result-card ul{list-style:none;display:flex;flex-direction:column;gap:.35rem;}
+.rec-result-card ul li{font-size:.76rem;color:var(--text2);display:flex;gap:.5rem;align-items:flex-start;}
+.rec-result-card ul li::before{content:'';color:var(--accent);font-weight:700;flex-shrink:0;}
+.rec-price-box{background:linear-gradient(135deg,rgba(43,43,255,.15),rgba(0,212,255,.07));border:1px solid rgba(43,43,255,.35);border-radius:16px;padding:1.5rem 1.8rem;text-align:center;margin-bottom:1.5rem;}
+.rec-price-label{font-size:.68rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:.4rem;}
+.rec-price-val{font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent3));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.rec-price-note{font-size:.72rem;color:var(--text2);margin-top:.3rem;}
+.rec-extras{background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.15);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:1.8rem;}
+.rec-extras h4{font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent3);margin-bottom:.8rem;}
+.rec-extras ul{list-style:none;display:flex;flex-direction:column;gap:.4rem;}
+.rec-extras ul li{font-size:.78rem;color:var(--text2);display:flex;gap:.6rem;align-items:flex-start;}
+.rec-extras ul li::before{content:'';flex-shrink:0;}
+.rec-result-actions{display:flex;gap:.8rem;flex-wrap:wrap;}
+.rec-cta-main{flex:1;padding:.95rem;background:linear-gradient(135deg,var(--accent),#1a1af0);color:#fff;border:none;border-radius:12px;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .25s;font-family:'Sora',sans-serif;letter-spacing:.5px;}
+.rec-cta-main:hover{transform:translateY(-2px);box-shadow:0 10px 35px rgba(43,43,255,.5);}
+.rec-cta-restart{padding:.9rem 1.4rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--text2);border-radius:12px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Sora',sans-serif;}
+.rec-cta-restart:hover{color:#fff;border-color:rgba(255,255,255,.2);}
+.rec-wizard{border-radius:28px}
+.rec-cta-wa{background:var(--wa)!important;color:#04210f!important}
+.rec-cta-ghost{background:transparent!important;border:1px solid rgba(120,130,255,.5)!important;text-decoration:none;display:flex;align-items:center;justify-content:center}
+@media(max-width:900px){
+  .rec-wizard{padding:1.8rem 1.4rem;}
+  .rec-options{grid-template-columns:repeat(2,1fr);gap:.75rem;}
+  .rec-opt{padding:.9rem .7rem;}
+  .rec-opt .rec-opt-icon{width:44px;height:44px;}
+  .rec-opt .rec-opt-icon svg{width:22px;height:22px;}
+  .rec-opt-label{font-size:.78rem;}
+  .rec-opt-sub{font-size:.65rem;}
+  .rec-budget-row{grid-template-columns:1fr 1fr;display:grid;gap:.6rem;}
+  .rec-budget-btn{min-width:unset;padding:.75rem .6rem;font-size:.75rem;}
+  .rec-result-cards{grid-template-columns:1fr;}
+  .rec-question{font-size:1rem;}
+  .rec-result-title{font-size:1.3rem;}
+  .rec-price-val{font-size:1.6rem;}
+}
+@media(max-width:600px){
+  .rec-wizard{padding:1.4rem 1rem;}
+  .rec-options{grid-template-columns:1fr;gap:.6rem;}
+  .rec-opt{display:flex;align-items:center;gap:1rem;text-align:left;padding:.9rem 1rem;}
+  .rec-opt .rec-opt-icon{width:42px;height:42px;flex-shrink:0;margin:0;}
+  .rec-opt .rec-opt-icon svg{width:20px;height:20px;}
+  .rec-opt-label{font-size:.82rem;}
+  .rec-opt-sub{font-size:.68rem;}
+  .rec-budget-row{grid-template-columns:1fr;display:flex;flex-direction:column;gap:.5rem;}
+  .rec-budget-btn{padding:.85rem 1rem;font-size:.8rem;text-align:left;}
+  .rec-nav{flex-direction:column-reverse;gap:.7rem;}
+  .rec-next,.rec-back{width:100%;text-align:center;padding:.85rem;}
+  .rec-question{font-size:.95rem;}
+  .rec-hint{font-size:.75rem;}
+  .rec-result-title{font-size:1.15rem;}
+  .rec-price-val{font-size:1.4rem;}
+  .rec-result-actions{flex-direction:column;}
+  .rec-cta-main,.rec-cta-restart{width:100%;}
+}
+</style>
+</head>
+<body>
+<div class="bgfx"></div>
+<nav><div class="wrap">
+  <a href="index.html" aria-label="Volver al inicio de NEXUZ"><img src="logo.svg" alt="NEXUZ" width="92" height="26"></a>
+  <div class="nav-r">
+    <a class="btn btn-ghost" href="paquetes.html">Paquetes</a>
+    <a class="btn btn-wa" href="https://wa.me/525652804823?text=Hola%20NEXUZ%2C%20quiero%20informaci%C3%B3n%20de%20los%20paquetes." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.4z"/></svg>WhatsApp</a>
+  </div>
+</div></nav>
+<main class="wrap">
+  <header class="rhero rv">
+    <div class="orbit" aria-hidden="true"><i></i><i></i><b>?</b></div>
+    <div class="kick">RECOMENDADOR NEXUZ</div>
+    <h1>¿Qué necesita <em>tu negocio?</em></h1>
+    <p>Cinco preguntas rápidas y te decimos qué te conviene, qué incluye, cuánto cuesta y en cuánto tiempo lo tienes.</p>
+  </header>
+<!-- RECOMENDADOR -->
+<div id="recomendador">
+  <div class="rec-inner">
+    <div class="rec-header">
+      <div class="label" style="justify-content:center">Encuentra tu solución</div>
+      <h2 class="title" style="text-align:center">¿No sabes qué<br><em>necesitas?</em></h2>
+      
+    </div>
+    <div class="rec-wizard glass rv">
+      <div class="rec-progress"><div class="rec-progress-fill" id="recBar" style="width:0%"></div></div>
+
+      <div class="rec-step active" id="recStep1">
+        <div class="rec-step-label">Pregunta 1 de 5</div>
+        <div class="rec-question">¿Qué tipo de negocio tienes?</div>
+        <div class="rec-hint">Así sabemos cómo te buscan tus clientes.</div>
+        <div class="rec-options">
+          <div class="rec-opt" onclick="recSelect(this,'tipo','comida')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span><div class="rec-opt-label">Restaurante o cafetería</div><div class="rec-opt-sub">Comida, bebidas, pedidos</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'tipo','citas')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><div class="rec-opt-label">Trabajo con citas</div><div class="rec-opt-sub">Clínica, salón, consultorio, spa</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'tipo','productos')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span><div class="rec-opt-label">Vendo productos</div><div class="rec-opt-sub">Tienda, catálogo, mayoreo</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'tipo','servicios')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span><div class="rec-opt-label">Servicios profesionales</div><div class="rec-opt-sub">Consultoría, despacho, oficios</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'tipo','emprendedor')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div class="rec-opt-label">Estoy empezando</div><div class="rec-opt-sub">Un proyecto o marca nueva</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'tipo','otro')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span><div class="rec-opt-label">Otro</div><div class="rec-opt-sub">Cuéntanos al final</div></div>
+        </div>
+        <div class="rec-nav"><div></div><button class="rec-next" id="recNext1" onclick="recGoTo(2)" disabled>Siguiente</button></div>
+      </div>
+
+      <div class="rec-step" id="recStep2">
+        <div class="rec-step-label">Pregunta 2 de 5</div>
+        <div class="rec-question">¿Ya tienes página web?</div>
+        <div class="rec-hint">No hay respuesta mala.</div>
+        <div class="rec-options">
+          <div class="rec-opt" onclick="recSelect(this,'web','no')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span><div class="rec-opt-label">No tengo</div><div class="rec-opt-sub">Sería mi primera página</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'web','renovar')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></span><div class="rec-opt-label">Tengo, pero no me sirve</div><div class="rec-opt-sub">Se ve vieja o nadie la encuentra</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'web','si')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg></span><div class="rec-opt-label">Sí, y me funciona</div><div class="rec-opt-sub">No necesito otra</div></div>
+        </div>
+        <div class="rec-nav"><button class="rec-back" onclick="recGoTo(1)">Atrás</button><button class="rec-next" id="recNext2" onclick="recGoTo(3)" disabled>Siguiente</button></div>
+      </div>
+
+      <div class="rec-step" id="recStep3">
+        <div class="rec-step-label">Pregunta 3 de 5</div>
+        <div class="rec-question">¿Cuántos mensajes te llegan al día?</div>
+        <div class="rec-hint">Sumando WhatsApp, Instagram y Facebook.</div>
+        <div class="rec-options">
+          <div class="rec-opt" onclick="recSelect(this,'mensajes','bajo')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div class="rec-opt-label">Casi ninguno</div><div class="rec-opt-sub">Quiero que me empiecen a escribir</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'mensajes','medio')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="8" y1="10" x2="12" y2="10"/></svg></span><div class="rec-opt-label">Entre 1 y 10</div><div class="rec-opt-sub">Los contesto como puedo</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'mensajes','alto')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="14" y2="12"/></svg></span><div class="rec-opt-label">Entre 10 y 50</div><div class="rec-opt-sub">Se me juntan y tardo en contestar</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'mensajes','muy')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="7" y1="7" x2="17" y2="7"/><line x1="7" y1="10" x2="17" y2="10"/><line x1="7" y1="13" x2="13" y2="13"/></svg></span><div class="rec-opt-label">Entre 50 y 150</div><div class="rec-opt-sub">Se me juntan todo el día</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'mensajes','top')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="7" y1="7" x2="17" y2="7"/><line x1="7" y1="10" x2="17" y2="10"/><line x1="7" y1="13" x2="13" y2="13"/></svg></span><div class="rec-opt-label">Más de 150</div><div class="rec-opt-sub">O tengo varias sucursales</div></div>
+        </div>
+        <div class="rec-nav"><button class="rec-back" onclick="recGoTo(2)">Atrás</button><button class="rec-next" id="recNext3" onclick="recGoTo(4)" disabled>Siguiente</button></div>
+      </div>
+
+      <div class="rec-step" id="recStep4">
+        <div class="rec-step-label">Pregunta 4 de 5</div>
+        <div class="rec-question">¿Qué te está costando más clientes hoy?</div>
+        <div class="rec-hint">Elige lo que más te urge resolver.</div>
+        <div class="rec-options">
+          <div class="rec-opt" onclick="recSelect(this,'dolor','encontrar')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><div class="rec-opt-label">No me encuentran</div><div class="rec-opt-sub">No aparezco en Google o no doy confianza</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'dolor','contestar')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div class="rec-opt-label">Tardo en contestar</div><div class="rec-opt-sub">Se van con otro mientras respondo</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'dolor','repetir')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span><div class="rec-opt-label">Repito lo mismo todo el día</div><div class="rec-opt-sub">Precios, horarios, catálogo, ubicación</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'dolor','citas')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 15 11 17 15 13"/></svg></span><div class="rec-opt-label">Agendar citas me quita tiempo</div><div class="rec-opt-sub">Confirmar, mover y recordar</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'dolor','medida')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><div class="rec-opt-label">Necesito algo más completo</div><div class="rec-opt-sub">Tienda en línea, login o base de datos</div></div>
+        </div>
+        <div class="rec-nav"><button class="rec-back" onclick="recGoTo(3)">Atrás</button><button class="rec-next" id="recNext4" onclick="recGoTo(5)" disabled>Siguiente</button></div>
+      </div>
+
+      <div class="rec-step" id="recStep5">
+        <div class="rec-step-label">Pregunta 5 de 5</div>
+        <div class="rec-question">¿Por dónde te escriben tus clientes?</div>
+        <div class="rec-hint">Puedes elegir más de una.</div>
+        <div class="rec-options">
+          <div class="rec-opt rec-multi" onclick="recToggle(this,'canales','whatsapp')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><div class="rec-opt-label">WhatsApp</div></div>
+          <div class="rec-opt rec-multi" onclick="recToggle(this,'canales','instagram')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span><div class="rec-opt-label">Instagram</div></div>
+          <div class="rec-opt rec-multi" onclick="recToggle(this,'canales','messenger')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span><div class="rec-opt-label">Facebook / Messenger</div></div>
+          <div class="rec-opt rec-multi" onclick="recToggle(this,'canales','ninguna')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span><div class="rec-opt-label">Casi no me escriben</div><div class="rec-opt-sub">Por eso quiero estar en internet</div></div>
+        </div>
+        <div class="rec-nav"><button class="rec-back" onclick="recGoTo(4)">Atrás</button><button class="rec-next" id="recNext5" onclick="recCalcular()" disabled>Ver mi recomendación</button></div>
+      </div>
+
+      <div class="rec-result" id="recResultado"></div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer style="padding:3rem 0;text-align:center;color:var(--text2);font-size:.78rem">© 2026 NEXUZ · Move smarter, grow faster · Precios finales en MXN</footer>
+<script>
+const WA='525652804823';
+const recData={tipo:'',web:'',mensajes:'',dolor:'',canales:[]};
+const recTotalSteps=5;
+const $=id=>document.getElementById(id);
+function recUpdateBar(step){ $('recBar').style.width=((step-1)/recTotalSteps*100)+'%'; }
+function recStepOf(el){ return parseInt(el.closest('.rec-step').id.replace('recStep','')); }
+function recSelect(el,key,val){ el.closest('.rec-options').querySelectorAll('.rec-opt').forEach(o=>o.classList.remove('selected')); el.classList.add('selected'); recData[key]=val; $('recNext'+recStepOf(el)).disabled=false; }
+function recToggle(el,key,val){
+  const opts=el.closest('.rec-options').querySelectorAll('.rec-opt');
+  if(val==='ninguna'){ opts.forEach(o=>o.classList.remove('selected')); recData[key]=['ninguna']; el.classList.add('selected'); }
+  else { opts.forEach(o=>{ if((o.getAttribute('onclick')||'').includes("'ninguna'")) o.classList.remove('selected'); }); el.classList.toggle('selected'); recData[key]=recData[key].filter(v=>v!=='ninguna'); if(el.classList.contains('selected')){ if(!recData[key].includes(val)) recData[key].push(val); } else recData[key]=recData[key].filter(v=>v!==val); }
+  $('recNext'+recStepOf(el)).disabled=recData[key].length===0;
+}
+function recGoTo(step){ document.querySelectorAll('.rec-step').forEach(s=>s.classList.remove('active')); $('recResultado').classList.remove('active'); $('recStep'+step).classList.add('active'); recUpdateBar(step); window.scrollTo({top:$('recomendador').offsetTop-80,behavior:'smooth'}); }
+const mxn=n=>'$'+n.toLocaleString('es-MX');
+function recCalcular(){
+  recUpdateBar(recTotalSteps+1);
+  document.querySelectorAll('.rec-step').forEach(s=>s.classList.remove('active'));
+  const r=recData, canales=r.canales||[], redes=canales.filter(c=>c==='instagram'||c==='messenger');
+  const needsWeb=r.web!=='si';
+  const vol=r.mensajes==='top'?'premium':(r.mensajes==='muy'?'pro':'basico');
+  const needsBot=r.mensajes!=='bajo'||['contestar','repetir','citas'].includes(r.dolor)||redes.length>0;
+  const needsRes=r.dolor==='citas'||(r.tipo==='citas'&&r.mensajes!=='bajo'&&r.dolor!=='encontrar');
+  let plan,why,items,extras=[],inicial=0,mensual=0,codigo='',precio,nota,entrega;
+  if(r.dolor==='medida'){
+    plan='PROYECTO A LA MEDIDA'; codigo='WEB'; precio='Se cotiza'; nota='Te mandamos una propuesta con precio cerrado antes de empezar'; entrega='según alcance';
+    items=['Diseño a la medida con tu marca','Tienda en línea, cuentas de usuario o base de datos','Adaptado a celular','Se puede conectar con tu chatbot de WhatsApp'];
+    why='Lo que necesitas va más allá de una página informativa. Platicamos contigo, definimos el alcance y te damos un precio cerrado.';
+    if(needsBot) extras.push('Como ya te escriben, puedes sumar el chatbot de WhatsApp: $2,500/mes + $2,000 de implementación');
+  } else if(vol!=='basico' && !needsRes){
+    const pro=vol==='pro';
+    plan=(pro?'PLAN PRO':'PLAN PREMIUM')+(needsWeb?' + PÁGINA WEB':''); codigo=pro?'PRO':'PREMIUM';
+    mensual=pro?5500:12000; inicial=needsWeb?(pro?7000:4000):0; entrega=needsWeb?'3 semanas':'1 semana';
+    items=[(pro?'6,000':'12,000')+' respuestas del bot al mes','Chatbot de WhatsApp con IA entrenada con tu negocio, 24/7','Sin costo de implementación','Te pasa al cliente cuando quiere cerrar'];
+    if(needsWeb) items.push('Página web de hasta 3 páginas por solo '+mxn(inicial));
+    why=(pro?'Te escriben bastante: el plan Pro te da 6,000 respuestas al mes':'Tu volumen es alto: el plan Premium te da 12,000 respuestas al mes')+', no pagas implementación'+(needsWeb?' y tu página te sale en '+mxn(inicial)+' en lugar de $9,500.':'.');
+  } else if(needsRes && needsWeb){
+    plan='PÁGINA WEB + CHATBOT CON RESERVAS'; inicial=17000; mensual=3000; codigo='PAQUETE'; entrega='3 semanas';
+    items=['Página web de hasta 3 páginas','Chatbot de WhatsApp con IA 24/7','Agenda citas en tu Google Calendar','Confirmación y recordatorio 24 h antes'];
+    why='Tu negocio vive de las citas. La página te da confianza y el chatbot agenda, confirma y recuerda por ti, a cualquier hora.';
+  } else if(needsRes){
+    plan='CHATBOT CON RESERVAS'; inicial=7500; mensual=3000; codigo='CHATBOT'; entrega='2 semanas';
+    items=['Todo lo del chatbot de WhatsApp','Agenda citas en tu Google Calendar','Confirma al momento','Recordatorio 24 h antes (300 al mes incluidos)'];
+    why='Ya tienes página. Lo que más tiempo te ahorra es que tus clientes agenden solos por WhatsApp y reciban su recordatorio.';
+  } else if(needsWeb && needsBot){
+    plan='PAQUETE PÁGINA + CHATBOT'; inicial=12500; mensual=2500; codigo='PAQUETE'; entrega='3 semanas';
+    items=['Página web de hasta 3 páginas','Chatbot de WhatsApp con IA 24/7, 3,000 respuestas al mes','Implementación y primer mes incluidos','Mantenimiento de la página incluido'];
+    why='Te falta presencia y ya te escriben. La página da confianza y el chatbot contesta por ti en segundos. Juntos te ahorran $1,500.';
+  } else if(needsBot){
+    plan='CHATBOT DE WHATSAPP'; inicial=2000; mensual=2500; codigo='CHATBOT'; entrega='1 semana';
+    items=['Respuestas 24/7 con IA entrenada con tu negocio','Horarios, precios, ubicación y hasta 30 productos','Envía fotos, PDF y catálogo','3,000 respuestas del bot al mes'];
+    why=r.dolor==='repetir'?'Ya tienes página. El chatbot contesta precios, horarios y ubicación, para que dejes de repetir lo mismo.':'Ya tienes página. Lo que te falta es no perder clientes por tardar: el chatbot responde en segundos, 24/7.';
+  } else {
+    plan='PÁGINA WEB'; inicial=9500; codigo='WEB'; entrega='3 semanas';
+    items=['Hasta 3 páginas','Diseño con tu logo y colores','Adaptada a celular','Botón de WhatsApp y SEO básico para Google'];
+    why=r.web==='si'?'Tienes página, pero si no te encuentran conviene rehacerla con SEO básico y un botón directo a tu WhatsApp.':'Lo primero es que tu negocio exista en internet y dé confianza.';
+    extras.push('Mantenimiento opcional: $500/mes');
+  }
+  const tieneBot=/CHATBOT|PRO|PREMIUM|RESERVAS/.test(plan);
+  if(redes.length&&tieneBot){ const n=redes.map(c=>c==='instagram'?'Instagram':'Messenger'); extras.unshift('Conecta el mismo chatbot a '+n.join(' y ')+': $2,000 + $500/mes por canal'); inicial+=2000*redes.length; mensual+=500*redes.length; }
+  if(tieneBot) extras.push('Respuestas extra: $700 por cada 1,000. Te avisamos al 80% y nunca cobramos sin tu autorización');
+  if(vol==='basico'&&r.mensajes==='alto'&&tieneBot) extras.push('Si creces, el plan Pro (6,000 respuestas) no cobra implementación y baja tu página a $7,000');
+  if(precio===undefined){
+    if(inicial){ precio=mxn(inicial)+' MXN'; nota=(codigo==='PAQUETE'&&inicial===12500?'Pago inicial · Después ':'Pago inicial · ')+(mensual?mxn(mensual)+'/mes':'sin mensualidad'); }
+    else { precio=mxn(mensual)+' MXN/mes'; nota='Sin costo de implementación'; }
+  }
+  const T={comida:'Restaurante o cafetería',citas:'Negocio con citas',productos:'Venta de productos',servicios:'Servicios profesionales',emprendedor:'Proyecto nuevo',otro:'Tu negocio'};
+  const W={no:'Sin página web',renovar:'Página por renovar',si:'Ya tiene página'};
+  const M={bajo:'Casi no recibe mensajes',medio:'1 a 10 mensajes al día',alto:'10 a 50 al día',muy:'50 a 150 al día',top:'Más de 150 al día'};
+  const msg=encodeURIComponent(codigo+'\n\nHola NEXUZ, el recomendador me sugirió: '+plan+'. ¿Me mandan toda la información?');
+  $('recResultado').innerHTML=`
+    <div class="rec-result-header"><div class="rec-result-badge">Tu recomendación</div><div class="rec-result-title" style="background:linear-gradient(135deg,#fff,#6060ff);-webkit-background-clip:text;background-clip:text;color:transparent">${plan}</div></div>
+    <div class="rec-result-why"><strong style="color:#fff;display:block;margin-bottom:.4rem">Por qué te lo recomendamos</strong>${why}</div>
+    <div class="rec-result-cards">
+      <div class="rec-result-card"><h4>Tu perfil</h4><ul><li>${T[r.tipo]||'Tu negocio'}</li><li>${W[r.web]||''}</li><li>${M[r.mensajes]||''}</li></ul></div>
+      <div class="rec-result-card"><h4>Incluye</h4><ul>${items.map(i=>`<li>${i}</li>`).join('')}</ul></div>
+    </div>
+    <div class="rec-price-box"><div class="rec-price-label">Inversión · entrega en ${entrega}</div><div class="rec-price-val">${precio}</div><div class="rec-price-note">${nota}</div></div>
+    ${extras.length?`<div class="rec-extras"><h4>Ten en cuenta</h4><ul>${extras.map(e=>`<li>${e}</li>`).join('')}</ul></div>`:''}
+    <div class="rec-result-actions">
+      <a class="rec-cta-main rec-cta-wa" style="text-decoration:none;text-align:center" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${msg}">Pedir info por WhatsApp</a>
+      <a class="rec-cta-main rec-cta-ghost" href="${/PRO|PREMIUM/.test(codigo)?'paquetes.html':'index.html#planes'}">Ver planes</a>
+      <button class="rec-cta-restart" onclick="recReiniciar()">Volver a empezar</button>
+    </div>`;
+  $('recResultado').classList.add('active');
+}
+function recReiniciar(){ Object.assign(recData,{tipo:'',web:'',mensajes:'',dolor:'',canales:[]}); document.querySelectorAll('.rec-opt').forEach(o=>o.classList.remove('selected')); document.querySelectorAll('.rec-next').forEach(b=>b.disabled=true); $('recResultado').classList.remove('active'); recGoTo(1); }
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.1});
+document.querySelectorAll('.rv,.reveal').forEach(el=>io.observe(el));
+</script>
+</body></html>
