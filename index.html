@@ -38,7 +38,7 @@
 <link rel="canonical" href="https://nexuzmexico.com/">
 <meta name="theme-color" content="#01010a">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"NEXUZ","url":"https://nexuzmexico.com/","logo":"https://nexuzmexico.com/logo.jpeg","image":"https://nexuzmexico.com/logo.jpeg","description":"Páginas web y chatbots de WhatsApp con inteligencia artificial.","email":"Nexuz@nexuzmexico.com","telephone":"+52 998 311 4978","areaServed":"MX","address":{"@type":"PostalAddress","addressLocality":"Cancún","addressRegion":"Quintana Roo","addressCountry":"MX"},"sameAs":["https://www.instagram.com/_nexuzmx/","https://www.facebook.com/profile.php?id=61590419578405"],"priceRange":"$$"}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"NEXUZ","url":"https://nexuzmexico.com/","logo":"https://nexuzmexico.com/logo.jpeg","image":"https://nexuzmexico.com/logo.jpeg","description":"Páginas web y chatbots de WhatsApp con inteligencia artificial.","email":"Nexuz@nexuzmexico.com","telephone":"+52 56 5280 4823","areaServed":"MX","address":{"@type":"PostalAddress","addressLocality":"Cancún","addressRegion":"Quintana Roo","addressCountry":"MX"},"sameAs":["https://www.instagram.com/_nexuzmx/","https://www.facebook.com/profile.php?id=61590419578405"],"priceRange":"$$"}
 </script>
 
 <!-- FAVICON -->
@@ -208,6 +208,7 @@ nav.scrolled{
     radial-gradient(ellipse 90% 70% at 50% 50%,rgba(43,43,255,.22) 0%,transparent 65%),
     radial-gradient(ellipse 35% 45% at 20% 80%,rgba(0,212,255,.09) 0%,transparent 60%),
     radial-gradient(ellipse 35% 45% at 80% 20%,rgba(80,80,255,.10) 0%,transparent 60%);
+  will-change:transform,opacity;
   animation:auraPulse 10s ease-in-out infinite alternate;
 }
 @keyframes auraPulse{
@@ -228,43 +229,46 @@ nav.scrolled{
   position:relative;
   display:inline-flex;align-items:center;justify-content:center;
   margin-bottom:2.5rem;
-  animation:logoAppear 1.6s cubic-bezier(0.16,1,0.3,1) both;
+  will-change:transform,opacity;
+  animation:logoAppear 1.3s cubic-bezier(0.16,1,0.3,1) .15s both;
 }
 .hero-logo-wrap::before{
   content:'';
-  position:absolute;
+  position:absolute;left:-50%;top:-50%;
   width:200%;height:200%;
-  background:radial-gradient(ellipse,rgba(43,43,255,.45) 0%,transparent 60%);
+  background:radial-gradient(ellipse at center,rgba(43,43,255,.42) 0%,rgba(43,43,255,.12) 35%,transparent 62%);
   border-radius:50%;
+  will-change:transform,opacity;
   animation:logoAura 5s ease-in-out infinite alternate;
-  filter:blur(20px);
   pointer-events:none;
 }
+.hero-logo-wrap::after{
+  content:'';
+  position:absolute;left:-15%;top:-40%;width:130%;height:180%;
+  background:radial-gradient(ellipse at center,rgba(120,140,255,.55) 0%,transparent 60%);
+  opacity:0;pointer-events:none;
+  animation:logoFlash 1.3s ease-out .15s both;
+}
 @keyframes logoAura{
-  0%{transform:scale(.8);opacity:.5;}
-  100%{transform:scale(1.2);opacity:1;}
+  0%{transform:scale(.85);opacity:.55;}
+  100%{transform:scale(1.15);opacity:1;}
 }
 @keyframes logoAppear{
-  0%{opacity:0;transform:scale(.5) translateY(50px);}
-  60%{filter:brightness(2.5) drop-shadow(0 0 60px rgba(43,43,255,1));}
-  100%{opacity:1;transform:scale(1) translateY(0);}
+  0%{opacity:0;transform:scale(.82) translate3d(0,30px,0);}
+  100%{opacity:1;transform:scale(1) translate3d(0,0,0);}
+}
+@keyframes logoFlash{
+  0%{opacity:0;} 45%{opacity:.9;} 100%{opacity:0;}
 }
 .hero-logo-img{
   width:min(72vw,1080px);height:auto;max-width:100%;display:block;
-  filter:
-    drop-shadow(0 0 40px rgba(43,43,255,.95))
-    drop-shadow(0 0 80px rgba(43,43,255,.5))
-    drop-shadow(0 0 160px rgba(43,43,255,.25))
-    brightness(1.15) contrast(1.1);
+  filter:drop-shadow(0 0 36px rgba(43,43,255,.85)) brightness(1.12);
   position:relative;z-index:1;
-  transition:all .5s ease;
+  transition:transform .5s ease;
 }
-.hero-logo-wrap:hover .hero-logo-img{
-  filter:
-    drop-shadow(0 0 70px rgba(43,43,255,1.3))
-    drop-shadow(0 0 140px rgba(0,212,255,.5))
-    drop-shadow(0 0 220px rgba(43,43,255,.3))
-    brightness(1.4) contrast(1.2);
+.hero-logo-wrap:hover .hero-logo-img{transform:scale(1.02);}
+@media (prefers-reduced-motion:reduce){
+  .hero-logo-wrap,.hero-logo-wrap::before,.hero-logo-wrap::after,.hero-aura{animation:none!important;}
 }
 
 /* slogan removed */
@@ -373,6 +377,21 @@ nav.scrolled{
   backdrop-filter:blur(8px);
 }
 
+.ab-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:center;margin-top:3rem;}
+.ab-lead{font-size:clamp(1.6rem,3.2vw,2.5rem)!important;line-height:1.2!important;color:#fff!important;font-weight:700;letter-spacing:-.03em;margin-bottom:2rem!important;}
+.ab-glow{font-family:var(--serif);font-style:italic;font-weight:500;color:#fff;text-shadow:0 0 18px rgba(80,110,255,.85),0 0 42px rgba(43,43,255,.55);animation:abGlow 3.6s ease-in-out infinite alternate;}
+@keyframes abGlow{0%{text-shadow:0 0 10px rgba(80,110,255,.55),0 0 26px rgba(43,43,255,.3);}100%{text-shadow:0 0 20px rgba(110,140,255,.95),0 0 48px rgba(43,43,255,.6);}}
+.ab-two{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.ab-card{display:flex;flex-direction:column;gap:.45rem;padding:1.4rem 1.3rem;border-radius:18px;background:linear-gradient(160deg,rgba(43,43,255,.14),rgba(255,255,255,.03));border:1px solid rgba(120,130,255,.22);}
+.ab-card b{font-size:1.08rem;color:#fff;letter-spacing:-.02em;line-height:1.25;}
+.ab-card span{font-size:.86rem;color:rgba(255,255,255,.78);line-height:1.6;}
+.ab-card .ab-k{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--accent3);}
+.ab-facts{list-style:none;display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:2.6rem;margin-top:2rem;}
+.ab-facts b{display:block;font-family:var(--serif);font-style:italic;font-weight:600;font-size:2.2rem;line-height:1;color:#fff;}
+.ab-facts span{font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.7);}
+@media(max-width:900px){.ab-grid{grid-template-columns:1fr;gap:2rem;}.ab-two{grid-template-columns:1fr;}.ab-card{padding:1.1rem 1.1rem;}.ab-facts{gap:1.4rem;}.ab-facts b{font-size:1.8rem;}.ab-facts span{letter-spacing:1.5px;}}
+@media(prefers-reduced-motion:reduce){.ab-glow{animation:none;}}
+.rec-cta-wa{background:transparent!important;border:1px solid rgba(120,130,255,.5)!important;}
 /* ============ SERVICES ============ */
 .srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3.5rem;}
 .srv-card{padding:2rem 1.6rem;border-radius:22px;}
@@ -1188,6 +1207,12 @@ button.car-dot{border:none;padding:0;}
 .mq-star{display:inline-block;color:var(--accent3);font-size:clamp(1.1rem,2.6vw,2.2rem);padding:0 .35em;line-height:1;}
 .mq-row.small .mq-star{font-size:.8rem;color:var(--accent2);}
 @keyframes mqMove{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+/* cinta de anuncio */
+.announce{display:block;text-decoration:none;position:relative;z-index:2;overflow:hidden;padding:.95rem 0;margin:2rem 0;background:linear-gradient(90deg,#0b0b3a,var(--accent) 50%,#0b0b3a);border-block:1px solid rgba(140,150,255,.35);box-shadow:0 0 50px rgba(43,43,255,.35);}
+.announce .mq-item{font-size:clamp(1.05rem,2.2vw,1.6rem);color:#fff;}
+.announce .mq-item.s{background:none;-webkit-text-fill-color:#cfe9ff;color:#cfe9ff;}
+.announce .mq-star{color:#9fdcff;font-size:1rem;}
+.announce:hover .mq-row{animation-play-state:paused;}
 /* cintas cruzadas */
 .ribbons{position:relative;z-index:2;overflow:hidden;padding:4.5rem 0;}
 .ribbon{position:relative;overflow:hidden;padding:1.05rem 0;}
@@ -1222,20 +1247,35 @@ button.car-dot{border:none;padding:0;}
 .mf-stat span{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text2);}
 
 /* ---- Metodología ---- */
-.mt-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:4rem;align-items:start;margin-top:1rem;}
-.mt-side{position:sticky;top:calc(var(--nav-h) + 2.5rem);}
-.mt-list{list-style:none;border-top:1px solid rgba(255,255,255,.08);}
-.mt-item{position:relative;display:grid;grid-template-columns:5.2rem 1fr auto;gap:1.4rem;align-items:baseline;padding:1.9rem .4rem;border-bottom:1px solid rgba(255,255,255,.08);transition:padding .45s var(--ease-out),background .45s;}
-.mt-item::after{content:'';position:absolute;left:0;bottom:-1px;height:1px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent3));transition:width .7s var(--ease-out);}
-.mt-item:hover{padding-left:1.2rem;background:linear-gradient(90deg,rgba(43,43,255,.07),transparent 70%);}
-.mt-item:hover::after{width:100%;}
-.mt-n{font-family:var(--serif);font-style:italic;font-weight:600;font-size:2.6rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.35);transition:color .4s,-webkit-text-stroke-color .4s;}
-.mt-item:hover .mt-n{color:var(--accent3);-webkit-text-stroke-color:transparent;}
-.mt-item h3{font-size:clamp(1.25rem,2.2vw,1.7rem);font-weight:700;letter-spacing:-.03em;margin-bottom:.35rem;}
-.mt-item p{font-size:.84rem;color:var(--text2);line-height:1.75;max-width:440px;}
-.mt-time{font-size:.6rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent2);white-space:nowrap;}
+.mt{position:relative;z-index:2;}
+.mt-hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 1.5rem;}
+.mt-big{font-size:clamp(3rem,10vw,9rem);font-weight:800;letter-spacing:-.05em;line-height:.95;opacity:0;transform:scale(.7);filter:blur(0);transition:opacity .5s ease,transform .9s cubic-bezier(.2,1.4,.4,1);}
+.mt-big em{display:block;font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.02em;color:transparent;background:linear-gradient(120deg,#fff 10%,var(--accent2) 55%,var(--accent3));-webkit-background-clip:text;background-clip:text;padding:0 .08em .08em;}
+.mt-big.pop{opacity:1;transform:scale(1);}
+.mt-body{max-width:860px;margin:0 auto;padding:0 2rem 10rem;}
+.mt-steps{list-style:none;position:relative;}
+.mt-steps::before{content:'';position:absolute;left:11px;top:2.4rem;bottom:2.4rem;width:1px;background:rgba(255,255,255,.1);}
+.mt-step{position:relative;display:grid;grid-template-columns:24px 4.6rem 1fr;gap:1.4rem;align-items:center;padding:3.2rem 0;opacity:.18;transition:opacity .6s ease;}
+.mt-dot{width:23px;height:23px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:#03031a;position:relative;z-index:1;transition:background .4s,border-color .4s,box-shadow .4s;}
+.mt-dot::after{content:'';position:absolute;inset:-1px;border-radius:50%;border:2px solid var(--accent3);opacity:0;}
+.mt-n{font-family:var(--serif);font-style:italic;font-weight:600;font-size:3rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.4);transition:color .4s,-webkit-text-stroke-color .4s,text-shadow .4s;}
+.mt-step h3{font-size:clamp(1.6rem,3.6vw,2.6rem);font-weight:800;letter-spacing:-.04em;margin-bottom:.3rem;}
+.mt-step p{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.7;max-width:480px;}
+.mt-step.lit{opacity:1;}
+.mt-step.lit .mt-dot{background:var(--accent);border-color:var(--accent3);box-shadow:0 0 18px rgba(43,43,255,.9),0 0 40px rgba(0,212,255,.35);}
+.mt-step.lit .mt-dot::after{animation:mtPing .9s ease-out 1;}
+.mt-step.lit .mt-n{color:var(--accent3);-webkit-text-stroke-color:transparent;text-shadow:0 0 24px rgba(0,212,255,.45);}
+@keyframes mtPing{0%{transform:scale(1);opacity:.9;}100%{transform:scale(3.2);opacity:0;}}
+@media(prefers-reduced-motion:reduce){.mt-big{opacity:1;transform:none;transition:none;}.mt-step{opacity:1;}}
 
 /* ---- Portafolio ---- */
+.work-name-serif{font-family:var(--serif)!important;font-style:italic;font-weight:600!important;letter-spacing:-.01em!important;font-size:clamp(3.2rem,6.4vw,5.4rem)!important;color:transparent;background:linear-gradient(120deg,#fff 20%,#f0b49b 60%,#e45831);-webkit-background-clip:text;background-clip:text;padding-right:.1em;line-height:1.05!important;}
+.work-name-nexuz{font-family:'Orbitron',sans-serif!important;font-weight:900!important;letter-spacing:.08em!important;font-size:clamp(2.2rem,4.4vw,3.6rem)!important;}
+.work-feature.work-rev{grid-template-columns:1fr 1.45fr;}
+.work-rev .work-media{order:2;}
+.work-media img.blu-shot{object-position:50% 54%;transform:scale(1.18);}
+.work-card:hover .work-media img.blu-shot{transform:scale(1.24);}
+@media(max-width:900px){.work-feature.work-rev{grid-template-columns:1fr;}.work-rev .work-media{order:0;}}
 .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
 .work-card{position:relative;border-radius:24px;overflow:hidden;cursor:pointer;background:var(--glass-bg);border:1px solid var(--glass-border);transition:transform .55s var(--ease-out),border-color .4s,box-shadow .55s;outline:none;}
 .work-card:hover,.work-card:focus-visible{transform:translateY(-6px);border-color:rgba(96,96,255,.45);box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(43,43,255,.12);}
@@ -1327,8 +1367,6 @@ button.car-dot{border:none;padding:0;}
 /* ---- Responsive ---- */
 @media(max-width:900px){
   .mf{padding:6rem 1.5rem 5.5rem;}
-  .mt-wrap{grid-template-columns:1fr;gap:1.5rem;}
-  .mt-side{position:static;}
   .work-grid{grid-template-columns:1fr;}
   .work-feature{grid-template-columns:1fr;}
   .work-feature .work-info{padding:1.8rem 1.6rem 2rem;}
@@ -1337,9 +1375,9 @@ button.car-dot{border:none;padding:0;}
 @media(max-width:600px){
   .mq{padding:1.1rem 0;}
   .ribbons{padding:3rem 0;}
-  .mt-item{grid-template-columns:3.4rem 1fr;gap:.9rem;padding:1.5rem .2rem;}
-  .mt-time{grid-column:2;}
-  .mt-n{font-size:2rem;}
+  .mt-step{grid-template-columns:24px 2.8rem 1fr;gap:.9rem;padding:2.4rem 0;}
+  .mt-n{font-size:2.1rem;}
+  .mt-body{padding:0 1.2rem 6rem;}
   .mf-stats{gap:1.6rem;}
   .bf-chips{grid-template-columns:1fr;}
   .brief{padding:1.4rem !important;}
@@ -1394,17 +1432,24 @@ button.car-dot{border:none;padding:0;}
 </section>
 
 <!-- TEXTO INFINITO -->
-<div class="mq" aria-label="Páginas web, chatbots de WhatsApp, reservas automáticas e inteligencia artificial 24/7"><div class="mq-row " style="--mq-speed:46s"><div class="mq-group"><span class="mq-item ">Páginas web</span><span class="mq-star">✦</span><span class="mq-item s">que venden</span><span class="mq-star">✦</span><span class="mq-item o">Chatbots WhatsApp</span><span class="mq-star">✦</span><span class="mq-item s">24/7</span><span class="mq-star">✦</span><span class="mq-item ">Reservas automáticas</span><span class="mq-star">✦</span><span class="mq-item s">con IA</span><span class="mq-star">✦</span><span class="mq-item o">Cancún · México</span><span class="mq-star">✦</span></div><div class="mq-group" aria-hidden="true"><span class="mq-item ">Páginas web</span><span class="mq-star">✦</span><span class="mq-item s">que venden</span><span class="mq-star">✦</span><span class="mq-item o">Chatbots WhatsApp</span><span class="mq-star">✦</span><span class="mq-item s">24/7</span><span class="mq-star">✦</span><span class="mq-item ">Reservas automáticas</span><span class="mq-star">✦</span><span class="mq-item s">con IA</span><span class="mq-star">✦</span><span class="mq-item o">Cancún · México</span><span class="mq-star">✦</span></div></div><div class="mq-row rev small" style="--mq-speed:38s"><div class="mq-group"><span class="mq-item small">Diseño a la medida</span><span class="mq-star">✦</span><span class="mq-item small">SEO para Google</span><span class="mq-star">✦</span><span class="mq-item small">Instagram y Messenger</span><span class="mq-star">✦</span><span class="mq-item small">Google Calendar</span><span class="mq-star">✦</span><span class="mq-item small">Hosting y SSL</span><span class="mq-star">✦</span><span class="mq-item small">IVA incluido</span><span class="mq-star">✦</span></div><div class="mq-group" aria-hidden="true"><span class="mq-item small">Diseño a la medida</span><span class="mq-star">✦</span><span class="mq-item small">SEO para Google</span><span class="mq-star">✦</span><span class="mq-item small">Instagram y Messenger</span><span class="mq-star">✦</span><span class="mq-item small">Google Calendar</span><span class="mq-star">✦</span><span class="mq-item small">Hosting y SSL</span><span class="mq-star">✦</span><span class="mq-item small">IVA incluido</span><span class="mq-star">✦</span></div></div></div>
+<div class="mq" aria-label="Páginas web, chatbots de WhatsApp, reservas automáticas e inteligencia artificial 24/7. Desde Cancún, México, para el mundo."><div class="mq-row " style="--mq-speed:46s"><div class="mq-group"><span class="mq-item ">Páginas web</span><span class="mq-star">✦</span><span class="mq-item s">que venden</span><span class="mq-star">✦</span><span class="mq-item o">Chatbots WhatsApp</span><span class="mq-star">✦</span><span class="mq-item s">24/7</span><span class="mq-star">✦</span><span class="mq-item ">Reservas automáticas</span><span class="mq-star">✦</span><span class="mq-item s">con IA</span><span class="mq-star">✦</span><span class="mq-item o">Cancún, México</span><span class="mq-star">✦</span><span class="mq-item s">y el mundo</span><span class="mq-star">✦</span></div><div class="mq-group" aria-hidden="true"><span class="mq-item ">Páginas web</span><span class="mq-star">✦</span><span class="mq-item s">que venden</span><span class="mq-star">✦</span><span class="mq-item o">Chatbots WhatsApp</span><span class="mq-star">✦</span><span class="mq-item s">24/7</span><span class="mq-star">✦</span><span class="mq-item ">Reservas automáticas</span><span class="mq-star">✦</span><span class="mq-item s">con IA</span><span class="mq-star">✦</span><span class="mq-item o">Cancún, México</span><span class="mq-star">✦</span><span class="mq-item s">y el mundo</span><span class="mq-star">✦</span></div></div><div class="mq-row rev small" style="--mq-speed:38s"><div class="mq-group"><span class="mq-item small">Diseño a la medida</span><span class="mq-star">✦</span><span class="mq-item small">SEO para Google</span><span class="mq-star">✦</span><span class="mq-item small">Instagram y Messenger</span><span class="mq-star">✦</span><span class="mq-item small">Google Calendar</span><span class="mq-star">✦</span><span class="mq-item small">Hosting y SSL</span><span class="mq-star">✦</span><span class="mq-item small">De Cancún para el mundo</span><span class="mq-star">✦</span></div><div class="mq-group" aria-hidden="true"><span class="mq-item small">Diseño a la medida</span><span class="mq-star">✦</span><span class="mq-item small">SEO para Google</span><span class="mq-star">✦</span><span class="mq-item small">Instagram y Messenger</span><span class="mq-star">✦</span><span class="mq-item small">Google Calendar</span><span class="mq-star">✦</span><span class="mq-item small">Hosting y SSL</span><span class="mq-star">✦</span><span class="mq-item small">De Cancún para el mundo</span><span class="mq-star">✦</span></div></div></div>
 
 <!-- NOSOTROS -->
 <div class="sec" id="nosotros">
   <div class="reveal"><div class="label">Sobre nosotros</div></div>
   <div class="reveal delay-1"><h2 class="title">Tu negocio en internet,<br><em>respondiendo por ti.</em></h2></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3.5rem;">
+  <div class="ab-grid">
     <div class="about-text reveal delay-2">
-      <p>En NEXUZ hacemos dos cosas y las hacemos bien: <strong>páginas web</strong> que presentan tu negocio con claridad y <strong>chatbots de WhatsApp con inteligencia artificial</strong> que contestan, informan y captan clientes a cualquier hora.</p>
-      <p>Trabajamos con negocios locales, emprendedores y empresas pequeñas y medianas de Cancún y todo México. Precios claros, sin letras chiquitas: antes de empezar sabes exactamente qué incluye y qué no.</p>
-      <div class="highlight">"Tu cliente pregunta a las 11 de la noche. Tu chatbot le contesta en segundos. Tu página le da confianza para comprar."</div>
+      <p class="ab-lead">En NEXUZ hacemos <span class="ab-glow">dos cosas</span>, y las hacemos bien.</p>
+      <div class="ab-two">
+        <div class="ab-card"><span class="ab-k">01</span><b>Páginas web</b><span>Que presentan tu negocio con claridad y dan confianza.</span></div>
+        <div class="ab-card"><span class="ab-k">02</span><b>Chatbots de WhatsApp con IA</b><span>Que contestan, informan y captan clientes a cualquier hora.</span></div>
+      </div>
+      <ul class="ab-facts">
+        <li><b>24/7</b><span>Atención</span></li>
+        <li><b>0</b><span>Letras chiquitas</span></li>
+        <li><b>1</b><span>Trato directo</span></li>
+      </ul>
     </div>
     <div class="reveal delay-3" style="display:flex;align-items:center;justify-content:center;">
       <video class="loop-vid robot-vid" src="https://d8j0ntlcm91z4.cloudfront.net/user_3LvkRXNTZbI0xUpXUAo3hJLoKCN/hf_20261112_220815_26397ca9-c26f-40b4-807b-eb0d25455cd0.mp4" poster="robot-nosotros.webp" width="834" height="1112" muted loop playsinline preload="none" aria-label="Asistente inteligente de NEXUZ"></video>
@@ -1417,19 +1462,16 @@ button.car-dot{border:none;padding:0;}
 <section class="mf" id="manifiesto">
   <div class="mf-orb has-vid" aria-hidden="true"><video class="loop-vid orb-vid" src="https://d8j0ntlcm91z4.cloudfront.net/user_3LvkRXNTZbI0xUpXUAo3hJLoKCN/hf_20261112_231739_aec608e0-8d1f-4bb4-8b62-0fa441439d9a.mp4" width="720" height="720" muted loop playsinline preload="none"></video></div>
   <div class="mf-inner">
-    <div class="reveal"><div class="label">Lo que hacemos por ti</div></div>
     <h2 class="mf-h reveal delay-1">
       <span class="mf-lead">Hacemos que</span>
-      <span class="mf-brand">tu <em>negocio</em></span>
+      <span class="mf-brand"><em>tu negocio</em></span>
       <span class="sr-only">se vea, responda, venda y crezca.</span>
       <span class="mf-window" aria-hidden="true"><span class="mf-reel"><span>se vea.</span><span>responda.</span><span>venda.</span><span>crezca.</span><span>se vea.</span></span></span>
     </h2>
     <div class="mf-foot reveal delay-2">
-      <p class="mf-note">Una <strong>página web</strong> que da confianza y un <strong>chatbot de WhatsApp</strong> que contesta por ti. Las dos trabajando juntas, aunque tú estés dormido.</p>
       <div class="mf-stats">
         <div class="mf-stat"><b>24/7</b><span>Atención</span></div>
         <div class="mf-stat"><b>3 sem.</b><span>Tu página lista</span></div>
-        <div class="mf-stat"><b>IVA</b><span>Siempre incluido</span></div>
       </div>
     </div>
   </div>
@@ -1467,22 +1509,18 @@ button.car-dot{border:none;padding:0;}
 
 
 <!-- METODOLOGÍA -->
-<div class="sec" id="metodo">
-  <div class="mt-wrap">
-    <div class="mt-side">
-      <div class="reveal"><div class="label">Cómo trabajamos</div></div>
-      <div class="reveal delay-1"><h2 class="title">Nuestra<br><em>metodología.</em></h2></div>
-      <div class="reveal delay-2"><p class="sub">Cinco pasos claros, sin tecnicismos. Siempre sabes en qué va tu proyecto y qué sigue.</p></div>
-    </div>
-    <ol class="mt-list">
-      <li class="mt-item reveal"><span class="mt-n">01</span><div><h3>Platicamos</h3><p>Conocemos tu negocio, a tus clientes y lo que más te urge resolver.</p></div><span class="mt-time">Día 1</span></li>
-      <li class="mt-item reveal delay-1"><span class="mt-n">02</span><div><h3>Diseñamos</h3><p>Definimos la estructura de tu página y las respuestas que dará tu chatbot.</p></div><span class="mt-time">Semana 1</span></li>
-      <li class="mt-item reveal delay-2"><span class="mt-n">03</span><div><h3>Construimos</h3><p>Desarrollamos tu sitio y entrenamos al chatbot con la información de tu negocio.</p></div><span class="mt-time">Semana 2</span></li>
-      <li class="mt-item reveal delay-3"><span class="mt-n">04</span><div><h3>Revisamos</h3><p>Lo pruebas con nosotros y ajustamos lo que haga falta en tus rondas de cambios.</p></div><span class="mt-time">Semana 3</span></li>
-      <li class="mt-item reveal delay-4"><span class="mt-n">05</span><div><h3>Lanzamos</h3><p>Publicamos, conectamos tu WhatsApp y te acompañamos después de la entrega.</p></div><span class="mt-time">Entrega</span></li>
+<section id="metodo" class="mt">
+  <div class="mt-hero"><h2 class="mt-big">Nuestra <em>metodología.</em></h2></div>
+  <div class="mt-body">
+    <ol class="mt-steps">
+      <li class="mt-step"><span class="mt-dot" aria-hidden="true"></span><span class="mt-n">01</span><div><h3>Platicamos</h3><p>Conocemos tu negocio, a tus clientes y lo que más te urge resolver.</p></div></li>
+      <li class="mt-step"><span class="mt-dot" aria-hidden="true"></span><span class="mt-n">02</span><div><h3>Diseñamos</h3><p>Definimos la estructura de tu página y las respuestas que dará tu chatbot.</p></div></li>
+      <li class="mt-step"><span class="mt-dot" aria-hidden="true"></span><span class="mt-n">03</span><div><h3>Construimos</h3><p>Desarrollamos tu sitio y entrenamos al chatbot con la información de tu negocio.</p></div></li>
+      <li class="mt-step"><span class="mt-dot" aria-hidden="true"></span><span class="mt-n">04</span><div><h3>Revisamos</h3><p>Lo pruebas con nosotros y ajustamos lo que haga falta.</p></div></li>
+      <li class="mt-step"><span class="mt-dot" aria-hidden="true"></span><span class="mt-n">05</span><div><h3>Lanzamos</h3><p>Publicamos, conectamos tu WhatsApp y te acompañamos después de la entrega.</p></div></li>
     </ol>
   </div>
-</div>
+</section>
 
 <!-- RECOMENDADOR -->
 <div id="recomendador">
@@ -1490,54 +1528,67 @@ button.car-dot{border:none;padding:0;}
     <div class="rec-header reveal">
       <div class="label" style="justify-content:center">Encuentra tu solución</div>
       <h2 class="title" style="text-align:center">¿No sabes qué<br><em>necesitas?</em></h2>
-      <p class="sub" style="margin:0 auto;text-align:center;">Responde 4 preguntas rápidas y te decimos qué te conviene y cuánto cuesta.</p>
+      <p class="sub" style="margin:0 auto;text-align:center;">Cinco preguntas y te decimos qué te conviene, qué incluye y cuánto cuesta.</p>
     </div>
     <div class="rec-wizard reveal delay-2">
       <div class="rec-progress"><div class="rec-progress-fill" id="recBar" style="width:0%"></div></div>
 
       <div class="rec-step active" id="recStep1">
-        <div class="rec-step-label">Pregunta 1 de 4</div>
+        <div class="rec-step-label">Pregunta 1 de 5</div>
         <div class="rec-question">¿Qué tipo de negocio tienes?</div>
-        <div class="rec-hint">Nos ayuda a entender cómo te buscan tus clientes.</div>
+        <div class="rec-hint">Así sabemos cómo te buscan tus clientes.</div>
         <div class="rec-options">
-          <div class="rec-opt" onclick="recSelect(this,'tipo','local')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><div class="rec-opt-label">Negocio local</div><div class="rec-opt-sub">Tienda, restaurante, taller...</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'tipo','citas')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><div class="rec-opt-label">Trabajo con citas</div><div class="rec-opt-sub">Clínica, salón, consultorio...</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'tipo','emprendedor')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div class="rec-opt-label">Emprendedor</div><div class="rec-opt-sub">Arrancando algo nuevo</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'tipo','servicios')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span><div class="rec-opt-label">Servicios profesionales</div><div class="rec-opt-sub">Consultor, freelancer, agencia</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'tipo','productos')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span><div class="rec-opt-label">Vendo productos</div><div class="rec-opt-sub">Por catálogo o pedido</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'tipo','otro')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span><div class="rec-opt-label">Otro</div><div class="rec-opt-sub">No encaja en los anteriores</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'tipo','comida')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span><div class="rec-opt-label">Restaurante o cafetería</div><div class="rec-opt-sub">Comida, bebidas, pedidos</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'tipo','citas')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><div class="rec-opt-label">Trabajo con citas</div><div class="rec-opt-sub">Clínica, salón, consultorio, spa</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'tipo','productos')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span><div class="rec-opt-label">Vendo productos</div><div class="rec-opt-sub">Tienda, catálogo, mayoreo</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'tipo','servicios')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span><div class="rec-opt-label">Servicios profesionales</div><div class="rec-opt-sub">Consultoría, despacho, oficios</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'tipo','emprendedor')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div class="rec-opt-label">Estoy empezando</div><div class="rec-opt-sub">Un proyecto o marca nueva</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'tipo','otro')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span><div class="rec-opt-label">Otro</div><div class="rec-opt-sub">Cuéntanos al final</div></div>
         </div>
-        <div class="rec-nav"><div></div><button class="rec-next" id="recNext1" onclick="recGoTo(2)" disabled>Siguiente →</button></div>
+        <div class="rec-nav"><div></div><button class="rec-next" id="recNext1" onclick="recGoTo(2)" disabled>Siguiente</button></div>
       </div>
 
       <div class="rec-step" id="recStep2">
-        <div class="rec-step-label">Pregunta 2 de 4</div>
+        <div class="rec-step-label">Pregunta 2 de 5</div>
         <div class="rec-question">¿Ya tienes página web?</div>
-        <div class="rec-hint">Sé honesto, no hay respuesta mala.</div>
+        <div class="rec-hint">No hay respuesta mala.</div>
         <div class="rec-options">
-          <div class="rec-opt" onclick="recSelect(this,'web','no')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span><div class="rec-opt-label">No tengo</div><div class="rec-opt-sub">Quiero mi primera página</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'web','renovar')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></span><div class="rec-opt-label">Tengo, pero quiero renovarla</div><div class="rec-opt-sub">Se ve vieja o no funciona</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'web','si')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg></span><div class="rec-opt-label">Sí, y me gusta</div><div class="rec-opt-sub">No necesito otra</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'web','no')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span><div class="rec-opt-label">No tengo</div><div class="rec-opt-sub">Sería mi primera página</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'web','renovar')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></span><div class="rec-opt-label">Tengo, pero no me sirve</div><div class="rec-opt-sub">Se ve vieja o nadie la encuentra</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'web','si')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg></span><div class="rec-opt-label">Sí, y me funciona</div><div class="rec-opt-sub">No necesito otra</div></div>
         </div>
-        <div class="rec-nav"><button class="rec-back" onclick="recGoTo(1)">← Atrás</button><button class="rec-next" id="recNext2" onclick="recGoTo(3)" disabled>Siguiente →</button></div>
+        <div class="rec-nav"><button class="rec-back" onclick="recGoTo(1)">Atrás</button><button class="rec-next" id="recNext2" onclick="recGoTo(3)" disabled>Siguiente</button></div>
       </div>
 
       <div class="rec-step" id="recStep3">
-        <div class="rec-step-label">Pregunta 3 de 4</div>
-        <div class="rec-question">¿Qué quieres resolver primero?</div>
-        <div class="rec-hint">Elige lo que más te urge.</div>
+        <div class="rec-step-label">Pregunta 3 de 5</div>
+        <div class="rec-question">¿Cuántos mensajes te llegan al día?</div>
+        <div class="rec-hint">Sumando WhatsApp, Instagram y Facebook.</div>
         <div class="rec-options">
-          <div class="rec-opt" onclick="recSelect(this,'necesidad','encontrar')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><div class="rec-opt-label">Que me encuentren en internet</div><div class="rec-opt-sub">Dar confianza y aparecer en Google</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'necesidad','responder')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div class="rec-opt-label">Contestar mensajes 24/7</div><div class="rec-opt-sub">No perder clientes por tardar</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'necesidad','reservas')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 15 11 17 15 13"/></svg></span><div class="rec-opt-label">Agendar citas solo</div><div class="rec-opt-sub">Reservas y recordatorios automáticos</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'necesidad','ambas')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><div class="rec-opt-label">Página y chatbot</div><div class="rec-opt-sub">Quiero las dos cosas</div></div>
-          <div class="rec-opt" onclick="recSelect(this,'necesidad','medida')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><div class="rec-opt-label">Algo más completo</div><div class="rec-opt-sub">Tienda en línea, login o base de datos</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'mensajes','bajo')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div class="rec-opt-label">Casi ninguno</div><div class="rec-opt-sub">Quiero que me empiecen a escribir</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'mensajes','medio')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="8" y1="10" x2="12" y2="10"/></svg></span><div class="rec-opt-label">Entre 1 y 10</div><div class="rec-opt-sub">Los contesto como puedo</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'mensajes','alto')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="14" y2="12"/></svg></span><div class="rec-opt-label">Entre 10 y 50</div><div class="rec-opt-sub">Se me juntan y tardo en contestar</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'mensajes','muy')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="7" y1="7" x2="17" y2="7"/><line x1="7" y1="10" x2="17" y2="10"/><line x1="7" y1="13" x2="13" y2="13"/></svg></span><div class="rec-opt-label">Más de 50</div><div class="rec-opt-sub">No me doy abasto</div></div>
         </div>
-        <div class="rec-nav"><button class="rec-back" onclick="recGoTo(2)">← Atrás</button><button class="rec-next" id="recNext3" onclick="recGoTo(4)" disabled>Siguiente →</button></div>
+        <div class="rec-nav"><button class="rec-back" onclick="recGoTo(2)">Atrás</button><button class="rec-next" id="recNext3" onclick="recGoTo(4)" disabled>Siguiente</button></div>
       </div>
 
       <div class="rec-step" id="recStep4">
-        <div class="rec-step-label">Pregunta 4 de 4</div>
+        <div class="rec-step-label">Pregunta 4 de 5</div>
+        <div class="rec-question">¿Qué te está costando más clientes hoy?</div>
+        <div class="rec-hint">Elige lo que más te urge resolver.</div>
+        <div class="rec-options">
+          <div class="rec-opt" onclick="recSelect(this,'dolor','encontrar')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><div class="rec-opt-label">No me encuentran</div><div class="rec-opt-sub">No aparezco en Google o no doy confianza</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'dolor','contestar')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div class="rec-opt-label">Tardo en contestar</div><div class="rec-opt-sub">Se van con otro mientras respondo</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'dolor','repetir')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span><div class="rec-opt-label">Repito lo mismo todo el día</div><div class="rec-opt-sub">Precios, horarios, catálogo, ubicación</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'dolor','citas')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 15 11 17 15 13"/></svg></span><div class="rec-opt-label">Agendar citas me quita tiempo</div><div class="rec-opt-sub">Confirmar, mover y recordar</div></div>
+          <div class="rec-opt" onclick="recSelect(this,'dolor','medida')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><div class="rec-opt-label">Necesito algo más completo</div><div class="rec-opt-sub">Tienda en línea, login o base de datos</div></div>
+        </div>
+        <div class="rec-nav"><button class="rec-back" onclick="recGoTo(3)">Atrás</button><button class="rec-next" id="recNext4" onclick="recGoTo(5)" disabled>Siguiente</button></div>
+      </div>
+
+      <div class="rec-step" id="recStep5">
+        <div class="rec-step-label">Pregunta 5 de 5</div>
         <div class="rec-question">¿Por dónde te escriben tus clientes?</div>
         <div class="rec-hint">Puedes elegir más de una.</div>
         <div class="rec-options">
@@ -1546,13 +1597,16 @@ button.car-dot{border:none;padding:0;}
           <div class="rec-opt rec-multi" onclick="recToggle(this,'canales','messenger')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span><div class="rec-opt-label">Facebook / Messenger</div></div>
           <div class="rec-opt rec-multi" onclick="recToggle(this,'canales','ninguna')"><span class="rec-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span><div class="rec-opt-label">Casi no me escriben</div><div class="rec-opt-sub">Por eso quiero estar en internet</div></div>
         </div>
-        <div class="rec-nav"><button class="rec-back" onclick="recGoTo(3)">← Atrás</button><button class="rec-next" id="recNext4" onclick="recCalcular()" disabled>Ver mi recomendación →</button></div>
+        <div class="rec-nav"><button class="rec-back" onclick="recGoTo(4)">Atrás</button><button class="rec-next" id="recNext5" onclick="recCalcular()" disabled>Ver mi recomendación</button></div>
       </div>
 
       <div class="rec-result" id="recResultado"></div>
     </div>
   </div>
 </div>
+
+<!-- ANUNCIO -->
+<a class="announce mq" href="#planes" onclick="event.preventDefault();scroll2('planes')" aria-label="Promoción: Paquete Página más Chatbot por 12,500 pesos, ahorras 500. Escribe PAQUETE."><div class="mq-row" style="--mq-speed:30s"><div class="mq-group"><span class="mq-item">Promo</span><span class="mq-star">✦</span><span class="mq-item s">Página + Chatbot</span><span class="mq-star">✦</span><span class="mq-item">$12,500</span><span class="mq-star">✦</span><span class="mq-item s">ahorras $500</span><span class="mq-star">✦</span><span class="mq-item">Escribe PAQUETE</span><span class="mq-star">✦</span></div><div class="mq-group" aria-hidden="true"><span class="mq-item">Promo</span><span class="mq-star">✦</span><span class="mq-item s">Página + Chatbot</span><span class="mq-star">✦</span><span class="mq-item">$12,500</span><span class="mq-star">✦</span><span class="mq-item s">ahorras $500</span><span class="mq-star">✦</span><span class="mq-item">Escribe PAQUETE</span><span class="mq-star">✦</span></div></div></a>
 
 <!-- PRECIOS -->
 <div class="sec" id="planes">
@@ -1670,8 +1724,6 @@ button.car-dot{border:none;padding:0;}
   <div class="sec-inner">
     <div class="reveal"><div class="label">Sin letras chiquitas</div></div>
     <div class="reveal delay-1"><h2 class="title">Qué incluye <em>cada opción</em></h2></div>
-    <div class="reveal delay-2"><p class="sub">Compara lado a lado. Si algo no está marcado, no viene incluido y se cotiza aparte.</p></div>
-    <p class="swipe-hint">Desliza la tabla para ver todas las opciones →</p>
     <div class="comparativa-wrapper reveal delay-3">
       <table class="comparativa-table glass">
         <thead><tr><th>Característica</th><th>Página web</th><th>Página + Chatbot</th><th>Chatbot WhatsApp</th></tr></thead>
@@ -1706,13 +1758,11 @@ button.car-dot{border:none;padding:0;}
     <div class="car-header reveal">
       <div class="label" style="justify-content:center">Portafolio</div>
       <h2 class="title" style="text-align:center">Proyectos reales,<br><em>en línea.</em></h2>
-      <p class="sub" style="margin:0 auto;text-align:center;max-width:580px;">Sitios que diseñamos y construimos para marcas reales. Da clic en cada uno para ver los detalles.</p>
     </div>
     <div class="work-grid">
       <article class="work-card work-feature reveal delay-1" onclick="openPortfolioItem(0)" onkeydown="if(event.key==='Enter')openPortfolioItem(0)" tabindex="0" role="button" aria-label="Ver proyecto MOVA">
         <div class="work-media mova-mock" aria-hidden="true">
-          <span class="work-badge">En vivo</span>
-          <div class="mm-bar"><span class="mm-logo">MOV<i>A</i></span><span class="mm-nav"><span>Trabajos</span><span>Servicios</span><b>Cotizar</b></span></div>
+                    <div class="mm-bar"><span class="mm-logo">MOV<i>A</i></span><span class="mm-nav"><span>Trabajos</span><span>Servicios</span><b>Cotizar</b></span></div>
           <div class="mm-body">
             <div class="mm-kicker">Estrategias que mueven marcas</div>
             <div class="mm-h">Hacemos que<br>tu <em>marca</em></div>
@@ -1721,29 +1771,33 @@ button.car-dot{border:none;padding:0;}
           <div class="mm-strip"><div class="mq-row "><div class="mq-group"><span class="mq-item ">Restaurantes</span><span class="mq-star">✦</span><span class="mq-item ">Espacios</span><span class="mq-star">✦</span><span class="mq-item ">Moda y joyería</span><span class="mq-star">✦</span><span class="mq-item ">Belleza</span><span class="mq-star">✦</span><span class="mq-item ">Textil</span><span class="mq-star">✦</span><span class="mq-item ">Identidad de marca</span><span class="mq-star">✦</span></div><div class="mq-group" aria-hidden="true"><span class="mq-item ">Restaurantes</span><span class="mq-star">✦</span><span class="mq-item ">Espacios</span><span class="mq-star">✦</span><span class="mq-item ">Moda y joyería</span><span class="mq-star">✦</span><span class="mq-item ">Belleza</span><span class="mq-star">✦</span><span class="mq-item ">Textil</span><span class="mq-star">✦</span><span class="mq-item ">Identidad de marca</span><span class="mq-star">✦</span></div></div></div>
         </div>
         <div class="work-info">
-          <span class="work-num">01 — Página web</span>
-          <h3>MOVA</h3>
-          <p>Sitio cinematográfico para un estudio de producción audiovisual y marketing: video a pantalla completa, textos animados, trabajos por industria y un cotizador por pasos que llega directo a WhatsApp.</p>
-          <div class="work-tags"><span>Video</span><span>Animaciones</span><span>Cotizador</span><span>Responsive</span></div>
-          <a class="work-link" href="https://mova-creative.emiliorp-srch-uni.chatgpt.site/" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver sitio en vivo ↗</a>
+          <h3 class="work-name-serif">MOVA</h3>
+          <p>Estudio creativo de video y marketing. Video a pantalla completa, carruseles por industria y cotizador a WhatsApp.</p>
+          <div class="work-tags"><span>Video</span><span>Carruseles</span><span>Cotizador</span></div>
         </div>
       </article>
       <article class="work-card reveal delay-2" onclick="openPortfolioItem(1)" onkeydown="if(event.key==='Enter')openPortfolioItem(1)" tabindex="0" role="button" aria-label="Ver proyecto Uniformes PRE">
         <div class="work-media"><img src="portafolio-uniformes-pre.webp" alt="Página web de Uniformes PRE" width="900" height="1125" loading="lazy" decoding="async"></div>
         <div class="work-info">
-          <span class="work-num">02 — Página web</span>
           <h3>Uniformes PRE</h3>
-          <p>Tienda de uniformes en Cancún: catálogo con filtros, cotizador por talla y color, y pedido directo por WhatsApp.</p>
+          <p>Catálogo con filtros y pedidos directo a WhatsApp.</p>
           <div class="work-tags"><span>Catálogo</span><span>Cotizador</span><span>WhatsApp</span></div>
         </div>
       </article>
       <article class="work-card reveal delay-3" onclick="openPortfolioItem(2)" onkeydown="if(event.key==='Enter')openPortfolioItem(2)" tabindex="0" role="button" aria-label="Ver proyecto BLU Solutions">
-        <div class="work-media"><img src="portafolio-blu-solutions.webp" alt="Página web de BLU Solutions" width="900" height="1125" loading="lazy" decoding="async"></div>
+        <div class="work-media"><img class="blu-shot" src="portafolio-blu-solutions.webp" alt="Página web de BLU Solutions" width="900" height="1125" loading="lazy" decoding="async"></div>
         <div class="work-info">
-          <span class="work-num">03 — Página web</span>
           <h3>BLU Solutions</h3>
-          <p>Catálogo comercial para equipamiento hotelero con cientos de productos y solicitudes de cotización.</p>
+          <p>Equipamiento hotelero: cientos de productos y cotización en línea.</p>
           <div class="work-tags"><span>Catálogo</span><span>Portada animada</span><span>PDF</span></div>
+        </div>
+      </article>
+      <article class="work-card work-feature work-rev reveal delay-1" onclick="openPortfolioItem(3)" onkeydown="if(event.key==='Enter')openPortfolioItem(3)" tabindex="0" role="button" aria-label="Ver proyecto NEXUZ">
+        <div class="work-media"><img src="portafolio-nexuz.webp" alt="Página web de NEXUZ" width="1200" height="900" loading="lazy" decoding="async"></div>
+        <div class="work-info">
+          <h3 class="work-name-nexuz">NEXUZ</h3>
+          <p>Este sitio. Animaciones, recomendador, carrito y nuestro chatbot Nexo.</p>
+          <div class="work-tags"><span>Animación</span><span>Recomendador</span><span>Chatbot</span></div>
         </div>
       </article>
     </div>
@@ -1777,7 +1831,7 @@ button.car-dot{border:none;padding:0;}
         <div class="reveal delay-1"><h2 class="title">Hagamos<br><em>que pase.</em></h2></div>
         <div class="reveal delay-2"><p class="sub">Elige lo que necesitas y cuéntanos de tu negocio. Nosotros damos forma a la propuesta. Tu solicitud se abre en WhatsApp y te respondemos en menos de 24 horas.</p></div>
         <div class="c-info reveal delay-3">
-          <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="c-text"><h4>WhatsApp</h4><a href="https://wa.me/529983114978" target="_blank" rel="noopener">998 311 4978</a></div></div>
+          <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="c-text"><h4>WhatsApp</h4><a href="https://wa.me/525652804823" target="_blank" rel="noopener">56 5280 4823</a></div></div>
           <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="c-text"><h4>Email</h4><a href="mailto:Nexuz@nexuzmexico.com">Nexuz@nexuzmexico.com</a></div></div>
           <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div><div class="c-text"><h4>Instagram</h4><a href="https://www.instagram.com/_nexuzmx/" target="_blank" rel="noopener">@_nexuzmx</a></div></div>
           <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div><div class="c-text"><h4>Facebook</h4><a href="https://www.facebook.com/profile.php?id=61590419578405" target="_blank" rel="noopener">NEXUZ México</a></div></div>
@@ -1790,13 +1844,13 @@ button.car-dot{border:none;padding:0;}
           <button type="button" class="bf-tab" data-tab="3">03 / Tu idea</button>
         </div>
         <div class="bf-step active" data-step="1">
-          <h3 class="bf-q">¿Qué vamos a <em>crear?</em></h3>
+          <h3 class="bf-q"><em>¿Qué vamos a crear?</em></h3>
           <p class="bf-hint">Combina lo que tu negocio necesita. Puedes elegir varios.</p>
           <div class="bf-chips"><label class="bf-chip"><input type="checkbox" name="svc" value="Paquete Página + Chatbot WhatsApp"><span><b>Página + Chatbot</b><small>$12,500 · el más pedido</small></span></label><label class="bf-chip"><input type="checkbox" name="svc" value="Página web"><span><b>Página web</b><small>Hasta 3 páginas · $9,500</small></span></label><label class="bf-chip"><input type="checkbox" name="svc" value="Chatbot WhatsApp"><span><b>Chatbot WhatsApp</b><small>$3,500 + $2,500/mes</small></span></label><label class="bf-chip"><input type="checkbox" name="svc" value="Chatbot con reservas automáticas"><span><b>Reservas automáticas</b><small>Agenda en Google Calendar</small></span></label><label class="bf-chip"><input type="checkbox" name="svc" value="Chatbot en Instagram o Messenger"><span><b>Instagram o Messenger</b><small>Mismo chatbot, otro canal</small></span></label><label class="bf-chip"><input type="checkbox" name="svc" value="Mantenimiento web"><span><b>Mantenimiento web</b><small>Hosting, SSL y cambios · $500/mes</small></span></label><label class="bf-chip"><input type="checkbox" name="svc" value="Página a la medida (login, base de datos o tienda)"><span><b>Página a la medida</b><small>Tienda, login o base de datos</small></span></label><label class="bf-chip"><input type="checkbox" name="svc" value="Asesoría (aún no sé qué necesito)"><span><b>Aún no sé</b><small>Quiero que me asesoren</small></span></label></div>
           <div class="bf-nav"><span class="bf-count" id="bfCount">Nada seleccionado</span><button type="button" class="bf-next" data-go="2">Continuar →</button></div>
         </div>
         <div class="bf-step" data-step="2">
-          <h3 class="bf-q">Cuéntanos de <em>tu negocio.</em></h3>
+          <h3 class="bf-q"><em>Cuéntanos de tu negocio.</em></h3>
           <p class="bf-hint">Solo lo necesario para preparar tu propuesta.</p>
           <div class="fg"><label for="cfNombre">Nombre completo</label><input id="cfNombre" type="text" name="nombre" placeholder="Tu nombre" required maxlength="80" autocomplete="name"></div>
           <div class="fg"><label for="cfNegocio">Empresa / Negocio</label><input id="cfNegocio" type="text" name="negocio" placeholder="¿Cómo se llama tu negocio?" maxlength="100" autocomplete="organization"></div>
@@ -1807,7 +1861,7 @@ button.car-dot{border:none;padding:0;}
           <div class="bf-nav"><button type="button" class="bf-back" data-go="1">← Atrás</button><button type="button" class="bf-next" data-go="3">Continuar →</button></div>
         </div>
         <div class="bf-step" data-step="3">
-          <h3 class="bf-q">¿Cuál es <em>tu idea?</em></h3>
+          <h3 class="bf-q"><em>¿Cuál es tu idea?</em></h3>
           <p class="bf-hint">Escríbelo como se lo contarías a un amigo.</p>
           <div class="fg"><label for="cfMensaje">Tu idea (opcional)</label><textarea id="cfMensaje" name="mensaje" placeholder="Ej. Quiero que mis clientes vean el menú y reserven mesa por WhatsApp..." maxlength="1000"></textarea></div>
           <div class="bf-sub">¿Cuándo quieres empezar?</div>
@@ -1841,9 +1895,9 @@ button.car-dot{border:none;padding:0;}
 <footer>
   <div class="foot-inner">
     <img src="logo.svg" class="foot-logo-img" alt="NEXUZ" width="85" height="24" loading="lazy">
-    <div class="foot-copy">© 2026 NEXUZ · Cancún, Quintana Roo · Move smarter, grow faster.</div>
+    <div class="foot-copy">© 2026 NEXUZ · Move smarter, grow faster</div>
     <div class="socials">
-      <a class="soc" href="https://wa.me/529983114978" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+      <a class="soc" href="https://wa.me/525652804823" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
       <a class="soc" href="https://www.instagram.com/_nexuzmx/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
       <a class="soc" href="https://www.facebook.com/profile.php?id=61590419578405" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
       <a class="soc" href="mailto:Nexuz@nexuzmexico.com" aria-label="Correo"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
@@ -1888,22 +1942,71 @@ button.car-dot{border:none;padding:0;}
 
 <script>
 /* ============ PROGRESS BAR ============ */
-window.addEventListener('scroll', () => { const winScroll = document.documentElement.scrollTop; const height = document.documentElement.scrollHeight - window.innerHeight; const scrolled = (winScroll / height) * 100; document.getElementById('progressBar').style.width = scrolled + '%'; });
+window.addEventListener('scroll', () => { const winScroll = document.documentElement.scrollTop; const height = document.documentElement.scrollHeight - window.innerHeight; const scrolled = (winScroll / height) * 100; document.getElementById('progressBar').style.width = scrolled + '%'; }, {passive:true});
 
-/* ============ GLOBAL PARTICLE CANVAS ============ */
+/* ============ GLOBAL PARTICLE CANVAS (ligero, tamaño de pantalla) ============ */
 (function(){
-  const canvas = document.getElementById('globalCanvas'); const ctx = canvas.getContext('2d'); let W, H; const TOTAL = 120; const DIST = 130; let mouse = {x:-9999,y:-9999}; let particles = [];
-  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = document.documentElement.scrollHeight; canvas.style.height = H+'px'; }
-  class P{ constructor(){ this.x = Math.random()*W; this.y = Math.random()*H; this.vx = (Math.random()-.5)*.45; this.vy = (Math.random()-.5)*.45; this.r = Math.random()*1.6+.4; this.a = Math.random()*.4+.15; }
-  step(){ const dx = mouse.x - this.x; const dy = mouse.y + window.scrollY - this.y; const dist = Math.hypot(dx,dy); if(dist < 160){ const f = (160-dist)/160*.025; this.vx += dx*f*.06; this.vy += dy*f*.06; } this.vx *= .988; this.vy *= .988; this.x += this.vx; this.y += this.vy; if(this.x < -10) this.x = W+10; if(this.x > W+10) this.x = -10; if(this.y < -10) this.y = H+10; if(this.y > H+10) this.y = -10; }
-  draw(){ const screenY = this.y - window.scrollY; const viewH = window.innerHeight; let opacityMultiplier = 1; if (screenY > viewH) { opacityMultiplier = Math.max(0.35, 1 - (screenY - viewH) / (viewH * 2)); } ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle=`rgba(43,43,255,${this.a * opacityMultiplier})`; ctx.fill(); } }
-  function init(){ resize(); particles=[]; for(let i=0;i<TOTAL;i++) particles.push(new P()); }
-  function frame(){ ctx.clearRect(0,0,W,H); particles.forEach(p=>{p.step();p.draw();}); const viewH = window.innerHeight; for(let i=0;i<particles.length;i++){ for(let j=i+1;j<particles.length;j++){ const dx=particles[i].x-particles[j].x; const dy=particles[i].y-particles[j].y; const d =Math.hypot(dx,dy); if(d<DIST){ const screenYi = particles[i].y - window.scrollY; const screenYj = particles[j].y - window.scrollY; const avgScreenY = (screenYi + screenYj) / 2; let connMultiplier = 1; if (avgScreenY > viewH) { connMultiplier = Math.max(0.3, 1 - (avgScreenY - viewH) / (viewH * 2)); } const a=(1-d/DIST)*.14*connMultiplier; ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.strokeStyle=`rgba(43,43,255,${a})`; ctx.lineWidth=.5; ctx.stroke(); } } } requestAnimationFrame(frame); }
-  window.addEventListener('resize',()=>{clearTimeout(window._rto);window._rto=setTimeout(init,200);});
-  document.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+  const canvas = document.getElementById('globalCanvas'); if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W=0, H=0, DPR=1, particles=[], running=false, lastY=window.scrollY;
+  const mouse = {x:-9999,y:-9999};
+  const DIST = 120, D2 = DIST*DIST;
+  function count(){ const w = window.innerWidth; return w < 640 ? 34 : (w < 1100 ? 55 : 75); }
+  function resize(){
+    DPR = Math.min(window.devicePixelRatio||1, 1.5);
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = Math.round(W*DPR); canvas.height = Math.round(H*DPR);
+    canvas.style.width = W+'px'; canvas.style.height = H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  function init(){
+    resize(); particles = [];
+    const n = count();
+    for(let i=0;i<n;i++) particles.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*1.5+.4,a:Math.random()*.4+.15});
+  }
+  function frame(){
+    if(!running) return;
+    const dyScroll = (window.scrollY - lastY) * .15; lastY = window.scrollY;
+    ctx.clearRect(0,0,W,H);
+    for(const p of particles){
+      const dx = mouse.x - p.x, dy = mouse.y - p.y, d2 = dx*dx+dy*dy;
+      if(d2 < 25600){ const f = (160-Math.sqrt(d2))/160*.0015; p.vx += dx*f; p.vy += dy*f; }
+      p.vx *= .988; p.vy *= .988; p.x += p.vx; p.y += p.vy - dyScroll;
+      if(p.x < -10) p.x = W+10; else if(p.x > W+10) p.x = -10;
+      if(p.y < -10) p.y = H+10; else if(p.y > H+10) p.y = -10;
+      ctx.globalAlpha = p.a; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.2832); ctx.fill();
+    }
+    ctx.lineWidth = .5;
+    for(let i=0;i<particles.length;i++){
+      const a = particles[i];
+      for(let j=i+1;j<particles.length;j++){
+        const b = particles[j], dx = a.x-b.x, dy = a.y-b.y, d2 = dx*dx+dy*dy;
+        if(d2 < D2){ ctx.globalAlpha = (1-Math.sqrt(d2)/DIST)*.16; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+      }
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(frame);
+  }
+  function start(){ if(running||reduce||document.hidden) return; running = true; ctx.fillStyle = ctx.strokeStyle = 'rgb(43,43,255)'; requestAnimationFrame(frame); }
+  function stop(){ running = false; }
+  window.addEventListener('resize',()=>{clearTimeout(window._rto);window._rto=setTimeout(()=>{init();ctx.fillStyle=ctx.strokeStyle='rgb(43,43,255)';},200);});
+  document.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;},{passive:true});
   document.addEventListener('mouseleave',()=>{mouse.x=-9999;mouse.y=-9999;});
-  window.addEventListener('scroll',()=>{const sh=document.documentElement.scrollHeight;if(sh!==H){init();}});
-  init(); frame();
+  document.addEventListener('visibilitychange',()=>{ document.hidden ? stop() : start(); });
+  init();
+  canvas.style.opacity = '0'; canvas.style.transition = 'opacity 1.2s ease';
+  /* arranca después de la entrada del logo para no competir con ella */
+  setTimeout(()=>{ start(); canvas.style.opacity = ''; }, 1500);
+})();
+
+/* ============ METODOLOGÍA: título "pum" y pasos que se iluminan ============ */
+(function(){
+  const big = document.querySelector('.mt-big');
+  if(big){ new IntersectionObserver((es,o)=>{ es.forEach(e=>{ if(e.isIntersecting){ big.classList.add('pop'); o.disconnect(); } }); },{threshold:.45}).observe(big); }
+  const steps = document.querySelectorAll('.mt-step');
+  const io = new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('lit'); }); },{rootMargin:'0px 0px -45% 0px',threshold:0});
+  steps.forEach(st=>io.observe(st));
 })();
 
 /* ============ SCROLL REVEAL ============ */
@@ -1918,7 +2021,7 @@ function toggleMenu(){ const l=document.getElementById('navLinks'); const t=docu
 function navGo(e,id){ e.preventDefault(); closeMenu(); scroll2(id); }
 
 /* ============ DATA ============ */
-const WA_NUMBER = '529983114978';
+const WA_NUMBER = '525652804823';
 const CHATBOT_INC = ['Respuestas 24/7 con IA entrenada con la información de tu negocio','Horarios, ubicación, precios, preguntas frecuentes y hasta 30 productos o servicios','Envía fotos, PDF y tu catálogo','Recibe fotos, audios y documentos del cliente y te los reenvía','Te pasa la conversación cuando el cliente necesita a una persona','Guarda nombre y teléfono de cada cliente','Hasta 500 clientes (contactos) al mes','Respuestas ilimitadas cuando el cliente escribe primero','Licencia de la plataforma y ajustes menores cada mes'];
 const CHATBOT_NO = ['Agendar citas o reservas (plan Reservas)','Mensajes promocionales que tú envíes primero: $3.00 por mensaje','Instagram o Messenger: $2,000 + $500/mes por canal','Más de 500 clientes al mes: se cotiza','La IA no interpreta el contenido de imágenes; te las reenvía'];
 const WEB_INC = ['Hasta 3 páginas (ej. Inicio, Servicios y Contacto)','Diseño a la medida con tu logo y colores','Adaptada a celular, tablet y computadora','Botón de WhatsApp con mensaje prellenado, redes sociales y mapa','Textos redactados con la información que nos des','SEO básico: título, descripción y alta en Google','Hosting gratis y certificado de seguridad (SSL)','2 rondas de cambios antes de publicar'];
@@ -1952,8 +2055,8 @@ function openWhatsApp(text){ window.open('https://wa.me/'+WA_NUMBER+'?text='+enc
 function checkout(){ if(!cart.length){showToast('Tu carrito está vacío.');return;} const sum=cart.filter(i=>i.tipo==='unico').reduce((s,i)=>s+parseMXN(i.price),0); const mo=cart.reduce((s,i)=>s+cartMonthlyOf(i),0); const msg=cart.map(i=>'• '+i.name+' — '+(i.tipo==='cotizar'?'Cotizar':i.price)+(i.extra?' '+i.extra:'')).join('\n'); let text='Hola NEXUZ, quiero cotizar:\n\n'+msg+'\n\nPago inicial: '+fmtMXN(sum); if(mo>0) text+='\nMensual: '+fmtMXN(mo); closeCart(); openWhatsApp(text); }
 
 /* ============ RECOMENDADOR ============ */
-const recData = { tipo:'', web:'', necesidad:'', canales:[] };
-const recTotalSteps = 4;
+const recData = { tipo:'', web:'', mensajes:'', dolor:'', canales:[] };
+const recTotalSteps = 5;
 
 function recUpdateBar(step){ document.getElementById('recBar').style.width = ((step-1)/recTotalSteps*100)+'%'; }
 function recStepOf(el){ return parseInt(el.closest('.rec-step').id.replace('recStep','')); }
@@ -1984,100 +2087,122 @@ function recGoTo(step){
   document.getElementById('recStep'+step).classList.add('active');
   recUpdateBar(step);
 }
+const recMXN = n => '$'+n.toLocaleString('es-MX');
 function recCalcular(){
   recUpdateBar(recTotalSteps+1);
   document.querySelectorAll('.rec-step').forEach(s=>s.classList.remove('active'));
   const r = recData;
+  const canales = r.canales||[];
+  const redes = canales.filter(c=>c==='instagram'||c==='messenger');
   const needsWeb = r.web !== 'si';
-  let plan, precio, precioNota, why, items, extras=[], cartIds=[];
+  const muchos = r.mensajes==='alto' || r.mensajes==='muy';
+  const needsBot = r.mensajes!=='bajo' || ['contestar','repetir','citas'].includes(r.dolor) || redes.length>0;
+  const needsRes = r.dolor==='citas' || (r.tipo==='citas' && r.mensajes!=='bajo' && r.dolor!=='encontrar');
+  let plan, precio, precioNota, why, items, extras=[], cartIds=[], mensual=0, inicial=0, codigo='';
 
-  if(r.necesidad==='medida'){
-    plan='PÁGINA A LA MEDIDA'; precio='Se cotiza';
-    precioNota='Depende de lo que necesites (tienda, login, base de datos) · Te mandamos propuesta sin compromiso · IVA incluido';
-    items=['Diseño a la medida con tu marca','Tienda en línea, cuentas de usuario o base de datos','Adaptada a celular','Puede conectarse con tu chatbot de WhatsApp'];
-    why='Lo que buscas va más allá de una página informativa. Platicamos contigo, definimos el alcance y te damos un precio cerrado antes de empezar.';
-    extras.push('Si además quieres atender por WhatsApp, podemos sumar el chatbot desde $3,500');
+  if(r.dolor==='medida'){
+    plan='PROYECTO A LA MEDIDA'; precio='Se cotiza'; codigo='WEB';
+    precioNota='Te mandamos una propuesta con precio cerrado antes de empezar';
+    items=['Diseño a la medida con tu marca','Tienda en línea, cuentas de usuario o base de datos','Adaptado a celular','Se puede conectar con tu chatbot de WhatsApp'];
+    why='Lo que necesitas va más allá de una página informativa. Platicamos contigo, definimos el alcance y te damos un precio cerrado.';
+    if(needsBot) extras.push('Como ya te escriben, puedes sumar el chatbot de WhatsApp desde $3,500 de implementación');
     cartIds=['medida'];
-  } else if(r.necesidad==='reservas' || (r.tipo==='citas' && r.necesidad!=='encontrar' && r.necesidad!=='medida')){
-    if(needsWeb){
-      plan='PÁGINA WEB + CHATBOT CON RESERVAS'; precio='$17,000 MXN';
-      precioNota='$9,500 página + $7,500 chatbot con reservas · Después $3,000/mes del chatbot · Mantenimiento web opcional $500/mes · IVA incluido';
-      items=['Página web de hasta 3 páginas','Chatbot de WhatsApp con IA 24/7','Agenda citas en tu Google Calendar','Confirmación y recordatorio 24 h antes'];
-      why='Tu negocio vive de las citas. Con la página te encuentran y con el chatbot de reservas tus clientes agendan solos, a cualquier hora, sin que contestes el teléfono.';
-      cartIds=['web','reservas'];
-    } else {
-      plan='CHATBOT CON RESERVAS AUTOMÁTICAS'; precio='$7,500 MXN';
-      precioNota='Instalación · Después $3,000/mes · IVA incluido';
-      items=['Todo lo del Chatbot WhatsApp','Agenda citas en tu Google Calendar','Confirma al momento','Recordatorio 24 h antes (300 al mes incluidos)'];
-      why='Ya tienes página, así que lo que más te ahorra tiempo es que tus clientes agenden solos por WhatsApp y les llegue su recordatorio automático.';
-      cartIds=['reservas'];
-    }
-  } else if(r.necesidad==='encontrar'){
-    plan='PÁGINA WEB'; precio='$9,500 MXN';
-    precioNota='Pago único · Mantenimiento opcional $500/mes · IVA incluido';
-    items=WEB_INC.slice(0,5);
-    why= r.web==='si' ? 'Ya tienes página, pero si sientes que no te encuentran, podemos rehacerla con SEO básico y un botón directo a tu WhatsApp para que cada visita se convierta en mensaje.' : 'Lo primero es que tu negocio exista en internet y dé confianza. Una página clara, rápida y con botón de WhatsApp es la base de todo lo demás.';
-    extras.push('Cuando te empiecen a escribir más, el paquete Página + Chatbot te ahorra $500');
-    cartIds=['web'];
-  } else if(r.necesidad==='responder' && !needsWeb){
-    plan='CHATBOT WHATSAPP'; precio='$3,500 MXN';
-    precioNota='Instalación · Después $2,500/mes · IVA incluido';
+  } else if(needsRes && needsWeb){
+    plan='PÁGINA WEB + CHATBOT CON RESERVAS'; inicial=17000; mensual=3000; codigo='PAQUETE';
+    items=['Página web de hasta 3 páginas','Chatbot de WhatsApp con IA 24/7','Agenda citas en tu Google Calendar','Confirmación y recordatorio 24 h antes'];
+    why='Tu negocio vive de las citas. La página te da confianza y el chatbot agenda, confirma y recuerda por ti, a cualquier hora.';
+    cartIds=['web','reservas'];
+  } else if(needsRes){
+    plan='CHATBOT CON RESERVAS'; inicial=7500; mensual=3000; codigo='CHATBOT';
+    items=['Todo lo del chatbot de WhatsApp','Agenda citas en tu Google Calendar','Confirma al momento','Recordatorio 24 h antes (300 al mes incluidos)'];
+    why='Ya tienes página. Lo que más tiempo te ahorra es que tus clientes agenden solos por WhatsApp y reciban su recordatorio automático.';
+    cartIds=['reservas'];
+  } else if(needsWeb && needsBot){
+    plan='PAQUETE PÁGINA + CHATBOT'; inicial=12500; mensual=2500; codigo='PAQUETE';
+    items=['Página web de hasta 3 páginas','Chatbot de WhatsApp con IA 24/7','El botón de tu página abre tu chatbot','Primer mes y mantenimiento web incluidos'];
+    why= r.dolor==='encontrar'
+      ? 'Quieres que te encuentren, y además ya te escriben. La página te pone en Google y el chatbot convierte cada visita en conversación. Juntos te ahorran $500.'
+      : 'Te falta presencia y te sobran mensajes. La página da confianza y el chatbot contesta por ti en segundos. Juntos te ahorran $500.';
+    cartIds=['paquete'];
+  } else if(needsBot){
+    plan='CHATBOT DE WHATSAPP'; inicial=3500; mensual=2500; codigo='CHATBOT';
     items=CHATBOT_INC.slice(0,6);
-    why='Ya tienes página; lo que te falta es no perder clientes por tardar en contestar. El chatbot responde en segundos, 24/7, y te pasa solo a los que necesitan atención personal.';
+    why= r.dolor==='repetir'
+      ? 'Ya tienes página. El chatbot contesta precios, horarios, ubicación y manda tu catálogo, para que tú dejes de repetir lo mismo.'
+      : 'Ya tienes página. Lo que te falta es no perder clientes por tardar: el chatbot responde en segundos, 24/7, y te pasa a los que necesitan a una persona.';
     cartIds=['chatbot'];
   } else {
-    plan='PÁGINA + CHATBOT'; precio='$12,500 MXN';
-    precioNota='Pago único (incluye el primer mes) · Después $2,500/mes · IVA incluido';
-    items=['Página web de hasta 3 páginas','Chatbot de WhatsApp con IA 24/7','El botón de tu página abre tu chatbot','Mantenimiento web incluido en la mensualidad'];
-    why='Te conviene tener las dos cosas trabajando juntas: la página te da confianza y te posiciona, y el chatbot convierte cada visita en una conversación. Juntas te ahorran $500.';
-    cartIds=['paquete'];
+    plan='PÁGINA WEB'; inicial=9500; mensual=0; codigo='WEB';
+    items=WEB_INC.slice(0,6);
+    why= r.web==='si'
+      ? 'Tienes página, pero si no te encuentran, conviene rehacerla con SEO básico y un botón directo a tu WhatsApp.'
+      : 'Lo primero es que tu negocio exista en internet y dé confianza. Una página clara, rápida y con botón de WhatsApp es la base de todo.';
+    extras.push('Mantenimiento opcional: $500/mes con hosting, respaldos y 1 hora de cambios');
+    extras.push('Cuando te empiecen a escribir más, el paquete Página + Chatbot te ahorra $500');
+    cartIds=['web'];
   }
-  const ch=(r.canales||[]).filter(c=>c==='instagram'||c==='messenger');
-  if(ch.length && plan.indexOf('CHATBOT')>-1){ extras.unshift('Como también te escriben por '+ch.map(c=>c==='instagram'?'Instagram':'Messenger').join(' y ')+', puedes conectar el mismo chatbot: $2,000 + $500/mes por canal'); }
-  if(plan.indexOf('CHATBOT')>-1) extras.push('Respuestas ilimitadas cuando el cliente escribe primero; las promos que tú envíes cuestan $3.00 c/u');
-  if(r.necesidad!=='medida') extras.push('Si necesitas login, base de datos o tienda en línea, te lo cotizamos aparte');
+  const tieneBot = /CHATBOT|RESERVAS/.test(plan);
+  if(redes.length && tieneBot){
+    const nombres = redes.map(c=>c==='instagram'?'Instagram':'Messenger');
+    extras.unshift('Conecta el mismo chatbot a '+nombres.join(' y ')+': $2,000 + $500/mes por canal');
+    redes.forEach(c=>cartIds.push(c));
+    inicial += 2000*redes.length; mensual += 500*redes.length;
+  }
+  if(tieneBot){
+    extras.push('Respuestas ilimitadas cuando el cliente escribe primero. Las promociones que tú envíes cuestan $3 c/u');
+    if(r.mensajes==='muy') extras.push('Incluye hasta 500 clientes distintos al mes. Si pasas de ahí, te avisamos y lo cotizamos; nunca cobramos sin tu autorización');
+  }
+  if(r.dolor!=='medida' && plan.indexOf('PÁGINA')>-1) extras.push('¿Más de 3 secciones? Cada página extra cuesta $2,500');
+  if(inicial){ precio = recMXN(inicial)+' MXN'; precioNota = 'Implementación' + (mensual ? ' · Después '+recMXN(mensual)+'/mes' : ''); }
+  const entrega = plan.indexOf('PÁGINA')>-1 ? '3 semanas' : (needsRes ? '2 semanas' : (plan.indexOf('MEDIDA')>-1 ? 'Según alcance' : '1 semana'));
 
   const perfilMap = {
-    tipo:{local:'Negocio local',citas:'Negocio con citas',emprendedor:'Emprendedor',servicios:'Servicios profesionales',productos:'Venta de productos',otro:'Tu negocio'},
+    tipo:{comida:'Restaurante o cafetería',citas:'Negocio con citas',productos:'Venta de productos',servicios:'Servicios profesionales',emprendedor:'Proyecto nuevo',otro:'Tu negocio'},
     web:{no:'Sin página web',renovar:'Página por renovar',si:'Ya tiene página'},
-    necesidad:{encontrar:'que te encuentren',responder:'contestar 24/7',reservas:'agendar citas',ambas:'página y chatbot',medida:'algo a la medida'}
+    mensajes:{bajo:'Casi no recibe mensajes',medio:'1 a 10 mensajes al día',alto:'10 a 50 mensajes al día',muy:'Más de 50 mensajes al día'},
+    dolor:{encontrar:'que te encuentren',contestar:'contestar rápido',repetir:'dejar de repetir lo mismo',citas:'agendar citas',medida:'un proyecto a la medida'}
   };
-  const canalesTxt=(r.canales||[]).map(c=>({whatsapp:'WhatsApp',instagram:'Instagram',messenger:'Messenger',ninguna:'Pocos mensajes'})[c]).join(', ');
+  const canalesTxt=canales.map(c=>({whatsapp:'WhatsApp',instagram:'Instagram',messenger:'Messenger',ninguna:'Pocos mensajes'})[c]).join(', ');
   document.getElementById('recResultado').innerHTML = `
     <div class="rec-result-header">
-      <div class="rec-result-badge">Tu recomendación personalizada</div>
+      <div class="rec-result-badge">Tu recomendación</div>
       <div class="rec-result-title" style="background:linear-gradient(135deg,#fff,#6060ff);-webkit-background-clip:text;background-clip:text;color:transparent;">${plan}</div>
     </div>
-    <div class="rec-result-why"><strong style="color:#fff;display:block;margin-bottom:.4rem;">¿Por qué esta recomendación?</strong>${why}</div>
+    <div class="rec-result-why"><strong style="color:#fff;display:block;margin-bottom:.4rem;">Por qué te lo recomendamos</strong>${why}</div>
     <div class="rec-result-cards">
       <div class="rec-result-card"><h4>Tu perfil</h4><ul>
         <li>${perfilMap.tipo[r.tipo]||'Tu negocio'}</li>
         <li>${perfilMap.web[r.web]||''}</li>
-        <li>Prioridad: ${perfilMap.necesidad[r.necesidad]||''}</li>
+        <li>${perfilMap.mensajes[r.mensajes]||''}</li>
+        <li>Prioridad: ${perfilMap.dolor[r.dolor]||''}</li>
         <li>Te escriben por: ${canalesTxt||'por definir'}</li>
       </ul></div>
       <div class="rec-result-card"><h4>Incluye</h4><ul>${items.map(i=>`<li>${i}</li>`).join('')}</ul></div>
     </div>
     <div class="rec-price-box">
-      <div class="rec-price-label">Inversión</div>
+      <div class="rec-price-label">Inversión · entrega en ${entrega}</div>
       <div class="rec-price-val">${precio}</div>
       <div class="rec-price-note">${precioNota}</div>
     </div>
     <div class="rec-extras"><h4>Ten en cuenta</h4><ul>${extras.map(e=>`<li>${e}</li>`).join('')}</ul></div>
     <div class="rec-result-actions">
-      <button class="rec-cta-main" onclick="recAgregar(${JSON.stringify(cartIds).replace(/"/g,'&quot;')})">Agregar al carrito →</button>
+      <button class="rec-cta-main" onclick="recAgregar(${JSON.stringify(cartIds).replace(/"/g,'&quot;')})">Agregar al carrito</button>
+      <button class="rec-cta-main rec-cta-wa" onclick="recWhats('${codigo}','${plan}')">Pedir info por WhatsApp</button>
       <button class="rec-cta-restart" onclick="recReiniciar()">Volver a empezar</button>
     </div>`;
   document.getElementById('recResultado').classList.add('active');
 }
+function recWhats(codigo, plan){ openWhatsApp(codigo+'\n\nHola NEXUZ, el recomendador me sugirió: '+plan+'. ¿Me mandan toda la información?'); }
 const CART_ITEMS = {
   web:D.web.cart, paquete:D.paquete.cart, chatbot:D.chatbot.cart,
   reservas:['reservas','Chatbot con reservas automáticas','$7,500 MXN','unico','+ $3,000/mes'],
-  medida:['medida','Página a la medida (login / base de datos / tienda)','Cotizar','cotizar']
+  instagram:['instagram','Chatbot en Instagram','$2,000 MXN','unico','+ $500/mes'],
+  messenger:['messenger','Chatbot en Messenger','$2,000 MXN','unico','+ $500/mes'],
+  medida:['medida','Proyecto a la medida (login / base de datos / tienda)','Cotizar','cotizar']
 };
 function recAgregar(ids){ ids.forEach(id=>{ if(CART_ITEMS[id]) addToCart(...CART_ITEMS[id]); }); openCart(); }
 function recReiniciar(){
-  recData.tipo=''; recData.web=''; recData.necesidad=''; recData.canales=[];
+  recData.tipo=''; recData.web=''; recData.mensajes=''; recData.dolor=''; recData.canales=[];
   document.querySelectorAll('.rec-opt').forEach(o=>o.classList.remove('selected'));
   document.querySelectorAll('.rec-next').forEach(b=>b.disabled=true);
   document.getElementById('recResultado').classList.remove('active');
@@ -2086,11 +2211,12 @@ function recReiniciar(){
 
 /* ============ PORTAFOLIO ============ */
 const PORTFOLIO = [
-  {tag:'Página web',nm:'MOVA',url:'https://mova-creative.emiliorp-srch-uni.chatgpt.site/',desc:'Sitio para un estudio creativo de producción audiovisual y marketing. Abre con video a pantalla completa, muestra trabajos por industria (restaurantes, espacios, moda, belleza, textil), explica servicios y metodología, y cierra con un cotizador por pasos que envía la solicitud a WhatsApp.',inc:['Video a pantalla completa','Textos animados y carruseles','Cotizador por pasos a WhatsApp','Adaptado a celular']},
-  {tag:'Página web',nm:'Uniformes PRE',desc:'Sitio de 4 páginas para una tienda de uniformes en Cancún: catálogo con más de 30 productos, buscador y filtros, cotizador por cantidad, talla y color, y contacto que abre WhatsApp con el pedido listo.',inc:['Catálogo con filtros','Cotizador de pedidos','Contacto directo por WhatsApp','Adaptado a celular']},
-  {tag:'Página web',nm:'BLU Solutions',desc:'Sitio y catálogo comercial para una comercializadora de equipamiento hotelero, con cientos de referencias organizadas por familia y solicitudes a la medida.',inc:['Portada animada','Catálogo de cientos de productos','Solicitud de cotización','Catálogos PDF descargables']}
+  {tag:'Estudio creativo',nm:'MOVA',desc:'Sitio para un estudio de video y marketing: abre con video a pantalla completa, muestra trabajos por industria en carruseles y cierra con un cotizador por pasos que llega a WhatsApp.',inc:['Video a pantalla completa','Textos animados y carruseles','Cotizador por pasos a WhatsApp','Adaptado a celular']},
+  {tag:'Tienda de uniformes',nm:'Uniformes PRE',desc:'Catálogo de más de 30 productos con buscador y filtros, cotizador por talla y color, y pedido directo por WhatsApp.',inc:['Catálogo con filtros','Cotizador de pedidos','Pedido por WhatsApp','Adaptado a celular']},
+  {tag:'Equipamiento hotelero',nm:'BLU Solutions',desc:'Catálogo comercial con cientos de productos organizados por familia y solicitudes de cotización a la medida.',inc:['Portada animada','Catálogo de cientos de productos','Solicitud de cotización','Catálogos PDF descargables']},
+  {tag:'Nuestro sitio',nm:'NEXUZ',desc:'La página que estás viendo: entrada animada, recomendador por preguntas, carrito de cotización y Nexo, nuestro asistente.',inc:['Animaciones a la medida','Recomendador de soluciones','Carrito que arma tu cotización','Asistente Nexo']}
 ];
-function openPortfolioItem(i){ const p=PORTFOLIO[i]; if(!p) return; const lf=p.inc.map(f=>'<li><span class="ck">✓</span>'+f+'</li>').join(''); const live=p.url?'<a class="work-link ghost" href="'+p.url+'" target="_blank" rel="noopener">Ver sitio en vivo ↗</a>':''; document.getElementById('mc').innerHTML='<button class="m-close" onclick="closeOv(event)" aria-label="Cerrar">×</button><div class="m-label">'+p.tag+'</div><h3 class="m-title">'+p.nm+'</h3><p class="m-desc" style="margin-top:1rem">'+p.desc+'</p><div class="m-ftitle" style="margin-top:1.5rem">Lo que incluye</div><ul class="m-flist">'+lf+'</ul><div class="m-actions" style="align-items:center;flex-wrap:wrap">'+live+'<button class="m-cta" onclick="closeOv(event);scroll2(\'contacto\')">Quiero algo así →</button></div>'; openOv(); }
+function openPortfolioItem(i){ const p=PORTFOLIO[i]; if(!p) return; const lf=p.inc.map(f=>'<li><span class="ck">✓</span>'+f+'</li>').join(''); const live=''; document.getElementById('mc').innerHTML='<button class="m-close" onclick="closeOv(event)" aria-label="Cerrar">×</button><div class="m-label">'+p.tag+'</div><h3 class="m-title">'+p.nm+'</h3><p class="m-desc" style="margin-top:1rem">'+p.desc+'</p><div class="m-ftitle" style="margin-top:1.5rem">Lo que incluye</div><ul class="m-flist">'+lf+'</ul><div class="m-actions" style="align-items:center;flex-wrap:wrap">'+live+'<button class="m-cta" onclick="closeOv(event);scroll2(\'contacto\')">Quiero algo así</button></div>'; openOv(); }
 
 /* ============ TEXTO INFINITO: pausa fuera de pantalla ============ */
 (function(){
@@ -2176,57 +2302,89 @@ let nexoOpen = false;
 let nexoHistory = [];
 
 const NEXO_KB = [
-  { kws:['hola','buenas','buenos dias','buenas tardes','buenas noches','hey','que tal','hi','saludos'],
-    a:'¡Hola! 👋 Soy <strong>Nexo</strong>, el asistente de NEXUZ. Hacemos <strong>páginas web</strong> y <strong>chatbots de WhatsApp con IA</strong>. ¿Qué te gustaría saber?' },
-  { kws:['precio','precios','costo','costos','cuanto cuesta','cuanto vale','cuanto cobran','tarifa','tarifas','inversion','cuanto es','cuanto me saldria','planes'],
-    a:'Precios con <strong>IVA incluido</strong>:<br><br>🌐 <strong>Página web</strong> (hasta 3 páginas) — $9,500 pago único · mantenimiento opcional $500/mes<br>⭐ <strong>Página + Chatbot</strong> — $12,500 pago único (incluye el primer mes) · luego $2,500/mes<br>🤖 <strong>Chatbot WhatsApp</strong> — $3,500 instalación · $2,500/mes<br>📅 <strong>Chatbot con reservas</strong> — $7,500 · $3,000/mes<br><br>¿Quieres saber qué incluye cada uno?' },
-  { kws:['pagina web','página web','sitio','sitio web','web','landing','pagina'],
-    a:'La <strong>Página web</strong> cuesta <strong>$9,500</strong> (pago único, IVA incluido) y se entrega en <strong>3 semanas</strong>.<br><br>✅ Hasta 3 páginas<br>✅ Adaptada a celular<br>✅ Botón de WhatsApp, redes y mapa<br>✅ SEO básico para Google<br>✅ Hosting gratis y SSL<br>✅ 2 rondas de cambios<br><br>❌ No incluye login, base de datos, formularios que guarden datos, tienda en línea ni el dominio.<br>Página extra: $2,500 c/u.' },
-  { kws:['paquete','pagina y chatbot','pagina + chatbot','las dos','ambos','combo'],
-    a:'El <strong>Paquete Página + Chatbot</strong> cuesta <strong>$12,500</strong> pago único y luego <strong>$2,500/mes</strong> desde el mes 2 (IVA incluido).<br><br>✅ Todo lo de la Página web<br>✅ Todo lo del Chatbot de WhatsApp<br>✅ Primer mes incluido<br>✅ Mantenimiento web incluido en la mensualidad<br>✅ Ahorras $500<br><br>❌ El chatbot del paquete es solo para WhatsApp. Instagram o Messenger se agregan aparte.' },
-  { kws:['chatbot','chat bot','bot','bot de whatsapp','whatsapp','respuesta automatica','atencion automatica','atencion al cliente'],
-    a:'El <strong>Chatbot de WhatsApp</strong>: <strong>$3,500</strong> de instalación + <strong>$2,500/mes</strong> (IVA incluido). Entrega en 1 semana.<br><br>✅ Responde 24/7 con IA entrenada con tu negocio<br>✅ Hasta 30 productos o servicios<br>✅ Envía fotos, PDF y catálogo<br>✅ Recibe fotos y audios y te los reenvía<br>✅ Te pasa la conversación cuando hace falta<br>✅ Hasta 500 clientes al mes, respuestas ilimitadas<br><br>❌ No agenda citas (eso es el plan Reservas) y las promos que tú envíes cuestan $3.00 c/u.' },
-  { kws:['reserva','reservas','citas','cita','agendar','agenda','calendario','recordatorio'],
-    a:'El <strong>Chatbot con reservas automáticas</strong>: <strong>$7,500</strong> + <strong>$3,000/mes</strong> (IVA incluido). Entrega en 2 semanas.<br><br>✅ Todo lo del Chatbot WhatsApp<br>✅ Agenda en tu Google Calendar<br>✅ Confirma al cliente al momento<br>✅ Recordatorio 24 h antes (300 al mes incluidos; extra $0.50 c/u)' },
-  { kws:['instagram','messenger','facebook','dm','mensajes directos'],
-    a:'Podemos conectar el mismo chatbot a <strong>Instagram</strong> o <strong>Messenger</strong>: <strong>$2,000</strong> + <strong>$500/mes</strong> por canal (IVA incluido). Entrega en 3 días. El canal principal siempre es WhatsApp.' },
-  { kws:['mensajes','cuantos mensajes','limite','límite','contactos','promocion','promociones','masivo','masivos','difusion'],
-    a:'Así funcionan los mensajes:<br><br>✅ <strong>Ilimitados</strong> cuando tu cliente te escribe primero (Meta no los cobra)<br>✅ Hasta <strong>500 clientes</strong> distintos al mes<br>💬 Mensajes que <strong>tú</strong> mandas primero (promos, avisos): <strong>$3.00 c/u</strong><br>📈 Más de 500 clientes al mes: te avisamos y se cotiza. Nunca cobramos extra sin tu autorización.' },
-  { kws:['imagen','imagenes','imágenes','foto','fotos','audio','audios','pdf','catalogo','catálogo'],
-    a:'Tu chatbot puede <strong>enviar</strong> fotos, PDF y tu catálogo. También <strong>recibe</strong> fotos, audios y documentos de tus clientes y te los reenvía. La IA no interpreta el contenido de las imágenes; esas te llegan a ti para que respondas.' },
-  { kws:['login','iniciar sesion','base de datos','formulario','formularios','tienda','tienda en linea','ecommerce','e-commerce','pagos','cobrar en linea'],
-    a:'Nuestras páginas de $9,500 son informativas: no guardan datos. Si necesitas <strong>inicio de sesión, base de datos, formularios que guarden información o tienda en línea</strong>, es un proyecto a la medida y lo cotizamos aparte. Escríbenos por WhatsApp y te armamos la propuesta.' },
-  { kws:['dominio','.com','.mx','hosting','servidor','ssl'],
+  { kws:['hola','buenas','buenos dias','buenas tardes','buenas noches','hey','que tal','hi','hello','saludos','que onda'],
+    a:'Hola, soy <strong>Nexo</strong>, el asistente de NEXUZ. Hacemos <strong>páginas web</strong> y <strong>chatbots de WhatsApp con IA</strong>. Pregúntame por precios, qué incluye cada opción, tiempos de entrega o cuál te conviene.' },
+  { kws:['quienes son','que es nexuz','nexuz','a que se dedican','que hacen','que venden','servicios','que ofrecen'],
+    a:'NEXUZ hace dos cosas: <strong>páginas web</strong> que presentan tu negocio con claridad y <strong>chatbots de WhatsApp con IA</strong> que contestan por ti a cualquier hora.<br><br>Opciones:<br>• Página web — $9,500<br>• Chatbot de WhatsApp — $3,500 + $2,500/mes<br>• Paquete Página + Chatbot — $12,500 + $2,500/mes desde el mes 2<br>• Chatbot con reservas — $7,500 + $3,000/mes' },
+  { kws:['precio','precios','costo','costos','cuanto cuesta','cuanto vale','cuanto cobran','tarifa','tarifas','inversion','cuanto es','cuanto me saldria','planes','cotizacion','cotizar','presupuesto'],
+    a:'Nuestros precios:<br><br>• <strong>Página web</strong> (hasta 3 páginas) — $9,500 de implementación. Mantenimiento opcional $500/mes<br>• <strong>Chatbot de WhatsApp</strong> — $3,500 de implementación + $2,500/mes<br>• <strong>Paquete Página + Chatbot</strong> — $12,500 (incluye el primer mes) + $2,500/mes desde el mes 2. Ahorras $500<br>• <strong>Chatbot con reservas</strong> — $7,500 + $3,000/mes<br>• Instagram o Messenger — $2,000 + $500/mes por canal<br><br>¿Quieres saber qué incluye alguno?' },
+  { kws:['pagina web','sitio','sitio web','landing','pagina','una web','web'],
+    a:'La <strong>Página web</strong> cuesta <strong>$9,500</strong> y se entrega en <strong>3 semanas</strong>.<br><br>Incluye:<br>• Hasta 3 páginas (ej. Inicio, Servicios y Contacto)<br>• Diseño con tu logo y colores<br>• Adaptada a celular<br>• Botón de WhatsApp, redes y mapa<br>• SEO básico y alta en Google<br>• Hosting y certificado SSL<br>• 2 rondas de cambios<br><br>No incluye login, base de datos, tienda en línea ni el dominio. Página extra: $2,500 c/u.' },
+  { kws:['paquete','pagina y chatbot','pagina + chatbot','pagina con chatbot','las dos','ambos','combo','todo junto'],
+    a:'El <strong>Paquete Página + Chatbot</strong> cuesta <strong>$12,500</strong> e incluye el primer mes. Desde el mes 2 son <strong>$2,500/mes</strong>.<br><br>• Todo lo de la Página web<br>• Todo lo del Chatbot de WhatsApp<br>• El botón de tu página abre tu chatbot<br>• Mantenimiento web incluido en la mensualidad<br>• Ahorras $500<br><br>Entrega en 3 semanas. El chatbot del paquete es para WhatsApp; Instagram o Messenger se agregan aparte.' },
+  { kws:['chatbot','chat bot','bot','bot de whatsapp','respuesta automatica','respuestas automaticas','atencion automatica','atencion al cliente','asistente virtual'],
+    a:'El <strong>Chatbot de WhatsApp</strong> cuesta <strong>$3,500</strong> de implementación + <strong>$2,500/mes</strong>. Entrega en 1 semana.<br><br>• Responde 24/7 con IA entrenada con tu negocio<br>• Horarios, ubicación, precios, preguntas frecuentes y hasta 30 productos o servicios<br>• Envía fotos, PDF y catálogo<br>• Recibe fotos y audios y te los reenvía<br>• Te pasa la conversación cuando hace falta una persona<br>• Hasta 500 clientes al mes, respuestas ilimitadas<br><br>Para agendar citas existe el plan con reservas.' },
+  { kws:['como funciona','inteligencia artificial','ia','entrenado','entrenan','que contesta','que responde','que sabe','aprende'],
+    a:'Entrenamos al chatbot con la información de tu negocio: horarios, ubicación, precios, productos, políticas y preguntas frecuentes. Con eso contesta como lo harías tú, en segundos y a cualquier hora. Si una pregunta sale de lo que sabe, o el cliente quiere hablar con alguien, te pasa la conversación.' },
+  { kws:['hablar con una persona','persona real','humano','atiendo yo','contestar yo','tomar el control','pasa la conversacion'],
+    a:'Sí. El chatbot te pasa la conversación cuando el cliente necesita a una persona (por ejemplo, para cerrar una venta o un caso especial), y tú sigues desde ahí.' },
+  { kws:['reserva','reservas','citas','cita','agendar','agenda','calendario','recordatorio','recordatorios'],
+    a:'El <strong>Chatbot con reservas</strong> cuesta <strong>$7,500</strong> + <strong>$3,000/mes</strong>. Entrega en 2 semanas.<br><br>• Todo lo del Chatbot de WhatsApp<br>• Agenda en tu Google Calendar<br>• Confirma al cliente al momento<br>• Recordatorio 24 h antes (300 al mes incluidos; extra $0.50 c/u)<br><br>Ideal para consultorios, salones, clínicas y spas.' },
+  { kws:['instagram','messenger','facebook','dm','mensajes directos','redes sociales'],
+    a:'Conectamos el mismo chatbot a <strong>Instagram</strong> o <strong>Messenger</strong>: <strong>$2,000</strong> + <strong>$500/mes</strong> por canal. Entrega en 3 días. El canal principal siempre es WhatsApp.' },
+  { kws:['mensajes','cuantos mensajes','limite','contactos','promociones','masivo','masivos','difusion','enviar promociones','mandar promociones','clientes al mes'],
+    a:'Así funcionan los mensajes:<br><br>• <strong>Ilimitados</strong> cuando tu cliente te escribe primero<br>• Hasta <strong>500 clientes</strong> distintos al mes<br>• Mensajes que <strong>tú</strong> mandas primero (promos, avisos): <strong>$3 c/u</strong><br>• Más de 500 clientes al mes: te avisamos y se cotiza. Nunca cobramos extra sin tu autorización.' },
+  { kws:['imagen','imagenes','foto','fotos','audio','audios','pdf','catalogo','documentos','video'],
+    a:'Tu chatbot puede <strong>enviar</strong> fotos, PDF y tu catálogo. También <strong>recibe</strong> fotos, audios y documentos de tus clientes y te los reenvía para que tú los revises.' },
+  { kws:['login','iniciar sesion','base de datos','formulario','formularios','tienda','tienda en linea','ecommerce','e-commerce','pagos en linea','cobrar en linea','carrito','a la medida','sistema','app','aplicacion'],
+    a:'La página de $9,500 es informativa y no guarda datos. Si necesitas <strong>tienda en línea, inicio de sesión, base de datos o un sistema</strong>, es un proyecto a la medida: platicamos el alcance y te damos un precio cerrado antes de empezar. Escríbenos <strong>WEB</strong> al <strong>56 5280 4823</strong>.' },
+  { kws:['dominio','.com','.mx','hosting','servidor','ssl','certificado'],
     a:'El <strong>hosting y el certificado SSL</strong> van incluidos. El <strong>dominio</strong> (.com o .com.mx) lo pagas tú directo al proveedor para que siempre sea tuyo; te ayudamos a comprarlo y configurarlo.' },
-  { kws:['mantenimiento','cambios','actualizar','modificar'],
+  { kws:['mantenimiento','actualizar','modificar','cambios despues','soporte'],
     a:'El <strong>Mantenimiento web</strong> cuesta <strong>$500/mes</strong>: hosting, SSL, respaldos y hasta 1 hora de cambios al mes. En el paquete Página + Chatbot ya viene incluido en la mensualidad.' },
-  { kws:['cuanto tarda','tiempo de entrega','entrega','cuando esta lista','cuanto tiempo','en cuanto tiempo','rapido','urgente'],
-    a:'Tiempos de entrega:<br><br>🌐 Página web — 3 semanas<br>⭐ Página + Chatbot — 3 semanas<br>🤖 Chatbot WhatsApp — 1 semana<br>📅 Chatbot con reservas — 2 semanas<br><br>Cuentan desde que recibimos tu información y fotos.' },
-  { kws:['cual me conviene','que me recomiendas','cual plan','que plan','no se que','ayudame a elegir','recomendador'],
-    a:'Usa el <strong>recomendador</strong> de esta página: 4 preguntas y te decimos qué te conviene y cuánto cuesta 👆<br><br>En corto:<br>• Solo quieres estar en internet → <strong>Página web</strong><br>• Ya tienes página y te escriben mucho → <strong>Chatbot</strong><br>• Quieres las dos → <strong>Página + Chatbot</strong><br>• Trabajas con citas → <strong>Chatbot con reservas</strong>' },
-  { kws:['como pago','forma de pago','transferencia','deposito','tarjeta','pago','anticipo','factura','facturacion','facturación'],
-    a:'Pago por <strong>transferencia (SPEI)</strong>: 50% al iniciar y 50% al entregar. Las mensualidades se pagan al inicio de cada mes. Emitimos <strong>factura (CFDI)</strong> y todos los precios ya incluyen <strong>IVA</strong>.' },
+  { kws:['rondas','cambios','no me gusta','revision','correcciones','garantia'],
+    a:'Antes de publicar revisas todo con nosotros y tienes <strong>2 rondas de cambios</strong> incluidas. Nada se lanza sin tu visto bueno.' },
+  { kws:['pagina extra','mas paginas','mas secciones','cuantas paginas','paginas adicionales'],
+    a:'La Página web incluye hasta 3 páginas. Cada página extra cuesta <strong>$2,500</strong> y suma 3 días a la entrega.' },
+  { kws:['seo','google','aparecer en google','posicionamiento','buscadores','primer lugar'],
+    a:'Toda página incluye <strong>SEO básico</strong>: título, descripción, estructura correcta y alta en Google para que te encuentren. Nadie puede garantizar el primer lugar, pero dejamos tu página lista para competir.' },
+  { kws:['cuanto tarda','tiempo de entrega','entrega','cuando esta lista','cuanto tiempo','en cuanto tiempo','rapido','urgente','tiempos'],
+    a:'Tiempos de entrega:<br><br>• Página web — 3 semanas<br>• Página + Chatbot — 3 semanas<br>• Chatbot de WhatsApp — 1 semana<br>• Chatbot con reservas — 2 semanas<br>• Instagram o Messenger — 3 días<br><br>Cuentan desde que recibimos tu información y fotos.' },
+  { kws:['metodologia','proceso','como trabajan','pasos','como es el proceso','que sigue'],
+    a:'Trabajamos en 5 pasos:<br><br>1. <strong>Platicamos</strong> — conocemos tu negocio y lo que te urge<br>2. <strong>Diseñamos</strong> — estructura de tu página y respuestas del chatbot<br>3. <strong>Construimos</strong> — desarrollamos y entrenamos al chatbot<br>4. <strong>Revisamos</strong> — lo pruebas y ajustamos<br>5. <strong>Lanzamos</strong> — publicamos, conectamos tu WhatsApp y te acompañamos' },
+  { kws:['cual me conviene','que me recomiendas','cual plan','que plan','no se que','ayudame a elegir','recomendador','que necesito para mi negocio'],
+    a:'Usa el <strong>recomendador</strong> de esta página: 5 preguntas y te dice qué te conviene y cuánto cuesta.<br><br>En corto:<br>• Quieres que te encuentren → <strong>Página web</strong><br>• Ya tienes página y te escriben mucho → <strong>Chatbot</strong><br>• Te falta página y te escriben → <strong>Paquete Página + Chatbot</strong><br>• Trabajas con citas → <strong>Chatbot con reservas</strong>' },
+  { kws:['restaurante','cafeteria','consultorio','dentista','doctor','clinica','salon','barberia','spa','hotel','inmobiliaria','tienda de ropa','gimnasio','escuela','despacho','mi negocio','mi giro'],
+    a:'Sí trabajamos con negocios como el tuyo. Normalmente:<br><br>• Si recibes pedidos o preguntas repetidas → <strong>Chatbot de WhatsApp</strong> o el <strong>Paquete</strong><br>• Si trabajas con citas → <strong>Chatbot con reservas</strong><br>• Si aún no tienes presencia en internet → <strong>Página web</strong><br><br>Escríbenos al <strong>56 5280 4823</strong> con el giro de tu negocio y te mandamos toda la información.' },
+  { kws:['promo','promocion vigente','descuento','oferta','rebaja','ahorro'],
+    a:'La promoción vigente es el <strong>Paquete Página + Chatbot</strong>: $12,500 con el primer mes incluido, y ahorras $500 contra contratarlos por separado. Escribe <strong>PAQUETE</strong> al <strong>56 5280 4823</strong> y te mandamos toda la información.' },
+  { kws:['como pago','forma de pago','formas de pago','transferencia','deposito','tarjeta','anticipo','factura','facturacion','meses sin intereses'],
+    a:'El pago es <strong>50% al iniciar y 50% al entregar</strong>. Las mensualidades se pagan al inicio de cada mes. Emitimos <strong>factura (CFDI)</strong>. Para otras formas de pago, escríbenos al <strong>56 5280 4823</strong>.' },
   { kws:['iva','impuesto','impuestos','precio con iva','incluye iva'],
-    a:'Sí, todos los precios de NEXUZ <strong>ya incluyen IVA</strong>. Lo que ves es lo que pagas.' },
-  { kws:['cancelar','cancelacion','cancelación','permanencia','contrato','puedo cancelar','compromiso','mes a mes'],
-    a:'Sin contratos de permanencia: las mensualidades son <strong>mes a mes</strong>. Avísanos con 15 días de anticipación. Si cancelas el chatbot se desactiva; tu página sigue siendo tuya.' },
-  { kws:['que necesito','requisitos','numero','número','facebook business','meta'],
-    a:'Para el chatbot necesitas un <strong>número de teléfono</strong> que conectaremos a la API oficial de WhatsApp de Meta, tu cuenta de <strong>Facebook Business</strong> y la info de tu negocio. Para la página: logo, fotos y datos de contacto. Nosotros hacemos toda la configuración.' },
-  { kws:['donde estan','ubicacion','ubicación','ciudad','cancun','cancún','mexico','presencial','oficina'],
-    a:'Estamos en <strong>Cancún, Quintana Roo</strong>. Trabajamos con negocios de todo México por videollamada y WhatsApp, y en Cancún también en persona.' },
-  { kws:['portafolio','ejemplos','trabajos','proyectos','clientes'],
-    a:'En la sección <strong>Portafolio</strong> puedes ver páginas que hemos hecho, como <strong>Uniformes PRE</strong> y <strong>BLU Solutions</strong>. 👇' },
-  { kws:['contacto','contactar','como los contacto','quiero informacion','siguiente paso','como empezamos','quiero empezar','hablar con alguien','llamada','reunion','reunión'],
-    a:'¡Va! Escríbenos por WhatsApp al <strong>998 311 4978</strong> o usa el formulario de contacto: se abre WhatsApp con tu mensaje listo. Te respondemos en menos de 24 horas.' },
+    a:'Sí, los precios ya incluyen IVA.' },
+  { kws:['cancelar','cancelacion','permanencia','contrato','puedo cancelar','compromiso','mes a mes','plazo forzoso'],
+    a:'No hay contrato de permanencia: las mensualidades son <strong>mes a mes</strong>. Avísanos con 15 días de anticipación. Si cancelas el chatbot, se desactiva; tu página sigue siendo tuya.' },
+  { kws:['es mia','propiedad','duena','dueño','codigo','me pertenece'],
+    a:'Tu página es tuya. El dominio queda a tu nombre y, si un día decides irte, te ayudamos con el cambio.' },
+  { kws:['requisitos','que necesito','que les mando','que informacion','facebook business','meta','api'],
+    a:'Para el chatbot: un <strong>número de teléfono</strong> para conectarlo a la API oficial de WhatsApp, tu cuenta de <strong>Facebook Business</strong> y la información de tu negocio. Para la página: logo, fotos y datos de contacto. Nosotros hacemos toda la configuración.' },
+  { kws:['mi numero','mismo numero','numero actual','whatsapp business','otro numero','numero nuevo'],
+    a:'El chatbot se conecta a un número por la API oficial de WhatsApp. Te recomendamos un número dedicado al negocio. Si quieres usar el que ya tienes, escríbenos al <strong>56 5280 4823</strong> y revisamos tu caso.' },
+  { kws:['textos','quien escribe','redaccion','no tengo fotos','fotos de mi negocio','contenido'],
+    a:'Tú nos das la información y las fotos; nosotros redactamos y acomodamos los textos. Si no tienes fotos, usamos imágenes de banco con licencia.' },
+  { kws:['logo','identidad','branding','colores de mi marca'],
+    a:'Diseñamos tu página con tu logo y tus colores. Si todavía no tienes logo, escríbenos al <strong>56 5280 4823</strong> y lo platicamos.' },
+  { kws:['idioma','idiomas','ingles','english','otro idioma'],
+    a:'Configuramos el chatbot para el idioma de tus clientes. Si atiendes en español e inglés, coméntanoslo y lo dejamos listo para ambos.' },
+  { kws:['demo','prueba','probar','ejemplo de chatbot','ver como funciona'],
+    a:'Escribe <strong>CHATBOT</strong> al <strong>56 5280 4823</strong> y te mandamos toda la información de cómo funcionaría en tu negocio.' },
+  { kws:['donde estan','ubicacion','ciudad','cancun','mexico','presencial','oficina','otro pais','extranjero','estados unidos','dolares'],
+    a:'Estamos en <strong>Cancún, México</strong>, y trabajamos con negocios de todo México y de otros países por videollamada y WhatsApp. En Cancún también podemos vernos en persona.' },
+  { kws:['horario','a que hora','atienden','responden','cuanto tardan en contestar'],
+    a:'Te respondemos por WhatsApp en menos de 24 horas. Escríbenos al <strong>56 5280 4823</strong>.' },
+  { kws:['portafolio','ejemplos','trabajos','proyectos','clientes','han hecho'],
+    a:'En el <strong>Portafolio</strong> puedes ver proyectos reales: <strong>MOVA</strong>, <strong>Uniformes PRE</strong>, <strong>BLU Solutions</strong> y este mismo sitio de NEXUZ.' },
+  { kws:['contacto','contactar','como los contacto','quiero informacion','mas informacion','siguiente paso','como empezamos','quiero empezar','hablar con alguien','llamada','reunion','telefono','numero de ustedes','whatsapp de ustedes','contratar'],
+    a:'Escríbenos por WhatsApp al <strong>56 5280 4823</strong> con la palabra de lo que te interesa:<br><br>• <strong>CHATBOT</strong><br>• <strong>WEB</strong><br>• <strong>PAQUETE</strong><br><br>Te mandamos toda la información y te respondemos en menos de 24 horas.' },
   { kws:['trabajo','empleo','vacante','unirme','colaborar','quiero trabajar'],
-    a:'¡Genial! Al final de la página está la sección "Únete al equipo". Buscamos talento en desarrollo web, chatbots, diseño y ventas.' },
+    a:'Al final de la página está la sección "Únete al equipo". Buscamos talento en desarrollo web, chatbots, diseño y ventas.' },
   { kws:['gracias','muchas gracias','ok gracias','perfecto gracias','excelente gracias'],
-    a:'¡Con gusto! 😊 Aquí estoy si tienes más preguntas. <strong>Move smarter, grow faster.</strong> 🚀' },
-  { kws:['adios','adiós','bye','hasta luego','nos vemos','chao','hasta pronto'],
-    a:'¡Hasta pronto! 👋' }
+    a:'Con gusto. Aquí estoy si tienes más preguntas. <strong>Move smarter, grow faster.</strong>' },
+  { kws:['adios','bye','hasta luego','nos vemos','chao','hasta pronto'],
+    a:'Hasta pronto.' }
 ];
 
-const NEXO_FALLBACK = 'No estoy seguro de haber entendido 🤔 Puedes preguntarme por <strong>precios</strong>, la <strong>página web</strong>, el <strong>chatbot</strong>, las <strong>reservas</strong>, los <strong>mensajes incluidos</strong> o cómo <strong>contactarnos</strong>.';
+const NEXO_FALLBACK = 'No estoy seguro de haber entendido. Puedes preguntarme por <strong>precios</strong>, la <strong>página web</strong>, el <strong>chatbot</strong>, las <strong>reservas</strong>, los <strong>tiempos de entrega</strong> o cómo <strong>contactarnos</strong>. También puedes escribirnos al <strong>56 5280 4823</strong>.';
 
 function nexoEscapeHtml(str){
   const div = document.createElement('div');
@@ -2235,17 +2393,16 @@ function nexoEscapeHtml(str){
 }
 
 function nexoFindAnswer(text){
-  const norm = text.toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g,''); /* quita acentos */
+  const norm = ' '+text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9.+$ ]/g,' ').replace(/\s+/g,' ')+' ';
   let best = null, bestScore = 0;
   NEXO_KB.forEach(entry => {
+    let score = 0;
     entry.kws.forEach(kw => {
-      const kwNorm = kw.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-      if(norm.includes(kwNorm) && kwNorm.length > bestScore){
-        bestScore = kwNorm.length;
-        best = entry.a;
-      }
+      const k = kw.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+      const hit = k.length <= 3 ? norm.includes(' '+k+' ') : norm.includes(k);
+      if(hit) score += k.length + (k.includes(' ') ? 4 : 0);
     });
+    if(score > bestScore){ bestScore = score; best = entry.a; }
   });
   return best || NEXO_FALLBACK;
 }
@@ -2332,8 +2489,8 @@ function toggleNexo(){
   document.getElementById('nexoWindow').classList.toggle('on', nexoOpen);
   if(nexoOpen && document.getElementById('nexoBody').children.length === 0){
     setTimeout(() => {
-      nexoAddMsg('bot', '¡Hola! 👋 Soy <strong>Nexo</strong>, el asistente de NEXUZ. Te ayudo con precios, páginas web y chatbots de WhatsApp. ¿En qué te ayudo?');
-      setTimeout(() => nexoQuickReplies(['¿Cuánto cuesta?','¿Qué incluye el chatbot?','¿Cuántos mensajes incluye?','¿Cómo los contacto?']), 400);
+      nexoAddMsg('bot', 'Hola, soy <strong>Nexo</strong>, el asistente de NEXUZ. Te ayudo con precios, páginas web y chatbots de WhatsApp. ¿En qué te ayudo?');
+      setTimeout(() => nexoQuickReplies(['¿Cuánto cuesta?','¿Cuál me conviene?','¿Qué incluye el chatbot?','¿Hay alguna promo?','¿Cómo los contacto?']), 400);
     }, 200);
   }
 }
