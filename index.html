@@ -377,20 +377,43 @@ nav.scrolled{
   backdrop-filter:blur(8px);
 }
 
-.ab-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:center;margin-top:3rem;}
-.ab-lead{font-size:clamp(1.6rem,3.2vw,2.5rem)!important;line-height:1.2!important;color:#fff!important;font-weight:700;letter-spacing:-.03em;margin-bottom:2rem!important;}
+.ab-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:2rem;align-items:center;}
+.ab-left{min-width:0;}
+.ab-lead{font-size:clamp(1.5rem,2.8vw,2.3rem);line-height:1.2;color:#fff;font-weight:700;letter-spacing:-.03em;margin:2.2rem 0 2rem;}
 .ab-glow{font-family:var(--serif);font-style:italic;font-weight:500;color:#fff;text-shadow:0 0 18px rgba(80,110,255,.85),0 0 42px rgba(43,43,255,.55);animation:abGlow 3.6s ease-in-out infinite alternate;}
 @keyframes abGlow{0%{text-shadow:0 0 10px rgba(80,110,255,.55),0 0 26px rgba(43,43,255,.3);}100%{text-shadow:0 0 20px rgba(110,140,255,.95),0 0 48px rgba(43,43,255,.6);}}
-.ab-two{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-.ab-card{display:flex;flex-direction:column;gap:.45rem;padding:1.4rem 1.3rem;border-radius:18px;background:linear-gradient(160deg,rgba(43,43,255,.14),rgba(255,255,255,.03));border:1px solid rgba(120,130,255,.22);}
-.ab-card b{font-size:1.08rem;color:#fff;letter-spacing:-.02em;line-height:1.25;}
-.ab-card span{font-size:.86rem;color:rgba(255,255,255,.78);line-height:1.6;}
-.ab-card .ab-k{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--accent3);}
-.ab-facts{list-style:none;display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:2.6rem;margin-top:2rem;}
+.ab-duo{display:flex;flex-direction:column;gap:1.6rem;}
+.ab-item{display:flex;align-items:center;gap:1.4rem;}
+.ab-vis{flex:0 0 150px;height:100px;border-radius:14px;position:relative;overflow:hidden;background:linear-gradient(160deg,rgba(43,43,255,.22),rgba(10,10,40,.6));box-shadow:0 0 0 1px rgba(130,140,255,.28),0 12px 40px rgba(43,43,255,.25);}
+.ab-txt b{display:block;font-size:1.25rem;color:#fff;letter-spacing:-.02em;margin-bottom:.2rem;}
+.ab-txt span{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.55;}
+/* mini página */
+.abw-bar{display:flex;gap:4px;padding:7px 8px;background:rgba(255,255,255,.06);}
+.abw-bar i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);}
+.abw-hero{margin:8px 10px 6px;height:30px;border-radius:6px;background:linear-gradient(110deg,rgba(43,43,255,.55) 0%,rgba(0,212,255,.7) 50%,rgba(43,43,255,.55) 100%);background-size:200% 100%;animation:abShim 3s linear infinite;}
+.abw-row{display:flex;gap:6px;margin:0 10px;}
+.abw-row span{flex:1;height:22px;border-radius:5px;background:rgba(255,255,255,.12);animation:abPop 3s ease-in-out infinite;}
+.abw-row span:nth-child(2){animation-delay:.25s}.abw-row span:nth-child(3){animation-delay:.5s}
+@keyframes abShim{to{background-position:-200% 0}}
+@keyframes abPop{0%,100%{opacity:.45}50%{opacity:1}}
+/* mini chat */
+.ab-chat{display:flex;flex-direction:column;justify-content:center;gap:5px;padding:8px 10px;}
+.abc-b{font-size:.58rem;line-height:1.25;padding:4px 7px;border-radius:9px;max-width:82%;opacity:0;animation:abMsg 6s ease infinite;}
+.abc-b.in{align-self:flex-start;background:rgba(255,255,255,.14);color:#fff;border-bottom-left-radius:2px;}
+.abc-b.out{align-self:flex-end;background:#25d366;color:#04210f;font-weight:600;border-bottom-right-radius:2px;animation-delay:1.2s;}
+.abc-b.typing{animation-delay:2.4s;display:flex;gap:3px;padding:6px 8px;}
+.abc-b.typing i{width:4px;height:4px;border-radius:50%;background:#fff;animation:abDot 1s infinite;}
+.abc-b.typing i:nth-child(2){animation-delay:.15s}.abc-b.typing i:nth-child(3){animation-delay:.3s}
+@keyframes abMsg{0%{opacity:0;transform:translateY(6px)}8%,85%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes abDot{0%,100%{opacity:.3}50%{opacity:1}}
+.ab-facts{list-style:none;display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:2.6rem;margin-top:2.4rem;}
 .ab-facts b{display:block;font-family:var(--serif);font-style:italic;font-weight:600;font-size:2.2rem;line-height:1;color:#fff;}
 .ab-facts span{font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.7);}
-@media(max-width:900px){.ab-grid{grid-template-columns:1fr;gap:2rem;}.ab-two{grid-template-columns:1fr;}.ab-card{padding:1.1rem 1.1rem;}.ab-facts{gap:1.4rem;}.ab-facts b{font-size:1.8rem;}.ab-facts span{letter-spacing:1.5px;}}
-@media(prefers-reduced-motion:reduce){.ab-glow{animation:none;}}
+.ab-robot{display:flex;align-items:center;justify-content:center;position:relative;}
+.ab-robot::before{content:'';position:absolute;inset:10% 5%;background:radial-gradient(ellipse at center,rgba(43,43,255,.35),transparent 65%);pointer-events:none;}
+#nosotros .robot-vid{max-width:none;width:132%;margin:-8% -16%;transform:scale(1.32);transform-origin:50% 55%;-webkit-mask-image:radial-gradient(ellipse 60% 66% at 50% 52%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 60% 66% at 50% 52%,#000 55%,transparent 100%);position:relative;}
+@media(max-width:900px){.ab-grid{grid-template-columns:1fr;gap:0;}.ab-robot{order:-1;max-width:420px;margin:0 auto -2rem;}#nosotros .robot-vid{width:100%;margin:0;transform:scale(1.15);}.ab-vis{flex-basis:118px;height:84px;}.ab-facts{gap:1.4rem;}.ab-facts b{font-size:1.8rem;}.ab-facts span{letter-spacing:1.5px;}}
+@media(prefers-reduced-motion:reduce){.ab-glow,.abw-hero,.abw-row span{animation:none;}.abc-b{animation:none;opacity:1;}}
 .rec-cta-wa{background:transparent!important;border:1px solid rgba(120,130,255,.5)!important;}
 /* ============ SERVICES ============ */
 .srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3.5rem;}
@@ -1438,22 +1461,36 @@ button.car-dot{border:none;padding:0;}
 
 <!-- NOSOTROS -->
 <div class="sec" id="nosotros">
-  <div class="reveal"><div class="label">Sobre nosotros</div></div>
-  <div class="reveal delay-1"><h2 class="title">Tu negocio en internet,<br><em>respondiendo por ti.</em></h2></div>
   <div class="ab-grid">
-    <div class="about-text reveal delay-2">
-      <p class="ab-lead">En NEXUZ hacemos <span class="ab-glow">dos cosas</span>, y las hacemos bien.</p>
-      <div class="ab-two">
-        <div class="ab-card"><span class="ab-k">01</span><b>Páginas web</b><span>Que presentan tu negocio con claridad y dan confianza.</span></div>
-        <div class="ab-card"><span class="ab-k">02</span><b>Chatbots de WhatsApp con IA</b><span>Que contestan, informan y captan clientes a cualquier hora.</span></div>
+    <div class="ab-left">
+      <div class="reveal"><div class="label">Sobre nosotros</div></div>
+      <div class="reveal delay-1"><h2 class="title">Tu negocio en internet,<br><em>respondiendo por ti.</em></h2></div>
+      <p class="ab-lead reveal delay-2">En NEXUZ hacemos <span class="ab-glow">dos cosas</span>, y las hacemos bien.</p>
+      <div class="ab-duo reveal delay-3">
+        <div class="ab-item">
+          <div class="ab-vis ab-web" aria-hidden="true">
+            <div class="abw-bar"><i></i><i></i><i></i></div>
+            <div class="abw-hero"></div>
+            <div class="abw-row"><span></span><span></span><span></span></div>
+          </div>
+          <div class="ab-txt"><b>Páginas web</b><span>que presentan tu negocio y dan confianza.</span></div>
+        </div>
+        <div class="ab-item">
+          <div class="ab-vis ab-chat" aria-hidden="true">
+            <div class="abc-b in">¿Tienen servicio hoy?</div>
+            <div class="abc-b out">¡Sí! Hasta las 10 pm.</div>
+            <div class="abc-b in typing"><i></i><i></i><i></i></div>
+          </div>
+          <div class="ab-txt"><b>Chatbots de WhatsApp</b><span>con IA que contestan por ti a cualquier hora.</span></div>
+        </div>
       </div>
-      <ul class="ab-facts">
-        <li><b>24/7</b><span>Atención</span></li>
+      <ul class="ab-facts reveal delay-4">
+        <li><b>100%</b><span>A tu medida</span></li>
         <li><b>0</b><span>Letras chiquitas</span></li>
         <li><b>1</b><span>Trato directo</span></li>
       </ul>
     </div>
-    <div class="reveal delay-3" style="display:flex;align-items:center;justify-content:center;">
+    <div class="ab-robot reveal delay-2">
       <video class="loop-vid robot-vid" src="https://d8j0ntlcm91z4.cloudfront.net/user_3LvkRXNTZbI0xUpXUAo3hJLoKCN/hf_20261112_220815_26397ca9-c26f-40b4-807b-eb0d25455cd0.mp4" poster="robot-nosotros.webp" width="834" height="1112" muted loop playsinline preload="none" aria-label="Asistente inteligente de NEXUZ"></video>
     </div>
   </div>
