@@ -247,7 +247,7 @@ nav img{height:26px;display:block}
 
 </main>
 
-<footer style="padding:3rem 0;text-align:center;color:var(--text2);font-size:.78rem">© 2026 NEXUZ · Move smarter, grow faster · Precios en MXN antes de IVA</footer>
+<footer style="padding:3rem 0;text-align:center;color:var(--text2);font-size:.78rem">© 2026 NEXUZ · Move smarter, grow faster · Precios en MXN</footer>
 <script>
 const WA='525652804823';
 const recData={tipo:'',web:'',mensajes:'',dolor:'',canales:[]};
@@ -302,10 +302,10 @@ function recCalcular(){
     if(r.dolor==='citas'||r.tipo==='citas') extras.push('La agenda de citas viene incluida en todos los planes (próximamente, sin costo extra cuando esté lista)');
     if(redes.length) extras.push('Instagram y Messenger: próximamente, $2,000 + $500/mes por canal');
     extras.push('Respuestas extra: $900 por cada 1,000. Te avisamos al 80% y nunca cobramos sin tu autorización');
-    extras.push('Las tarifas de WhatsApp las cobra Meta a la cuenta de tu negocio, según consumo');
+    extras.push('Cubrimos lo que Meta cobra por hasta 3,000 respuestas del bot al mes; Meta pide registrar un método de pago en tu cuenta de WhatsApp');
     if(vol==='basico'&&r.mensajes==='alto') extras.push('Si creces, el plan Pro te da 6,000 respuestas por $5,990/mes');
   }
-  if(precio===undefined){ precio=mxn(inicial)+' MXN'; nota='Total inicial antes de IVA'+(mensual?' · Después '+mxn(mensual)+'/mes':''); }
+  if(precio===undefined){ precio=mxn(inicial)+' MXN'; nota='Total inicial'+(mensual?' · Después '+mxn(mensual)+'/mes':''); }
   const T={comida:'Restaurante o cafetería',citas:'Negocio con citas',productos:'Venta de productos',servicios:'Servicios profesionales',emprendedor:'Proyecto nuevo',otro:'Tu negocio'};
   const W={no:'Sin página web',renovar:'Página por renovar',si:'Ya tiene página'};
   const M={bajo:'Casi no recibe mensajes',medio:'1 a 10 mensajes al día',alto:'10 a 50 al día',muy:'50 a 150 al día',top:'Más de 150 al día'};
