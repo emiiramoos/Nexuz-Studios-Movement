@@ -247,7 +247,7 @@ nav img{height:26px;display:block}
 
 </main>
 
-<footer style="padding:3rem 0;text-align:center;color:var(--text2);font-size:.78rem">© 2026 NEXUZ · Move smarter, grow faster · Precios finales en MXN</footer>
+<footer style="padding:3rem 0;text-align:center;color:var(--text2);font-size:.78rem">© 2026 NEXUZ · Move smarter, grow faster · Precios en MXN antes de IVA</footer>
 <script>
 const WA='525652804823';
 const recData={tipo:'',web:'',mensajes:'',dolor:'',canales:[]};
@@ -271,50 +271,41 @@ function recCalcular(){
   const needsWeb=r.web!=='si';
   const vol=r.mensajes==='top'?'premium':(r.mensajes==='muy'?'pro':'basico');
   const needsBot=r.mensajes!=='bajo'||['contestar','repetir','citas'].includes(r.dolor)||redes.length>0;
-  const needsRes=r.dolor==='citas'||(r.tipo==='citas'&&r.mensajes!=='bajo'&&r.dolor!=='encontrar');
+  const P={basico:{nm:'Básico',mo:3490,impl:2000,resp:'3,000',web:6000,ahorro:3000},pro:{nm:'Pro',mo:5990,impl:1000,resp:'6,000',web:5000,ahorro:3000},premium:{nm:'Premium',mo:9990,impl:0,resp:'12,000',web:3500,ahorro:3500}}[vol];
   let plan,why,items,extras=[],inicial=0,mensual=0,codigo='',precio,nota,entrega;
   if(r.dolor==='medida'){
     plan='PROYECTO A LA MEDIDA'; codigo='WEB'; precio='Se cotiza'; nota='Te mandamos una propuesta con precio cerrado antes de empezar'; entrega='según alcance';
     items=['Diseño a la medida con tu marca','Tienda en línea, cuentas de usuario o base de datos','Adaptado a celular','Se puede conectar con tu chatbot de WhatsApp'];
     why='Lo que necesitas va más allá de una página informativa. Platicamos contigo, definimos el alcance y te damos un precio cerrado.';
-    if(needsBot) extras.push('Como ya te escriben, puedes sumar el chatbot de WhatsApp: $2,500/mes + $2,000 de implementación');
-  } else if(vol!=='basico' && !needsRes){
-    const pro=vol==='pro';
-    plan=(pro?'PLAN PRO':'PLAN PREMIUM')+(needsWeb?' + PÁGINA WEB':''); codigo=pro?'PRO':'PREMIUM';
-    mensual=pro?5500:12000; inicial=needsWeb?(pro?5000:3500):0; entrega=needsWeb?'3 semanas':'1 semana';
-    items=[(pro?'6,000':'12,000')+' respuestas del bot al mes','Chatbot de WhatsApp con IA entrenada con tu negocio, 24/7','Sin costo de implementación','Te pasa al cliente cuando quiere cerrar'];
-    if(needsWeb) items.push('Página web de hasta 3 páginas por solo '+mxn(inicial));
-    why=(pro?'Te escriben bastante: el plan Pro te da 6,000 respuestas al mes':'Tu volumen es alto: el plan Premium te da 12,000 respuestas al mes')+', no pagas implementación'+(needsWeb?' y tu página te sale en '+mxn(inicial)+' en lugar de $7,000.':'.');
-  } else if(needsRes && needsWeb){
-    plan='PÁGINA WEB + CHATBOT CON RESERVAS'; inicial=14500; mensual=3000; codigo='PAQUETE'; entrega='3 semanas';
-    items=['Página web de hasta 3 páginas','Chatbot de WhatsApp con IA 24/7','Agenda citas en tu Google Calendar','Confirmación y recordatorio 24 h antes'];
-    why='Tu negocio vive de las citas. La página te da confianza y el chatbot agenda, confirma y recuerda por ti, a cualquier hora.';
-  } else if(needsRes){
-    plan='CHATBOT CON RESERVAS'; inicial=7500; mensual=3000; codigo='CHATBOT'; entrega='2 semanas';
-    items=['Todo lo del chatbot de WhatsApp','Agenda citas en tu Google Calendar','Confirma al momento','Recordatorio 24 h antes (300 al mes incluidos)'];
-    why='Ya tienes página. Lo que más tiempo te ahorra es que tus clientes agenden solos por WhatsApp y reciban su recordatorio.';
-  } else if(needsWeb && needsBot){
-    plan='PAQUETE PÁGINA + CHATBOT'; inicial=8500; mensual=2500; codigo='PAQUETE'; entrega='3 semanas';
-    items=['Página web de hasta 3 páginas','Chatbot de WhatsApp con IA 24/7, 3,000 respuestas al mes','Página a $6,000, primer mes del chatbot incluido e implementación gratis','Mantenimiento de la página incluido'];
-    why='Te falta presencia y ya te escriben. La página da confianza y el chatbot contesta por ti en segundos. Juntos te ahorran $3,000.';
+    if(needsBot) extras.push('Como ya te escriben, puedes sumar un chatbot de WhatsApp desde $3,490/mes');
   } else if(needsBot){
-    plan='CHATBOT DE WHATSAPP'; inicial=2000; mensual=2500; codigo='CHATBOT'; entrega='1 semana';
-    items=['Respuestas 24/7 con IA entrenada con tu negocio','Horarios, precios, ubicación y hasta 30 productos','Envía fotos, PDF y catálogo','3,000 respuestas del bot al mes'];
-    why=r.dolor==='repetir'?'Ya tienes página. El chatbot contesta precios, horarios y ubicación, para que dejes de repetir lo mismo.':'Ya tienes página. Lo que te falta es no perder clientes por tardar: el chatbot responde en segundos, 24/7.';
+    codigo= vol==='basico' ? (needsWeb?'PAQUETE':'CHATBOT') : P.nm.toUpperCase();
+    mensual=P.mo;
+    if(needsWeb){
+      plan='PÁGINA + CHATBOT '+P.nm.toUpperCase(); inicial=P.web+P.mo; entrega='3 semanas';
+      items=['Página web de hasta 3 páginas por '+mxn(P.web)+' (en lugar de $7,000)','Chatbot de WhatsApp con IA 24/7, '+P.resp+' respuestas al mes','Implementación del chatbot gratis','Hosting y SSL de la página mientras el plan siga activo'];
+      why='Te falta presencia y ya te escriben. La página da confianza y el chatbot contesta por ti en segundos. Juntos te ahorran '+mxn(P.ahorro)+'.';
+    } else {
+      plan='CHATBOT '+P.nm.toUpperCase(); inicial=P.impl+P.mo; entrega='1 semana';
+      items=['IA entrenada con tu negocio, responde 24/7',P.resp+' respuestas del bot al mes','Te avisa cuando un cliente necesita a una persona o cierra una venta','Se pausa solo cuando tú contestas'];
+      why=r.dolor==='repetir'?'Ya tienes página. El chatbot contesta precios, horarios y ubicación, para que dejes de repetir lo mismo.':'Ya tienes página. Lo que te falta es no perder clientes por tardar: el chatbot responde en segundos, 24/7.';
+    }
+    if(vol!=='basico') why+=' Por tu volumen de mensajes te conviene el plan '+P.nm+'.';
   } else {
     plan='PÁGINA WEB'; inicial=7000; codigo='WEB'; entrega='3 semanas';
-    items=['Hasta 3 páginas','Diseño con tu logo y colores','Adaptada a celular','Botón de WhatsApp y SEO básico para Google'];
+    items=['Hasta 3 páginas','Diseño con tu logo y colores','Adaptada a celular','Botón de WhatsApp y SEO básico para Google','Hosting y SSL por 1 año'];
     why=r.web==='si'?'Tienes página, pero si no te encuentran conviene rehacerla con SEO básico y un botón directo a tu WhatsApp.':'Lo primero es que tu negocio exista en internet y dé confianza.';
-    extras.push('Mantenimiento opcional: $500/mes');
+    extras.push('Después del primer año, mantenimiento opcional de $500/mes o te entregamos los archivos');
   }
-  const tieneBot=/CHATBOT|PRO|PREMIUM|RESERVAS/.test(plan);
-  if(redes.length&&tieneBot){ const n=redes.map(c=>c==='instagram'?'Instagram':'Messenger'); extras.unshift('Conecta el mismo chatbot a '+n.join(' y ')+': $2,000 + $500/mes por canal'); inicial+=2000*redes.length; mensual+=500*redes.length; }
-  if(tieneBot) extras.push('Respuestas extra: $700 por cada 1,000. Te avisamos al 80% y nunca cobramos sin tu autorización');
-  if(vol==='basico'&&r.mensajes==='alto'&&tieneBot) extras.push('Si creces, el plan Pro (6,000 respuestas) no cobra implementación y baja tu página a $5,000');
-  if(precio===undefined){
-    if(inicial){ precio=mxn(inicial)+' MXN'; nota=(codigo==='PAQUETE'&&inicial===8500?'Pago inicial · Después ':'Pago inicial · ')+(mensual?mxn(mensual)+'/mes':'sin mensualidad'); }
-    else { precio=mxn(mensual)+' MXN/mes'; nota='Sin costo de implementación'; }
+  const tieneBot=/CHATBOT/.test(plan);
+  if(tieneBot){
+    if(r.dolor==='citas'||r.tipo==='citas') extras.push('La agenda de citas viene incluida en todos los planes (próximamente, sin costo extra cuando esté lista)');
+    if(redes.length) extras.push('Instagram y Messenger: próximamente, $2,000 + $500/mes por canal');
+    extras.push('Respuestas extra: $900 por cada 1,000. Te avisamos al 80% y nunca cobramos sin tu autorización');
+    extras.push('Las tarifas de WhatsApp las cobra Meta a la cuenta de tu negocio, según consumo');
+    if(vol==='basico'&&r.mensajes==='alto') extras.push('Si creces, el plan Pro te da 6,000 respuestas por $5,990/mes');
   }
+  if(precio===undefined){ precio=mxn(inicial)+' MXN'; nota='Total inicial antes de IVA'+(mensual?' · Después '+mxn(mensual)+'/mes':''); }
   const T={comida:'Restaurante o cafetería',citas:'Negocio con citas',productos:'Venta de productos',servicios:'Servicios profesionales',emprendedor:'Proyecto nuevo',otro:'Tu negocio'};
   const W={no:'Sin página web',renovar:'Página por renovar',si:'Ya tiene página'};
   const M={bajo:'Casi no recibe mensajes',medio:'1 a 10 mensajes al día',alto:'10 a 50 al día',muy:'50 a 150 al día',top:'Más de 150 al día'};
