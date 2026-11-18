@@ -286,8 +286,8 @@ function recCalcular(){
       items=['Página web de hasta 3 páginas por '+mxn(P.web)+' (en lugar de $7,000)','Chatbot de WhatsApp con IA 24/7, '+P.resp+' respuestas al mes','Implementación del chatbot gratis','Hosting y SSL de la página mientras el plan siga activo'];
       why='Te falta presencia y ya te escriben. La página da confianza y el chatbot contesta por ti en segundos. Juntos te ahorran '+mxn(P.ahorro)+'.';
     } else {
-      plan='CHATBOT '+P.nm.toUpperCase(); inicial=P.impl+P.mo; entrega='1 semana';
-      items=['IA entrenada con tu negocio, responde 24/7',P.resp+' respuestas del bot al mes','Te avisa cuando un cliente necesita a una persona o cierra una venta','Se pausa solo cuando tú contestas'];
+      plan='CHATBOT '+P.nm.toUpperCase(); inicial=P.impl+P.mo; entrega='2 semanas';
+      items=['IA entrenada con tu negocio, responde 24/7',P.resp+' respuestas del bot al mes','Te avisa cuando un cliente necesita a una persona o cierra una venta','Agenda citas con tu Google Calendar y envía fotos y videos'];
       why=r.dolor==='repetir'?'Ya tienes página. El chatbot contesta precios, horarios y ubicación, para que dejes de repetir lo mismo.':'Ya tienes página. Lo que te falta es no perder clientes por tardar: el chatbot responde en segundos, 24/7.';
     }
     if(vol!=='basico') why+=' Por tu volumen de mensajes te conviene el plan '+P.nm+'.';
@@ -299,8 +299,8 @@ function recCalcular(){
   }
   const tieneBot=/CHATBOT/.test(plan);
   if(tieneBot){
-    if(r.dolor==='citas'||r.tipo==='citas') extras.push('La agenda de citas viene incluida en todos los planes (próximamente, sin costo extra cuando esté lista)');
-    if(redes.length) extras.push('Instagram y Messenger: próximamente, $2,000 + $500/mes por canal');
+    if(r.dolor==='citas'||r.tipo==='citas') extras.push('La agenda de citas viene incluida en todos los planes: tu chatbot manda el link de tu Google Calendar y la cita te llega sin empalmes');
+    if(redes.length===2&&vol==='basico') extras.push('Como te escriben por Instagram y Messenger, te conviene el paquete WhatsApp + Instagram + Messenger: $6,500/mes con implementación de $1,000 (y tu página a $4,500)'); else if(redes.length) extras.push('Instagram o Messenger: $2,500/mes por canal, o los dos por $1,800/mes cada uno');
     extras.push('Respuestas extra: $900 por cada 1,000. Te avisamos al 80% y nunca cobramos sin tu autorización');
     extras.push('Cubrimos lo que Meta cobra por hasta 3,000 respuestas del bot al mes; Meta pide registrar un método de pago en tu cuenta de WhatsApp');
     if(vol==='basico'&&r.mensajes==='alto') extras.push('Si creces, el plan Pro te da 6,000 respuestas por $5,990/mes');
